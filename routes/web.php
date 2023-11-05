@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfessionalController;
 use App\Http\Controllers\SeriesController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::controller(ProfessionalController::class)->group(function () {
+    Route::get('/profissional', 'index')->name('professional.index');
+    Route::get('/profissional/criar', 'create')->name('professional.create');
+    Route::post('/profissional/salvar', 'store')->name('professional.store');
 });
 
 Route::get('/series', [SeriesController::class, 'index']);
