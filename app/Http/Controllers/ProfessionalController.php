@@ -12,7 +12,11 @@ class ProfessionalController extends Controller
      */
     public function index()
     {
-        return 'DEU CERTO!';
+        $professionals = Professional::query()->orderBy('name')->get();
+
+        return view('professional.index', [
+            'professionals' => $professionals
+        ]);
     }
 
     /**
@@ -60,8 +64,10 @@ class ProfessionalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        Professional::destroy($request->id);
+
+        return to_route('professional.index');
     }
 }
