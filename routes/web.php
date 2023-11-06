@@ -20,10 +20,10 @@ Route::get('/', function () {
 });
 
 Route::controller(ProfessionalController::class)->group(function () {
-    Route::get('/profissional', 'index')->name('professional.index');
-    Route::get('/profissional/criar', 'create')->name('professional.create');
-    Route::post('/profissional/salvar', 'store')->name('professional.store');
-    Route::delete('/series/excluir/{id}', 'destroy')->name('professional.destroy');
+    Route::get('/admin/profissional', 'index')->name('professional.index');
+    Route::get('/admin/profissional/criar', 'create')->name('professional.create');
+    Route::post('/admin/profissional/salvar', 'store')->name('professional.store');
+    Route::delete('/admin/profissional/excluir/{id}', 'destroy')->name('professional.destroy');
 });
 
 Route::get('/series', [SeriesController::class, 'index']);

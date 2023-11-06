@@ -1,5 +1,5 @@
 <x-layout title="Profissionais">
-    <a href="/series/criar" class="btn btn-dark mb-2">Adicionar Série</a>
+    <a href="{{ route('professional.create') }}" class="btn btn-dark mb-2">Adicionar Série</a>
 
     <ul class="list-group">
         @foreach ($professionals as $professional)
