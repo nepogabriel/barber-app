@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Professional;
 use Illuminate\Http\Request;
 
 class ProfessionalController extends Controller
@@ -12,7 +13,11 @@ class ProfessionalController extends Controller
      */
     public function index()
     {
-        //
+        $professionals = Professional::query()->orderBy('name')->get();
+
+        return view('professional.index', [
+            'professionals' => $professionals
+        ]);
     }
 
     /**
@@ -20,7 +25,7 @@ class ProfessionalController extends Controller
      */
     public function create()
     {
-        //
+        return view('professional.create');
     }
 
     /**
@@ -28,7 +33,9 @@ class ProfessionalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Professional::create($request->all());
+
+        return to_route('professional.index');
     }
 
     /**
@@ -58,8 +65,10 @@ class ProfessionalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        Professional::destroy($request->id);
+
+        return to_route('professional.index');
     }
 }
