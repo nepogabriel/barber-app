@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>{{ $title }}</h1>
+        <h2>{{ $title }}</h2>
 
         {{ $slot }}
     </div>

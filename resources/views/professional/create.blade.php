@@ -1,5 +1,7 @@
 <x-layout title="Cadastrar Profissional">
-    <form action="{{ route('professional.store') }}" method="post">
+    <x-professional.form :action="route('professional.store')"/>
+
+    {{-- <form action="{{ route('professional.store') }}" method="post">
         @csrf
 
         <div class="mb-3">
@@ -20,5 +22,5 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Adicionar</button>
-    </form>
+    </form> --}}
 </x-layout>
