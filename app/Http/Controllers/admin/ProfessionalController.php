@@ -34,6 +34,14 @@ class ProfessionalController extends Controller
      */
     public function store(Request $request)
     {
+
+        //dd($request);
+
+        $request->validate([
+            'name' => ['required', 'min:3'],
+            'telephone' => ['required', 'min:11', 'max:15'],
+        ]);
+
         $professional = Professional::create($request->all());
 
         return to_route('professional.index')

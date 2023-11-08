@@ -11,7 +11,12 @@
                 id="name"
                 name="name"
                 class="form-control"
-                @isset($professional->name) value="{{ $professional->name }}" @endisset/>
+                @isset($professional->name)
+                    value="{{ $professional->name }}"
+                @endisset
+                @isset($name)
+                    value="{{ $name }}"
+                @endisset/>
     </div>
 
     <div class="mb-3">
@@ -20,7 +25,13 @@
                 id="telephone"
                 name="telephone"
                 class="form-control" 
-                @isset($professional->telephone) value="{{ $professional->telephone }}" @endisset/>
+                @isset($professional->telephone)
+                    value="{{ $professional->telephone }}"
+                @endisset
+                
+                @isset($telephone)
+                    value="{{ $telephone }}"
+                @endisset/>
     </div>
     
     <div class="mb-3">
