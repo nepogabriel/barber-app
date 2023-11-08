@@ -11,13 +11,14 @@ class ProfessionalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $professionals = Professional::query()->orderBy('name')->get();
+        $message_success = $request->session()->get('message.success');
 
         return view('professional.index', [
             'professionals' => $professionals
-        ]);
+        ])->with('message_success', $message_success);
     }
 
     /**
@@ -33,9 +34,10 @@ class ProfessionalController extends Controller
      */
     public function store(Request $request)
     {
-        Professional::create($request->all());
+        $professional = Professional::create($request->all());
 
-        return to_route('professional.index');
+        return to_route('professional.index')
+            ->with('message.success', "Profissional '{$professional->name}' criado(a) com sucesso!");
     }
 
     /**
@@ -49,9 +51,9 @@ class ProfessionalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Professional $professional)
     {
-        //
+        return view('professional.edit')->with('professional', $professional);
     }
 
     /**
@@ -65,10 +67,12 @@ class ProfessionalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
+    public function destroy(Professional $professional)
     {
-        Professional::destroy($request->id);
+        //Professional::destroy($request->id);
+        $professional->delete();
 
-        return to_route('professional.index');
+        return to_route('professional.index')
+            ->with('message.success', "Profissional '{$professional->name}' removido(a) com sucesso!");
     }
 }

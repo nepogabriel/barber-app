@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfessionalController;
+use App\Http\Controllers\admin\ProfessionalController;
 use App\Http\Controllers\SeriesController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,14 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/admin/profissional');
 });
 
 Route::controller(ProfessionalController::class)->group(function () {
     Route::get('/admin/profissional', 'index')->name('professional.index');
     Route::get('/admin/profissional/criar', 'create')->name('professional.create');
     Route::post('/admin/profissional/salvar', 'store')->name('professional.store');
-    Route::delete('/admin/profissional/excluir/{id}', 'destroy')->name('professional.destroy');
+    Route::get('/admin/profissional/{professional}/editar', 'edit')->name('professional.edit');
+    Route::delete('/admin/profissional/excluir/{professional}', 'destroy')->name('professional.destroy');
 });
 
 Route::get('/series', [SeriesController::class, 'index']);

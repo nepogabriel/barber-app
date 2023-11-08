@@ -15,7 +15,7 @@
         <div class="mb-3">
             <label for="position" class="form-label">Cargo:</label>
             <select id="position" name="position" class="form-control">
-                <option value="bareiro">Barbeiro</option>
+                <option value="barbeiro">Barbeiro</option>
             </select>
         </div>
 
