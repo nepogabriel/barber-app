@@ -27,7 +27,3 @@ Route::controller(ProfessionalController::class)->group(function () {
     Route::put('/admin/profissional/{professional}', 'update')->name('professional.update');
     Route::delete('/admin/profissional/excluir/{professional}', 'destroy')->name('professional.destroy');
 });
-
-Route::get('/series', [SeriesController::class, 'index']);
-Route::get('/series/criar', [SeriesController::class, 'create']);
-Route::post('/series/salvar', [SeriesController::class, 'store']);
