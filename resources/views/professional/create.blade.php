@@ -1,5 +1,5 @@
 <x-layout title="Cadastrar Profissional">
-    <x-professional.form :action="route('professional.store')"/>
+    <x-professional.form :action="route('professional.store')" :update="false"/>
 
     {{-- <form action="{{ route('professional.store') }}" method="post">
         @csrf

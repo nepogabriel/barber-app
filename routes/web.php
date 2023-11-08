@@ -22,8 +22,9 @@ Route::get('/', function () {
 Route::controller(ProfessionalController::class)->group(function () {
     Route::get('/admin/profissional', 'index')->name('professional.index');
     Route::get('/admin/profissional/criar', 'create')->name('professional.create');
-    Route::post('/admin/profissional/salvar', 'store')->name('professional.store');
     Route::get('/admin/profissional/{professional}/editar', 'edit')->name('professional.edit');
+    Route::post('/admin/profissional/salvar', 'store')->name('professional.store');
+    Route::put('/admin/profissional/{professional}', 'update')->name('professional.update');
     Route::delete('/admin/profissional/excluir/{professional}', 'destroy')->name('professional.destroy');
 });
 

@@ -59,9 +59,12 @@ class ProfessionalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Professional $professional, Request $request)
     {
-        //
+        $professional->fill($request->all());
+        $professional->save();
+
+        return to_route('professional.index')->with('message.success', "Profissional '{$professional->name}' atualizado(a) com sucesso!");
     }
 
     /**
