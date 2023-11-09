@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProfessionalFormRequest;
 use App\Models\Professional;
 use Illuminate\Http\Request;
 
@@ -32,16 +33,8 @@ class ProfessionalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-
-        //dd($request);
-
-        $request->validate([
-            'name' => ['required', 'min:3'],
-            'telephone' => ['required', 'min:11', 'max:15'],
-        ]);
-
+    public function store(ProfessionalFormRequest $request)
+    {   
         $professional = Professional::create($request->all());
 
         return to_route('professional.index')
@@ -67,7 +60,7 @@ class ProfessionalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Professional $professional, Request $request)
+    public function update(Professional $professional, ProfessionalFormRequest $request)
     {
         $professional->fill($request->all());
         $professional->save();

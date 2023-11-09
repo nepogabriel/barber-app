@@ -11,7 +11,7 @@ class ProfessionalFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class ProfessionalFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'min:3'],
+            'telephone' => ['required', 'min:11', 'max:15'],
         ];
     }
 }
