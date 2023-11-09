@@ -26,4 +26,15 @@ class ProfessionalFormRequest extends FormRequest
             'telephone' => ['required', 'min:11', 'max:15'],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'O campo nome é obrigatório.',
+            'name.min' => 'O campo de nome deve ter pelo menos :min caracteres.',
+            'telephone.required' => 'O campo de telefone é obrigatório.',
+            'telephone.min' => 'O campo de nome deve ter pelo menos :min caracteres.',
+            'telephone.max' => 'O campo de telefone não deve ter mais de :max caracteres.',
+        ];
+    }
 }
