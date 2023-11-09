@@ -11,7 +11,7 @@ class Professional extends Model
 
     protected $fillable = ['name', 'telephone', 'position'];
 
-    public function AppAppointmentoiment()
+    public function Appointment()
     {
         return $this->hasMany(Appointment::class , 'professional_id', 'id');
     }
