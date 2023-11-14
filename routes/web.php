@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\ProfessionalController;
+use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\SeriesController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,10 @@ Route::controller(ProfessionalController::class)->group(function () {
     Route::post('/admin/profissional/salvar', 'store')->name('professional.store');
     Route::put('/admin/profissional/{professional}', 'update')->name('professional.update');
     Route::delete('/admin/profissional/excluir/{professional}', 'destroy')->name('professional.destroy');
+});
+
+Route::controller(ServiceController::class)->group(function() {
+    Route::get('/admin/servico', 'index')->name('admin.service.index');
+    Route::get('admin/servico/criar', 'create')->name('admin.service.create');
+    Route::post('/admin/servico/salvar', 'store')->name('admin.service.store');
 });
