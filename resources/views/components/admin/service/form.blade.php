@@ -11,8 +11,8 @@
                 id="name"
                 name="name"
                 class="form-control"
-                @isset($professional->name)
-                    value="{{ $professional->name }}"
+                @isset($service->name)
+                    value="{{ $service->name }}"
                 @endisset
                 @isset($name)
                     value="{{ $name }}"
@@ -25,17 +25,18 @@
                 id="price"
                 name="price"
                 class="form-control"
-                @isset($professional->name)
-                    value="{{ $professional->name }}"
+                @isset($service->price)
+                    value="{{ $service->price }}"
                 @endisset
-                @isset($name)
-                    value="{{ $name }}"
+                @isset($price)
+                    value="{{ $price }}"
                 @endisset/>
     </div>
     
     <div class="mb-3">
         <label for="position" class="form-label">Descrição:</label>
-        <textarea id="description" name="description" class="form-control"></textarea>
+        <textarea id="description" name="description" class="form-control" rows="4" cols="50">@isset($service->description){{ $service->description }}@endisset @isset($description){{ $description }}@endisset
+        </textarea>
     </div>
 
     <button type="submit" class="btn btn-primary">Adicionar</button>
