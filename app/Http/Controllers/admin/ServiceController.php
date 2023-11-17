@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ServiceFormRequest;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,7 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ServiceFormRequest $request)
     {
         $service = Service::create($request->all());
 
@@ -58,7 +59,7 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Service $service, Request $request)
+    public function update(Service $service, ServiceFormRequest $request)
     {
         $service->fill($request->all());
         $service->save();

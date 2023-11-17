@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfessionalFormRequest extends FormRequest
+class ServiceFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class ProfessionalFormRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:3'],
-            'telephone' => ['required', 'min:11', 'max:15'],
+            'price' => ['required', 'min:4'],
         ];
     }
 
@@ -32,9 +32,8 @@ class ProfessionalFormRequest extends FormRequest
         return [
             'name.required' => 'O campo nome é obrigatório.',
             'name.min' => 'O campo de nome deve ter pelo menos :min caracteres.',
-            'telephone.required' => 'O campo de telefone é obrigatório.',
-            'telephone.min' => 'O campo de telefone deve ter pelo menos :min caracteres.',
-            'telephone.max' => 'O campo de telefone não deve ter mais de :max caracteres.',
+            'price.required' => 'O campo de preço é obrigatório.',
+            'price.min' => 'O campo de preço deve ter pelo menos :min caracteres.',
         ];
     }
 }

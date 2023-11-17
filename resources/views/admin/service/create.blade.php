@@ -2,7 +2,8 @@
     <x-admin.service.form 
         :action="route('admin.service.store')"
         :update="false"
-        {{-- :name="old('name')"
-        :telephone="old('telephone')" --}}
+        :name="old('name')"
+        :price="old('price')"
+        :description="old('description')"
     />
 </x-layout>
