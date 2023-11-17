@@ -11,11 +11,13 @@ class ServiceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $services = ['DEU CERTO', 'TRUVAA!!'];
+        $services = Service::query()->orderBy('name')->get();
+        $message_success = $request->session()->get('message.success');
 
-        return view('admin.service.index', ['services' => $services]);
+        return view('admin.service.index', ['services' => $services])
+            ->with('message_success', $message_success);
     }
 
     /**
@@ -34,7 +36,7 @@ class ServiceController extends Controller
         $service = Service::create($request->all());
 
         return to_route('admin.service.index')
-            ->with('message.success', "Serviço criado com sucesso!");
+            ->with('message.success', "Serviço '{$service->name}' criado com sucesso!");
     }
 
     /**
@@ -64,8 +66,11 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        
+        return to_route('admin.service.index')
+            ->with('message.success', "Serviço '{$service->name}' removido com sucesso!");
     }
 }
