@@ -1,7 +1,6 @@
 <x-layout title="Cadastrar Serviço '{{ $service->name }}'">
     <x-admin.service.form
-        {{-- Trocar essa action para update --}}
-        :action="route('admin.service.store')"
+        :action="route('admin.service.update', $service->id)"
         :service="$service"
         :update="true"
     />

@@ -34,5 +34,6 @@ Route::controller(ServiceController::class)->group(function() {
     Route::get('admin/servico/criar', 'create')->name('admin.service.create');
     Route::get('/admin/servico/{service}/editar', 'edit')->name('admin.service.edit');
     Route::post('/admin/servico/salvar', 'store')->name('admin.service.store');
+    Route::put('/admin/servico/{service}', 'update')->name('admin.service.update');
     Route::delete('/admin/servico/excluir/{service}', 'destroy')->name('admin.service.destroy');
 });

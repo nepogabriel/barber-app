@@ -58,9 +58,13 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Service $service, Request $request)
     {
-        //
+        $service->fill($request->all());
+        $service->save();
+
+        return to_route('admin.service.index',)
+            ->with('message.success', "Serviço '{$service->name}' atualizado com sucesso!");
     }
 
     /**
