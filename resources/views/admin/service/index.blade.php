@@ -13,7 +13,7 @@
                 {{ $service->name }}
 
                 <span class="d-flex">
-                    <a href="{{ route('admin.service.edit', $service->id) }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route('admin.service.edit', $service->id) }}" class="btn btn-dark btn-sm">
                         E
                     </a>
 

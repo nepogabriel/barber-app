@@ -39,5 +39,5 @@
         </textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary">Adicionar</button>
+    <button type="submit" class="btn btn-dark">Adicionar</button>
 </form>

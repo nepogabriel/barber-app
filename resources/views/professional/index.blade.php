@@ -13,7 +13,7 @@
                 {{ $professional->name }}
 
                 <span class="d-flex">
-                    <a href="{{ route('professional.edit', $professional->id) }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route('professional.edit', $professional->id) }}" class="btn btn-dark btn-sm">
                         E
                     </a>
 
