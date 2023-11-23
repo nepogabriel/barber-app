@@ -1,13 +1,13 @@
 <x-layout title="Cadastrar Profissional">
-    <x-professional.form 
-        :action="route('professional.store')"
-        :cancel="route('professional.index')"
+    <x-admin.professional.form 
+        :action="route('admin.professional.store')"
+        :cancel="route('admin.professional.index')"
         :update="false"
         :name="old('name')"
         :telephone="old('telephone')"
     />
 
-    {{-- <form action="{{ route('professional.store') }}" method="post">
+    {{-- <form action="{{ route('admin.professional.store') }}" method="post">
         @csrf
 
         <div class="mb-3">

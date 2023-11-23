@@ -17,7 +17,7 @@ class ProfessionalController extends Controller
         $professionals = Professional::query()->orderBy('name')->get();
         $message_success = $request->session()->get('message.success');
 
-        return view('professional.index', [
+        return view('admin.professional.index', [
             'professionals' => $professionals
         ])->with('message_success', $message_success);
     }
@@ -27,7 +27,7 @@ class ProfessionalController extends Controller
      */
     public function create()
     {
-        return view('professional.create');
+        return view('admin.professional.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class ProfessionalController extends Controller
     {   
         $professional = Professional::create($request->all());
 
-        return to_route('professional.index')
+        return to_route('admin.professional.index')
             ->with('message.success', "Profissional '{$professional->name}' criado(a) com sucesso!");
     }
 
@@ -54,7 +54,7 @@ class ProfessionalController extends Controller
      */
     public function edit(Professional $professional)
     {
-        return view('professional.edit')->with('professional', $professional);
+        return view('admin.professional.edit')->with('professional', $professional);
     }
 
     /**
@@ -65,7 +65,7 @@ class ProfessionalController extends Controller
         $professional->fill($request->all());
         $professional->save();
 
-        return to_route('professional.index')->with('message.success', "Profissional '{$professional->name}' atualizado(a) com sucesso!");
+        return to_route('admin.professional.index')->with('message.success', "Profissional '{$professional->name}' atualizado(a) com sucesso!");
     }
 
     /**
@@ -76,7 +76,7 @@ class ProfessionalController extends Controller
         //Professional::destroy($request->id);
         $professional->delete();
 
-        return to_route('professional.index')
+        return to_route('admin.professional.index')
             ->with('message.success', "Profissional '{$professional->name}' removido(a) com sucesso!");
     }
 }
