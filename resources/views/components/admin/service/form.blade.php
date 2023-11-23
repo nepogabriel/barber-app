@@ -39,5 +39,6 @@
         </textarea>
     </div>
 
+    <a class="btn btn-danger" href="{{ $cancel }}">Cancelar</a>
     <button type="submit" class="btn btn-dark">Adicionar</button>
 </form>

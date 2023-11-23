@@ -1,6 +1,7 @@
 <x-layout title="Cadastrar Profissional">
     <x-professional.form 
         :action="route('professional.store')"
+        :cancel="route('professional.index')"
         :update="false"
         :name="old('name')"
         :telephone="old('telephone')"

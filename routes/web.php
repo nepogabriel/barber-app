@@ -20,6 +20,10 @@ Route::get('/', function () {
     return redirect('/admin/profissional');
 });
 
+Route::get('/admin', function () {
+    return redirect('/admin/profissional');
+});
+
 Route::controller(ProfessionalController::class)->group(function () {
     Route::get('/admin/profissional', 'index')->name('professional.index');
     Route::get('/admin/profissional/criar', 'create')->name('professional.create');

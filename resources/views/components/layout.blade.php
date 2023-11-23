@@ -8,7 +8,7 @@
     <title>{{ $title }}</title>
 </head>
 <body>
-    <div class="container-fluid py-3 border-bottom border-black">
+    <div class="container-fluid py-3 mb-3 border-bottom border-black">
         <div class="container d-flex justify-content-between align-items-center">
 
             <div>
@@ -18,7 +18,7 @@
             </div>
         
             <div>
-                LOGO
+                <img src="/img/logo.jpeg" height="70px" width="auto">
             </div>
 
             <div>
@@ -32,23 +32,30 @@
 
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">MENU</h5>
+                {{-- <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">MENU</h5> --}}
+                <img src="/img/logo.jpeg" height="70px" width="auto">
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Disabled</a>
+                        <a class="nav-link active" href="{{ route('professional.index') }}">Profissionais</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link">SAIR</a>
+                        <a class="nav-link" href="{{ route('admin.service.index') }}">Serviços</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Horários</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Configurações</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sair</a>
                     </li>
                 </ul>
             </div>
