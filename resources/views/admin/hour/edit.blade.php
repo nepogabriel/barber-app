@@ -1,8 +1,8 @@
 <x-layout title="Editar Horário">
-    <form action="{{ route('admin.hour.update') }}" method="post">
+    <form action="{{ route('admin.hour.update', $hour['0']->id) }}" method="post">
         @csrf
 
-        @method('UPDATE')
+        @method('PUT')
 
         <div class="mb-3">
             <label for="date" class="form-label">Dia:</label>

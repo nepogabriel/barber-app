@@ -71,7 +71,7 @@ class HourController extends Controller
         
         $hour = DB::table('hours')
             ->join('professionals', 'hours.professional_id', '=', 'professionals.id')
-            ->select('hours.professional_id', 'hours.date', 'hours.time', 'professionals.name')
+            ->select('hours.id', 'hours.professional_id', 'hours.date', 'hours.time', 'professionals.name')
             ->where('hours.id', $hour->id)
             ->get();
 
@@ -83,9 +83,12 @@ class HourController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Hour $hour, Request $request)
     {
-        //
+        $hour->fill($request->all());
+        $hour->save();
+
+        return to_route('admin.hour.index')->with('message.success', "Horário atualizado com sucesso!");
     }
 
     /**
