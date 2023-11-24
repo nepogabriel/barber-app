@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('hours', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('professional_id')->constrained();
+            $table->foreignId('professional_id')->constrained()->onDelete('cascade'); // COLOCAR CASCADE????
             $table->date('date');
             $table->time('time');
             $table->boolean('checked')->default(0);

@@ -48,4 +48,5 @@ Route::controller(HourController::class)->group(function() {
     Route::get('/admin/horario', 'index')->name('admin.hour.index');
     Route::get('admin/horario/cadastrar', 'create')->name('admin.hour.create');
     Route::post('/admin/horario/salvar', 'store')->name('admin.hour.store');
+    Route::delete('/admin/hour/excluir/{hour}', 'destroy')->name('admin.hour.destroy');
 });

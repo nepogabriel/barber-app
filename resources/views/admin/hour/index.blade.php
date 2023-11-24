@@ -25,6 +25,7 @@
                   <tr>
                     <th scope="col">Data</th>
                     <th scope="col">Horário</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -33,6 +34,19 @@
                             <tr>
                                 <td>{{ $hour->date }}</td>
                                 <td>{{ $hour->time }}</td>
+                                <td class="d-flex justify-content-end">
+                                    <span class="d-flex">
+                                        <a href="#" class="btn btn-dark btn-sm">
+                                            E
+                                        </a>
+                    
+                                        <form action="{{ route('admin.hour.destroy', $hour->id) }}" method="post" class="ms-2">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-sm">X</button>
+                                        </form>
+                                    </span>
+                                </td>
                             </tr>
                         @endif
                     @endforeach
