@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\HourController;
 use App\Http\Controllers\admin\ProfessionalController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\SeriesController;
@@ -26,7 +27,7 @@ Route::get('/admin', function () {
 
 Route::controller(ProfessionalController::class)->group(function () {
     Route::get('/admin/profissional', 'index')->name('admin.professional.index');
-    Route::get('/admin/profissional/criar', 'create')->name('admin.professional.create');
+    Route::get('/admin/profissional/cadastrar', 'create')->name('admin.professional.create');
     Route::get('/admin/profissional/{professional}/editar', 'edit')->name('admin.professional.edit');
     Route::post('/admin/profissional/salvar', 'store')->name('admin.professional.store');
     Route::put('/admin/profissional/{professional}', 'update')->name('admin.professional.update');
@@ -35,9 +36,15 @@ Route::controller(ProfessionalController::class)->group(function () {
 
 Route::controller(ServiceController::class)->group(function() {
     Route::get('/admin/servico', 'index')->name('admin.service.index');
-    Route::get('admin/servico/criar', 'create')->name('admin.service.create');
+    Route::get('admin/servico/cadastrar', 'create')->name('admin.service.create');
     Route::get('/admin/servico/{service}/editar', 'edit')->name('admin.service.edit');
     Route::post('/admin/servico/salvar', 'store')->name('admin.service.store');
     Route::put('/admin/servico/{service}', 'update')->name('admin.service.update');
     Route::delete('/admin/servico/excluir/{service}', 'destroy')->name('admin.service.destroy');
+});
+
+
+Route::controller(HourController::class)->group(function() {
+    Route::get('/admin/horario', 'index')->name('admin.hour.index');
+    Route::get('admin/horario/cadastrar', 'create')->name('admin.hour.create');
 });

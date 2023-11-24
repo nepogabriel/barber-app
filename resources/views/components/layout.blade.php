@@ -47,7 +47,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Horários</a>
+                        <a class="nav-link" href="{{ route('admin.hour.index') }}">Horários</a>
                     </li>
 
                     <li class="nav-item">

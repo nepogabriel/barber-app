@@ -15,4 +15,9 @@ class Professional extends Model
     {
         return $this->hasMany(Appointment::class , 'professional_id', 'id');
     }
+
+    public function hour()
+    {
+        return $this->hasMany(Hour::class, 'professional_id', 'id');
+    }
 }
