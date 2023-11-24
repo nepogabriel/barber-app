@@ -36,7 +36,7 @@
                                 <td>{{ $hour->time }}</td>
                                 <td class="d-flex justify-content-end">
                                     <span class="d-flex">
-                                        <a href="#" class="btn btn-dark btn-sm">
+                                        <a href="{{ route('admin.hour.edit', $hour->id) }}" class="btn btn-dark btn-sm">
                                             E
                                         </a>
                     

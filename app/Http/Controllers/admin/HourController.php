@@ -64,9 +64,20 @@ class HourController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Hour $hour)
     {
-        //
+        //$professionals = Professional::query()->orderBy('name')->get();
+        //dd($professionals);
+        
+        $hour = DB::table('hours')
+            ->join('professionals', 'hours.professional_id', '=', 'professionals.id')
+            ->select('hours.professional_id', 'hours.date', 'hours.time', 'professionals.name')
+            ->where('hours.id', $hour->id)
+            ->get();
+
+        return view('admin.hour.edit')
+            //->with('professionals', $professionals)
+            ->with('hour', $hour);
     }
 
     /**
