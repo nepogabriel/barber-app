@@ -9,6 +9,8 @@ class Hour extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['professional_id', 'date', 'time', 'checked'];
+
     public function professional()
     {
         return $this->belongsTo(Professional::class);

@@ -35,7 +35,10 @@ class HourController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Hour::create($request->all());
+
+        return to_route('admin.hour.index')
+            ->with('message.success', "Horário criado com sucesso!");
     }
 
     /**
