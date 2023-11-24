@@ -6,17 +6,29 @@ use App\Http\Controllers\Controller;
 use App\Models\Hour;
 use App\Models\Professional;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HourController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $hours = 'DEU CERTO!!!';
+        // $hours = DB::table('hours')
+        //     ->join('professionals', 'hours.professional_id', '=', 'professionals.id')
+        //     ->select('hours.date', 'hours.time', 'professionals.id')
+        //     ->get();
 
-        return view('admin.hour.index')->with('hours', $hours);
+        $professionals = Professional::query()->orderBy('name')->get();
+        $hours = Hour::query()->orderBy('date')->orderBy('time')->get();
+
+        $message_success = $request->session()->get('message.success');
+
+        return view('admin.hour.index')
+            ->with('hours', $hours)
+            ->with('professionals', $professionals)
+            ->with('message_success', $message_success);
     }
 
     /**
