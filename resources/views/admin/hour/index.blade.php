@@ -25,6 +25,7 @@
                   <tr>
                     <th scope="col">Data</th>
                     <th scope="col">Horário</th>
+                    <th scope="col">Marcado</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -34,6 +35,13 @@
                             <tr>
                                 <td>{{ $hour->date }}</td>
                                 <td>{{ $hour->time }}</td>
+                                <td class="">
+                                    @if ($hour->checked)
+                                        Sim        
+                                    @else
+                                        Não
+                                    @endif
+                                </td>
                                 <td class="d-flex justify-content-end">
                                     <span class="d-flex">
                                         <a href="{{ route('admin.hour.edit', $hour->id) }}" class="btn btn-dark btn-sm">

@@ -5,7 +5,7 @@
         @method('PUT')
 
         <div class="mb-3">
-            <label for="date" class="form-label">Dia:</label>
+            <label for="date" class="form-label">Data:</label>
             <input 
                 type="date"
                 name="date"

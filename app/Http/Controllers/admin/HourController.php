@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\HourFormRequest;
 use App\Models\Hour;
 use App\Models\Professional;
 use Illuminate\Http\Request;
@@ -45,7 +46,7 @@ class HourController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(HourFormRequest $request)
     {
         Hour::create($request->all());
 
@@ -83,7 +84,7 @@ class HourController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Hour $hour, Request $request)
+    public function update(Hour $hour, HourFormRequest $request)
     {
         $hour->fill($request->all());
         $hour->save();
