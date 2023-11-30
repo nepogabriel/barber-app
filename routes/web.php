@@ -54,4 +54,6 @@ Route::controller(HourController::class)->group(function() {
 
 Route::controller(SiteServiceController::class)->group(function() {
     Route::get('/servicos', 'index')->name('site.service.index');
+    Route::post('/servico/salvar', 'store')->name('site.service.store');
+    //Route::get('/servico/cadastrar', 'create')->name('site.service.create');
 });

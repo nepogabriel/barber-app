@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -12,9 +13,13 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $teste = 'DEU CERTO!!!';
+        $services = Service::query()->orderBy('name')->get();
 
-        return view('site.service.index');
+        foreach ($services as $service) {
+            $service->price = str_replace('.', ',', $service->price);
+        }
+
+        return view('site.service.index')->with('services', $services);
     }
 
     /**
@@ -30,7 +35,9 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->session()->put('order.service_id', $request->service_id);
+
+        return view('site.professional.index');
     }
 
     /**
