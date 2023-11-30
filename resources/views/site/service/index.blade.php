@@ -17,6 +17,8 @@
             @endforeach
         </ul>
 
-        <button type="submit" class="btn btn-dark mt-3">Continuar</button>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-dark">Continuar</button>
+        </div>
     </form>
 </x-layout_site>

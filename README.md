@@ -3,7 +3,7 @@ Form Request (Para validações)
 - php artisan make:request <NomeFormRequest>
 
 # Criar o Controller: 
-- php artisan make:controller NomeController
+- php artisan make:controller NomeController --resource
 
 # Status da migration:
 - php artisan migrate:status

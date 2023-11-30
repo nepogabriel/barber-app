@@ -3,23 +3,19 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
-use App\Models\Service;
+use App\Models\Professional;
 use Illuminate\Http\Request;
 
-class ServiceController extends Controller
+class ProfessionalController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $services = Service::query()->orderBy('name')->get();
+        $professionals = Professional::query()->orderBy('name')->get();
 
-        foreach ($services as $service) {
-            $service->price = str_replace('.', ',', $service->price);
-        }
-
-        return view('site.service.index')->with('services', $services);
+        return view('site.professional.index')->with('professionals', $professionals);
     }
 
     /**
@@ -35,9 +31,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $request->session()->put('order.service_id', $request->service_id);
-
-        return to_route('site.professional.index');
+        //
     }
 
     /**
