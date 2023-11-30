@@ -3,7 +3,7 @@
 use App\Http\Controllers\admin\HourController;
 use App\Http\Controllers\admin\ProfessionalController;
 use App\Http\Controllers\admin\ServiceController;
-use App\Http\Controllers\SeriesController;
+use App\Http\Controllers\site\ServiceController as SiteServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,7 +43,6 @@ Route::controller(ServiceController::class)->group(function() {
     Route::delete('/admin/servico/excluir/{service}', 'destroy')->name('admin.service.destroy');
 });
 
-
 Route::controller(HourController::class)->group(function() {
     Route::get('/admin/horario', 'index')->name('admin.hour.index');
     Route::get('admin/horario/cadastrar', 'create')->name('admin.hour.create');
@@ -51,4 +50,8 @@ Route::controller(HourController::class)->group(function() {
     Route::post('/admin/horario/salvar', 'store')->name('admin.hour.store');
     Route::put('/admin/horario/{hour}', 'update')->name('admin.hour.update');
     Route::delete('/admin/hour/excluir/{hour}', 'destroy')->name('admin.hour.destroy');
+});
+
+Route::controller(SiteServiceController::class)->group(function() {
+    Route::get('/servicos', 'index')->name('site.service.index');
 });
