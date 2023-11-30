@@ -3,23 +3,28 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
-use App\Models\Professional;
+use App\Models\Hour;
 use Illuminate\Http\Request;
 
-class ProfessionalController extends Controller
+class HourController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $professionals = Professional::query()->orderBy('name')->get();
-
         $order_professional_id = $request->session()->get('order.professional_id');
+        $order_hour_id = $request->session()->get('order.hour_id');
 
-        return view('site.professional.index')
-            ->with('professionals', $professionals)
-            ->with('order_professional_id', $order_professional_id);
+        $hours = Hour::query()
+            ->orderBy('date')
+            ->orderBy('time')
+            ->where('professional_id', '=', $order_professional_id)
+            ->get();
+
+        return view('site.hour.index')
+            ->with('hours', $hours)
+            ->with('order_hour_id', $order_hour_id);
     }
 
     /**
@@ -35,9 +40,9 @@ class ProfessionalController extends Controller
      */
     public function store(Request $request)
     {
-        $request->session()->put('order.professional_id', $request->professional_id);
+        $request->session()->put('order.hour_id', $request->hour_id);
 
-        return to_route('site.hour.index');
+        //return to_route('site.hour.index'); ????
     }
 
     /**
