@@ -11,11 +11,15 @@ class ProfessionalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $professionals = Professional::query()->orderBy('name')->get();
 
-        return view('site.professional.index')->with('professionals', $professionals);
+        $order_professional_id = $request->session()->get('order.professional_id');
+
+        return view('site.professional.index')
+            ->with('professionals', $professionals)
+            ->with('order_professional_id', $order_professional_id);
     }
 
     /**
@@ -31,7 +35,9 @@ class ProfessionalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->session()->put('order.professional_id', $request->professional_id);
+
+        //return to_route('site.hour.index');
     }
 
     /**

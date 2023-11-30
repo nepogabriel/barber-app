@@ -6,7 +6,11 @@
             @foreach ($services as $service)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        <input class="form-check-input me-1" type="radio" name="service_id" value="{{ $service->id }}" id="firstRadio">
+                        <input class="form-check-input me-1" type="radio" name="service_id" value="{{ $service->id }}" id="firstRadio"
+                            @if ($service->id == $order_service_id)
+                                checked
+                            @endif
+                        />
                         <label class="form-check-label" for="firstRadio">{{ $service->name }}</label>
                     </div>
 

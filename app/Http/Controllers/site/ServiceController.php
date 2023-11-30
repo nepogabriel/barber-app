@@ -5,13 +5,14 @@ namespace App\Http\Controllers\site;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $services = Service::query()->orderBy('name')->get();
 
@@ -19,7 +20,11 @@ class ServiceController extends Controller
             $service->price = str_replace('.', ',', $service->price);
         }
 
-        return view('site.service.index')->with('services', $services);
+        $order_service_id = $request->session()->get('order.service_id');
+
+        return view('site.service.index')
+            ->with('services', $services)
+            ->with('order_service_id', $order_service_id);
     }
 
     /**

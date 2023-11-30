@@ -60,4 +60,5 @@ Route::controller(SiteServiceController::class)->group(function() {
 
 Route::controller(SiteProfessionalController::class)->group(function() {
     Route::get('/profissionais', 'index')->name('site.professional.index');
+    Route::post('/profissional/salvar', 'store')->name('site.professional.store');
 });
