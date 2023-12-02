@@ -1,4 +1,4 @@
-<x-layout_site title="Escolha o serviço">
+<x-layout_site title="Escolha o horário">
     <form action="{{ route('site.hour.store') }}" method="post">
         @csrf
 

@@ -20,6 +20,7 @@ class HourController extends Controller
             ->orderBy('date')
             ->orderBy('time')
             ->where('professional_id', '=', $order_professional_id)
+            ->where('checked', '=', '0')
             ->get();
 
         return view('site.hour.index')
@@ -42,7 +43,7 @@ class HourController extends Controller
     {
         $request->session()->put('order.hour_id', $request->hour_id);
 
-        //return to_route('site.hour.index'); ????
+        //return to_route('site.hour.index'); ???? Tela para cadatrar nome/telefone, depois tela de confirmação/salvar no banco de dados
     }
 
     /**

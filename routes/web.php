@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/admin/profissional');
+    return redirect('/servicos');
 });
 
 Route::get('/admin', function () {

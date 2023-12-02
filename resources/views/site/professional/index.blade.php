@@ -1,4 +1,4 @@
-<x-layout_site title="Escolha o profissonal">
+<x-layout_site title="Escolha o profissional">
     <form action="{{ route('site.professional.store') }}" method="post">
         @csrf
 
