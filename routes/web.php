@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\HourController;
 use App\Http\Controllers\admin\ProfessionalController;
 use App\Http\Controllers\admin\ServiceController;
+use App\Http\Controllers\site\ClientController as SiteClientController;
 use App\Http\Controllers\site\HourController as SiteHourController;
 use App\Http\Controllers\site\ProfessionalController as SiteProfessionalController;
 use App\Http\Controllers\site\ServiceController as SiteServiceController;
@@ -67,4 +68,9 @@ Route::controller(SiteProfessionalController::class)->group(function() {
 Route::controller(SiteHourController::class)->group(function() {
     Route::get('/horarios', 'index')->name('site.hour.index');
     Route::post('/horario/salvar', 'store')->name('site.hour.store');
+});
+
+Route::controller(SiteClientController::class)->group(function() {
+    Route::get('/cliente', 'index')->name('site.client.index');
+    Route::post('/cliente/salvar', 'store')->name('site.client.store');
 });

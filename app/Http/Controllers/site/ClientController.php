@@ -3,29 +3,21 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
-use App\Models\Hour;
 use Illuminate\Http\Request;
 
-class HourController extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $order_professional_id = $request->session()->get('order.professional_id');
-        $order_hour_id = $request->session()->get('order.hour_id');
+        $name_client = $request->session()->get('order.name_client');
+        $telephone_client = $request->session()->get('order.telephone_client');
 
-        $hours = Hour::query()
-            ->orderBy('date')
-            ->orderBy('time')
-            ->where('professional_id', '=', $order_professional_id)
-            ->where('checked', '=', '0')
-            ->get();
-
-        return view('site.hour.index')
-            ->with('hours', $hours)
-            ->with('order_hour_id', $order_hour_id);
+        return view('site.client.index')
+            ->with('name_client', $name_client)
+            ->with('telephone_client', $telephone_client);
     }
 
     /**
@@ -41,9 +33,10 @@ class HourController extends Controller
      */
     public function store(Request $request)
     {
-        $request->session()->put('order.hour_id', $request->hour_id);
+        $request->session()->put('order.name_client', $request->name_client);
+        $request->session()->put('order.telephone_client', $request->telephone_client);
 
-        return to_route('site.client.index');
+        //return to_route('site.order.index');
     }
 
     /**
