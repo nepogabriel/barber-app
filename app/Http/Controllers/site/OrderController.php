@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Appointment;
 use App\Models\Hour;
 use App\Models\Professional;
 use App\Models\Service;
@@ -27,17 +28,17 @@ class OrderController extends Controller
         $order = [];
 
         $order['service'] = Service::query()
-            ->select('name', 'price')
+            ->select('id', 'name', 'price')
             ->where('id', '=', $order_session['service_id'])
             ->get();
 
         $order['professional'] = Professional::query()
-            ->select('name')
+            ->select('id', 'name')
             ->where('id', '=', $order_session['professional_id']) 
             ->get();
 
         $order['hour'] = Hour::query()
-            ->select('date', 'time')
+            ->select('id', 'date', 'time')
             ->where('id', '=', $order_session['hour_id'])
             ->get();
 
@@ -61,7 +62,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        
+        Appointment::create($request->all());
 
         return to_route('site.service.index')
             ->with('message.order_success', 'Agendamento confirmado com sucesso!');

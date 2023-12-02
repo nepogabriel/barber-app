@@ -7,8 +7,10 @@
               <tr>
                 <td class="fw-bold">Data:</td>
                 <td>{{ $order['hour'][0]->date }}</td>
-                <input type="hidden" name="order_date" value="{{ $order['hour'][0]->date }}"/>
+                <input type="hidden" name="hour_id" value="{{ $order['hour'][0]->id }}"/>
+                <input type="hidden" name="datetime" value="1000-01-01 00:00:00"/>
               </tr>
+
               <tr>
                 <td class="fw-bold">Horário:</td>
                 <td>{{ $order['hour'][0]->time }}</td>
@@ -17,11 +19,13 @@
               <tr>
                 <td class="fw-bold">Profissional:</td>
                 <td>{{ $order['professional'][0]->name }}</td>
+                <input type="hidden" name="professional_id" value="{{ $order['professional'][0]->id }}"/>
               </tr>
 
               <tr>
                 <td class="fw-bold">Serviço:</td>
                 <td>{{ $order['service'][0]->name }}</td>
+                <input type="hidden" name="service_id" value="{{ $order['service'][0]->id }}"/>
               </tr>
 
               <tr>
@@ -32,11 +36,13 @@
               <tr>
                 <td class="fw-bold">Cliente:</td>
                 <td>{{ $order_session['name_client'] }}</td>
+                <input type="hidden" name="name_client" value="{{ $order_session['name_client'] }}"/>
               </tr>
 
               <tr>
                 <td class="fw-bold">Tel. Cliente:</td>
                 <td>{{ $order_session['telephone_client'] }}</td>
+                <input type="hidden" name="telephone_cliente" value="{{ $order_session['telephone_client'] }}"/>
               </tr>
             </tbody>
           </table>
