@@ -1,4 +1,10 @@
 <x-layout_site title="Escolha o serviço">
+    @isset($message_order_success)
+        <div class="alert alert-success">
+            {{ $message_order_success }}
+        </div>
+    @endisset
+
     <form action="{{ route('site.service.store') }}" method="post">
         @csrf
 

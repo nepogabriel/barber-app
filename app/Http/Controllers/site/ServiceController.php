@@ -21,10 +21,12 @@ class ServiceController extends Controller
         }
 
         $order_service_id = $request->session()->get('order.service_id');
+        $message_order_success = $request->session()->get('message.order_success');
 
         return view('site.service.index')
             ->with('services', $services)
-            ->with('order_service_id', $order_service_id);
+            ->with('order_service_id', $order_service_id)
+            ->with('message_order_success', $message_order_success);
     }
 
     /**

@@ -15,13 +15,6 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        // $hours = Hour::query()
-        //     ->orderBy('date')
-        //     ->orderBy('time')
-        //     ->where('professional_id', '=', $order_professional_id)
-        //     ->where('checked', '=', '0')
-        //     ->get();
-
         $order_session = [
             'service_id' => $request->session()->get('order.service_id'),
             'professional_id' => $request->session()->get('order.professional_id'),
@@ -69,6 +62,9 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         
+
+        return to_route('site.service.index')
+            ->with('message.order_success', 'Agendamento confirmado com sucesso!');
     }
 
     /**

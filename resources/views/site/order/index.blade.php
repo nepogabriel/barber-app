@@ -1,5 +1,5 @@
 <x-layout_site title="Resumo">
-    <form action="{{ route('site.client.store') }}" method="post">
+    <form action="{{ route('site.order.store') }}" method="post">
         @csrf
 
         <table class="table table-sm">
