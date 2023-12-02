@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\ProfessionalController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\site\ClientController as SiteClientController;
 use App\Http\Controllers\site\HourController as SiteHourController;
+use App\Http\Controllers\site\OrderController as SiteOrderController;
 use App\Http\Controllers\site\ProfessionalController as SiteProfessionalController;
 use App\Http\Controllers\site\ServiceController as SiteServiceController;
 use Illuminate\Support\Facades\Route;
@@ -73,4 +74,9 @@ Route::controller(SiteHourController::class)->group(function() {
 Route::controller(SiteClientController::class)->group(function() {
     Route::get('/cliente', 'index')->name('site.client.index');
     Route::post('/cliente/salvar', 'store')->name('site.client.store');
+});
+
+Route::controller(SiteOrderController::class)->group(function() {
+    Route::get('/pedido', 'index')->name('site.order.index');
+    Route::post('/pedido/salvar', 'store')->name('site.order.store');
 });

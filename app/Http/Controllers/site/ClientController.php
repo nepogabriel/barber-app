@@ -36,7 +36,7 @@ class ClientController extends Controller
         $request->session()->put('order.name_client', $request->name_client);
         $request->session()->put('order.telephone_client', $request->telephone_client);
 
-        //return to_route('site.order.index');
+        return to_route('site.order.index');
     }
 
     /**
