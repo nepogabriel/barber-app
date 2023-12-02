@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AppointmentController;
 use App\Http\Controllers\admin\HourController;
 use App\Http\Controllers\admin\ProfessionalController;
 use App\Http\Controllers\admin\ServiceController;
@@ -79,4 +80,8 @@ Route::controller(SiteClientController::class)->group(function() {
 Route::controller(SiteOrderController::class)->group(function() {
     Route::get('/pedido', 'index')->name('site.order.index');
     Route::post('/pedido/salvar', 'store')->name('site.order.store');
+});
+
+Route::controller(AppointmentController::class)->group(function() {
+    Route::get('admin/agenda', 'index')->name('admin.appointment.index');
 });
