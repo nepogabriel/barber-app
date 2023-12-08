@@ -62,8 +62,11 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        Appointment::create($request->all());
+        $appointment = Appointment::create($request->all());
 
+        if ($appointment) {
+            $request->session()->forget('order');
+        }
         return to_route('site.service.index')
             ->with('message.order_success', 'Agendamento confirmado com sucesso!');
     }
