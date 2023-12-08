@@ -1,6 +1,4 @@
 <x-layout title="Agenda">
-    <a href="{{ route('admin.hour.create') }}" class="btn btn-dark mb-2">Cadastrar Horário</a>
-
     @isset($message_success)
         <div class="alert alert-success">
             {{ $message_success }}
