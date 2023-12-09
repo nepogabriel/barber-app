@@ -3,11 +3,19 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Http\Service\HourService;
 use App\Models\Hour;
 use Illuminate\Http\Request;
 
 class HourController extends Controller
 {
+    private HourService $hourService;
+
+    public function __construct()
+    {
+        $this->hourService = new HourService();
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -20,8 +28,15 @@ class HourController extends Controller
             ->orderBy('date')
             ->orderBy('time')
             ->where('professional_id', '=', $order_professional_id)
+            //->where('date', '>=', DB::raw('curdate()'))
+            ->whereRaw('date >= curdate()')
             ->where('checked', '=', '0')
             ->get();
+
+        foreach ($hours as $hour) {
+            $hour->date = $this->hourService->formatDate($hour->date);
+            $hour->time = $this->hourService->formatTime($hour->time);
+        }
 
         return view('site.hour.index')
             ->with('hours', $hours)
