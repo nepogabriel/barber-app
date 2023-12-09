@@ -8,6 +8,7 @@ use App\Models\Hour;
 use App\Models\Professional;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -63,10 +64,15 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $appointment = Appointment::create($request->all());
+        
+        $hour = DB::table('hours')
+              ->where('id', $request->hour_id)
+              ->update(['checked' => 1]);
 
-        if ($appointment) {
+        if ($appointment && $hour) {
             $request->session()->forget('order');
         }
+
         return to_route('site.service.index')
             ->with('message.order_success', 'Agendamento confirmado com sucesso!');
     }
