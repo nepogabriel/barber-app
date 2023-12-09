@@ -30,6 +30,7 @@ class HourController extends Controller
             ->where('professional_id', '=', $order_professional_id)
             //->where('date', '>=', DB::raw('curdate()'))
             ->whereRaw('date >= curdate()')
+            //->whereRaw('time >= curtime()')
             ->where('checked', '=', '0')
             ->get();
 

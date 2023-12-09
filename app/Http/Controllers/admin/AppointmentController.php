@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Service\HourService;
 use App\Models\Appointment;
 use App\Models\Professional;
 use Illuminate\Http\Request;
@@ -10,6 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class AppointmentController extends Controller
 {
+    private HourService $hourService;
+
+    public function __construct()
+    {
+        $this->hourService = new HourService();
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -18,12 +26,17 @@ class AppointmentController extends Controller
         $professionals = Professional::query()->orderBy('name')->get();
 
         $appointments = DB::table('appointments')
-            ->join('hours', 'appointments.professional_id', '=', 'hours.id')
             ->join('professionals', 'appointments.professional_id', '=', 'professionals.id')
+            ->join('hours', 'appointments.hour_id', '=', 'hours.id')
             ->select('appointments.id', 'appointments.professional_id', 'hours.id', 'hours.date', 'hours.time', 'professionals.id', 'professionals.name')
+            ->orderBy('date', 'desc')
+            ->orderBy('time', 'desc')
             ->get();
 
-            //dd($appointments);
+        foreach ($appointments as $appointment) {
+            $appointment->date = $this->hourService->formatDate($appointment->date);
+            $appointment->time = $this->hourService->formatTime($appointment->time);
+        }
 
         return view('admin.appointment.index')
             ->with('professionals', $professionals)

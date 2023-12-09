@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HourFormRequest;
+use App\Http\Service\HourService;
 use App\Models\Hour;
 use App\Models\Professional;
 use Illuminate\Http\Request;
@@ -11,6 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class HourController extends Controller
 {
+    private HourService $hourService;
+
+    public function __construct()
+    {
+        $this->hourService = new HourService();
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -23,6 +31,11 @@ class HourController extends Controller
 
         $professionals = Professional::query()->orderBy('name')->get();
         $hours = Hour::query()->orderBy('date')->orderBy('time')->get();
+
+        foreach ($hours as $hour) {
+            $hour->date = $this->hourService->formatDate($hour->date);
+            $hour->time = $this->hourService->formatTime($hour->time);
+        }
 
         $message_success = $request->session()->get('message.success');
 

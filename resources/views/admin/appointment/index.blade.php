@@ -1,4 +1,4 @@
-<x-layout title="Agenda">
+<x-layout title="Agendas">
     @isset($message_success)
         <div class="alert alert-success">
             {{ $message_success }}
