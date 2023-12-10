@@ -42,13 +42,11 @@
                                             E
                                         </a> --}}
                     
-                                        {{-- <form action="{{ route('admin.hour.destroy', $appointment->id) }}" method="post" class="ms-2">
+                                        <form action="{{ route('admin.appointment.destroy', $appointment->id) }}" method="post" class="ms-2">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm">X</button>
-                                        </form> --}}
-
-                                        <button class="btn btn-danger btn-sm">X</button>
+                                        </form>
                                     </span>
                                 </td>
                             </tr>

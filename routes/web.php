@@ -27,7 +27,7 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', function () {
-    return redirect('/admin/profissional');
+    return redirect('/admin/agenda');
 });
 
 Route::controller(ProfessionalController::class)->group(function () {
@@ -41,7 +41,7 @@ Route::controller(ProfessionalController::class)->group(function () {
 
 Route::controller(ServiceController::class)->group(function() {
     Route::get('/admin/servico', 'index')->name('admin.service.index');
-    Route::get('admin/servico/cadastrar', 'create')->name('admin.service.create');
+    Route::get('/admin/servico/cadastrar', 'create')->name('admin.service.create');
     Route::get('/admin/servico/{service}/editar', 'edit')->name('admin.service.edit');
     Route::post('/admin/servico/salvar', 'store')->name('admin.service.store');
     Route::put('/admin/servico/{service}', 'update')->name('admin.service.update');
@@ -50,7 +50,7 @@ Route::controller(ServiceController::class)->group(function() {
 
 Route::controller(HourController::class)->group(function() {
     Route::get('/admin/horario', 'index')->name('admin.hour.index');
-    Route::get('admin/horario/cadastrar', 'create')->name('admin.hour.create');
+    Route::get('/admin/horario/cadastrar', 'create')->name('admin.hour.create');
     Route::get('/admin/horario/{hour}/editar', 'edit')->name('admin.hour.edit');
     Route::post('/admin/horario/salvar', 'store')->name('admin.hour.store');
     Route::put('/admin/horario/{hour}', 'update')->name('admin.hour.update');
@@ -83,5 +83,6 @@ Route::controller(SiteOrderController::class)->group(function() {
 });
 
 Route::controller(AppointmentController::class)->group(function() {
-    Route::get('admin/agenda', 'index')->name('admin.appointment.index');
+    Route::get('/admin/agenda', 'index')->name('admin.appointment.index');
+    Route::delete('/admin/agendamento/excluir/{appointment}', 'destroy')->name('admin.appointment.destroy');
 });

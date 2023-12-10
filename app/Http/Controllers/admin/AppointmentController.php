@@ -21,7 +21,7 @@ class AppointmentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $professionals = Professional::query()->orderBy('name')->get();
 
@@ -29,7 +29,7 @@ class AppointmentController extends Controller
             ->join('professionals', 'appointments.professional_id', '=', 'professionals.id')
             ->join('hours', 'appointments.hour_id', '=', 'hours.id')
             ->join('services', 'appointments.service_id', '=', 'services.id')
-            ->select('appointments.id', 'appointments.professional_id', 'appointments.name_client', 'hours.id', 'hours.date', 'hours.time', 'professionals.id', 'professionals.name', 'services.name')
+            ->select('appointments.id', 'appointments.professional_id', 'appointments.name_client', 'hours.date', 'hours.time', 'professionals.name', 'services.name')
             ->orderBy('date', 'desc')
             ->orderBy('time', 'desc')
             ->get();
@@ -39,9 +39,12 @@ class AppointmentController extends Controller
             $appointment->time = $this->hourService->formatTime($appointment->time);
         }
 
+        $message_success = $request->session()->get('message.success');
+
         return view('admin.appointment.index')
             ->with('professionals', $professionals)
-            ->with('appointments', $appointments);
+            ->with('appointments', $appointments)
+            ->with('message_success', $message_success);
     }
 
     /**
@@ -87,8 +90,15 @@ class AppointmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Appointment $appointment)
     {
-        //
+        $appointment->delete();
+
+        DB::table('hours')
+              ->where('id', $appointment->hour_id)
+              ->update(['checked' => 0]);
+
+        return to_route('admin.appointment.index')
+            ->with('message.success', "Agendamento desmarcado com sucesso!");
     }
 }
