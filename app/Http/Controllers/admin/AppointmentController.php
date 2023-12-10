@@ -28,7 +28,8 @@ class AppointmentController extends Controller
         $appointments = DB::table('appointments')
             ->join('professionals', 'appointments.professional_id', '=', 'professionals.id')
             ->join('hours', 'appointments.hour_id', '=', 'hours.id')
-            ->select('appointments.id', 'appointments.professional_id', 'hours.id', 'hours.date', 'hours.time', 'professionals.id', 'professionals.name')
+            ->join('services', 'appointments.service_id', '=', 'services.id')
+            ->select('appointments.id', 'appointments.professional_id', 'appointments.name_client', 'hours.id', 'hours.date', 'hours.time', 'professionals.id', 'professionals.name', 'services.name')
             ->orderBy('date', 'desc')
             ->orderBy('time', 'desc')
             ->get();

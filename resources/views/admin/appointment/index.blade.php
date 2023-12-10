@@ -15,6 +15,8 @@
                   <tr>
                     <th scope="col">Data</th>
                     <th scope="col">Horário</th>
+                    <th scope="col">Serviço</th>
+                    <th scope="col">Cliente</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -24,6 +26,9 @@
                             <tr>
                                 <td>{{ $appointment->date }}</td>
                                 <td>{{ $appointment->time }}</td>
+                                <td>{{ $appointment->name }}</td>
+                                <td>{{ $appointment->name_client }}</td>
+
                                 {{-- <td class="">
                                     @if ($appointment->checked)
                                         Sim        
