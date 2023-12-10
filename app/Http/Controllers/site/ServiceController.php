@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\site\ServiceFormRequest;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
@@ -40,7 +41,7 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ServiceFormRequest $request)
     {
         $request->session()->put('order.service_id', $request->service_id);
 

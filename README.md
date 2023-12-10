@@ -32,6 +32,8 @@ Form Request (Para validações)
 # Gerando key p/ clone projeto laravel:
 - php artisan key:generate
 
+# Criar FormRequest
+- php artisan make:request NomeFormRequest
 ---
 # Limpar cache Laravel:
 - php artisan config:cache
