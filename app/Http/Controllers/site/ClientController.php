@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\site\ClientFormRequest;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -31,7 +32,7 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ClientFormRequest $request)
     {
         $request->session()->put('order.name_client', $request->name_client);
         $request->session()->put('order.telephone_client', $request->telephone_client);

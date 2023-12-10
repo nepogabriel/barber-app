@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\site\HourFormRequest;
 use App\Http\Service\HourService;
 use App\Models\Hour;
 use Illuminate\Http\Request;
@@ -55,7 +56,7 @@ class HourController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(HourFormRequest $request)
     {
         $request->session()->put('order.hour_id', $request->hour_id);
 
