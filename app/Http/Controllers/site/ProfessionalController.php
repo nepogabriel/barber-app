@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\site\ProfessionalFormRequest;
 use App\Models\Professional;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,7 @@ class ProfessionalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProfessionalFormRequest $request)
     {
         $request->session()->put('order.professional_id', $request->professional_id);
 
