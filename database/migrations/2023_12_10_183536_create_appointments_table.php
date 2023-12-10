@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignId('hour_id')->constrained()->onDelete('cascade');
             $table->foreignId('professional_id')->constrained()->onDelete('cascade');
             $table->foreignId('service_id')->constrained()->onDelete('cascade');
-            $table->dateTime('datetime')->nullable();
+            $table->string('name_client', 128);
+            $table->string('telephone_client', 15);
             $table->timestamps();
         });
     }

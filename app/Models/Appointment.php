@@ -12,10 +12,9 @@ class Appointment extends Model
     protected $fillable = [
         'professional_id',
         'service_id',
-        'datetime',
         'hour_id',
         'name_client',
-        'telephone_cliente',
+        'telephone_client',
     ];
 
     public function User()

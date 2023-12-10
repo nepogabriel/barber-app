@@ -23,7 +23,7 @@ class ClientFormRequest extends FormRequest
     {
         return [
             'name_client' => ['required', 'min:3'],
-            'telephone_client' => ['required'],
+            'telephone_client' => ['required', 'min:11', 'max:15'],
         ];
     }
 
@@ -33,6 +33,8 @@ class ClientFormRequest extends FormRequest
             'name_client.required' => "Preencha o campo 'nome' continuar.",
             'name_client.min' => "O campo 'nome' deve ter pelo menos :min caracteres.",
             'telephone_client.required' => "Preencha o campo 'telefone' para continuar.",
+            'telephone_client.min' => "O campo 'telefone' deve ter pelo menos :min caracteres.",
+            'telephtelephone_clientone.max' => "O campo 'telefone' não deve ter mais de :max caracteres.",
 
         ];
     }

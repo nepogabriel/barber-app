@@ -8,7 +8,6 @@
                 <td class="fw-bold">Data:</td>
                 <td>{{ $order['hour'][0]->date }}</td>
                 <input type="hidden" name="hour_id" value="{{ $order['hour'][0]->id }}"/>
-                <input type="hidden" name="datetime" value="1000-01-01 00:00:00"/>
               </tr>
 
               <tr>
@@ -42,7 +41,7 @@
               <tr>
                 <td class="fw-bold">Tel. Cliente:</td>
                 <td>{{ $order_session['telephone_client'] }}</td>
-                <input type="hidden" name="telephone_cliente" value="{{ $order_session['telephone_client'] }}"/>
+                <input type="hidden" name="telephone_client" value="{{ $order_session['telephone_client'] }}"/>
               </tr>
             </tbody>
           </table>

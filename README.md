@@ -12,7 +12,7 @@ Form Request (Para validações)
 - php artisan migrate
 
 # Criar tabela especifica laravel:
-- php atisan make:migration create_products_table
+- php artisan make:migration create_products_table
 
 # Adicionando coluna na tabela:
 - php artisan make:migration add_category_to_products_table
@@ -20,7 +20,7 @@ Form Request (Para validações)
 # Deleta e migra todas as tabelas novamente:
 - php artisan migrate:fresh
 
-#Rollback migrate:
+# Rollback migrate:
 - php artisan migrate:rollback
 
 # Refresh migrate (faz o rollback e o migrate em um comando):
