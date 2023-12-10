@@ -22,39 +22,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+$hash = 'a32c36de88a52ec108f6f1c5f8cc6572';
+
 Route::get('/', function () {
     return redirect('/servicos');
 });
 
-Route::get('/admin', function () {
-    return redirect('/admin/agenda');
+Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin', function () {
+    return redirect('/a32c36de88a52ec108f6f1c5f8cc6572/admin/agenda');
 });
 
 Route::controller(ProfessionalController::class)->group(function () {
-    Route::get('/admin/profissional', 'index')->name('admin.professional.index');
-    Route::get('/admin/profissional/cadastrar', 'create')->name('admin.professional.create');
-    Route::get('/admin/profissional/{professional}/editar', 'edit')->name('admin.professional.edit');
-    Route::post('/admin/profissional/salvar', 'store')->name('admin.professional.store');
-    Route::put('/admin/profissional/{professional}', 'update')->name('admin.professional.update');
-    Route::delete('/admin/profissional/excluir/{professional}', 'destroy')->name('admin.professional.destroy');
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/profissional', 'index')->name('admin.professional.index');
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/profissional/cadastrar', 'create')->name('admin.professional.create');
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/profissional/{professional}/editar', 'edit')->name('admin.professional.edit');
+    Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/profissional/salvar', 'store')->name('admin.professional.store');
+    Route::put('/a32c36de88a52ec108f6f1c5f8cc6572/admin/profissional/{professional}', 'update')->name('admin.professional.update');
+    Route::delete('/a32c36de88a52ec108f6f1c5f8cc6572/admin/profissional/excluir/{professional}', 'destroy')->name('admin.professional.destroy');
 });
 
 Route::controller(ServiceController::class)->group(function() {
-    Route::get('/admin/servico', 'index')->name('admin.service.index');
-    Route::get('/admin/servico/cadastrar', 'create')->name('admin.service.create');
-    Route::get('/admin/servico/{service}/editar', 'edit')->name('admin.service.edit');
-    Route::post('/admin/servico/salvar', 'store')->name('admin.service.store');
-    Route::put('/admin/servico/{service}', 'update')->name('admin.service.update');
-    Route::delete('/admin/servico/excluir/{service}', 'destroy')->name('admin.service.destroy');
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/servico', 'index')->name('admin.service.index');
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/servico/cadastrar', 'create')->name('admin.service.create');
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/servico/{service}/editar', 'edit')->name('admin.service.edit');
+    Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/servico/salvar', 'store')->name('admin.service.store');
+    Route::put('/a32c36de88a52ec108f6f1c5f8cc6572/admin/servico/{service}', 'update')->name('admin.service.update');
+    Route::delete('/a32c36de88a52ec108f6f1c5f8cc6572/admin/servico/excluir/{service}', 'destroy')->name('admin.service.destroy');
 });
 
 Route::controller(HourController::class)->group(function() {
-    Route::get('/admin/horario', 'index')->name('admin.hour.index');
-    Route::get('/admin/horario/cadastrar', 'create')->name('admin.hour.create');
-    Route::get('/admin/horario/{hour}/editar', 'edit')->name('admin.hour.edit');
-    Route::post('/admin/horario/salvar', 'store')->name('admin.hour.store');
-    Route::put('/admin/horario/{hour}', 'update')->name('admin.hour.update');
-    Route::delete('/admin/hour/excluir/{hour}', 'destroy')->name('admin.hour.destroy');
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/horario', 'index')->name('admin.hour.index');
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/horario/cadastrar', 'create')->name('admin.hour.create');
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/horario/{hour}/editar', 'edit')->name('admin.hour.edit');
+    Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/horario/salvar', 'store')->name('admin.hour.store');
+    Route::put('/a32c36de88a52ec108f6f1c5f8cc6572/admin/horario/{hour}', 'update')->name('admin.hour.update');
+    Route::delete('/a32c36de88a52ec108f6f1c5f8cc6572/admin/hour/excluir/{hour}', 'destroy')->name('admin.hour.destroy');
 });
 
 Route::controller(SiteServiceController::class)->group(function() {
@@ -83,6 +85,6 @@ Route::controller(SiteOrderController::class)->group(function() {
 });
 
 Route::controller(AppointmentController::class)->group(function() {
-    Route::get('/admin/agenda', 'index')->name('admin.appointment.index');
-    Route::delete('/admin/agendamento/excluir/{appointment}', 'destroy')->name('admin.appointment.destroy');
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/agenda', 'index')->name('admin.appointment.index');
+    Route::delete('/a32c36de88a52ec108f6f1c5f8cc6572/admin/agendamento/excluir/{appointment}', 'destroy')->name('admin.appointment.destroy');
 });
