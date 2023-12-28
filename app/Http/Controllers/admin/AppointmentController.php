@@ -29,9 +29,9 @@ class AppointmentController extends Controller
             ->join('professionals', 'appointments.professional_id', '=', 'professionals.id')
             ->join('hours', 'appointments.hour_id', '=', 'hours.id')
             ->join('services', 'appointments.service_id', '=', 'services.id')
-            ->select('appointments.id', 'appointments.professional_id', 'appointments.name_client', 'hours.date', 'hours.time', 'professionals.name', 'services.name')
-            ->orderBy('date', 'desc')
-            ->orderBy('time', 'desc')
+            ->select('appointments.id', 'appointments.professional_id', 'appointments.name_client', 'appointments.telephone_client', 'hours.date', 'hours.time', 'professionals.name', 'services.name')
+            ->orderBy('date', 'asc')
+            ->orderBy('time', 'asc')
             ->get();
 
         foreach ($appointments as $appointment) {

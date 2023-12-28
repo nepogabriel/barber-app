@@ -5,7 +5,7 @@
         </div>
     @endisset
 
-    
+
     @foreach ($professionals as $professional)
         <div class="my-4">
             <h3 class="mb-2">{{ $professional->name }}</h3>
@@ -16,7 +16,7 @@
                     <th scope="col">Data</th>
                     <th scope="col">Horário</th>
                     <th scope="col">Serviço</th>
-                    <th scope="col">Cliente</th>
+                    <th scope="col" class="text-center">Cliente</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -27,11 +27,14 @@
                                 <td>{{ $appointment->date }}</td>
                                 <td>{{ $appointment->time }}</td>
                                 <td>{{ $appointment->name }}</td>
-                                <td>{{ $appointment->name_client }}</td>
+                                <td class="text-center">
+                                    {{ $appointment->name_client }}
+                                    {{ $appointment->telephone_client }}
+                                </td>
 
                                 {{-- <td class="">
                                     @if ($appointment->checked)
-                                        Sim        
+                                        Sim
                                     @else
                                         Não
                                     @endif
@@ -41,7 +44,7 @@
                                         {{-- <a href="{{ route('admin.hour.edit', $appointment->id) }}" class="btn btn-dark btn-sm">
                                             E
                                         </a> --}}
-                    
+
                                         <form action="{{ route('admin.appointment.destroy', $appointment->id) }}" method="post" class="ms-2">
                                             @csrf
                                             @method('DELETE')
