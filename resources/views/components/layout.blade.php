@@ -9,7 +9,8 @@
             </div>
 
             <div>
-                <img src="img/logo.jpeg" height="100px" width="auto">
+{{--                <img src="img/logo.jpeg" height="100px" width="auto">--}}
+                <img src="https://velhahistoriabarbearia.com.br/public/img/logo.jpeg" height="100px" width="auto">
             </div>
 
             <div>
