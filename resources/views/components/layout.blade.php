@@ -1,5 +1,5 @@
 @include('components.header')
-    <div class="container-fluid py-3 mb-3 border-bottom border-black">
+    <div class="container-fluid py-3 mb-3 bg-menu">
         <div class="container d-flex justify-content-between align-items-center">
 
             <div>
@@ -10,7 +10,7 @@
 
             <div>
 {{--                <img src="img/logo.jpeg" height="100px" width="auto">--}}
-                <img src="https://velhahistoriabarbearia.com.br/public/img/logo.jpeg" height="100px" width="auto">
+                <img src="https://velhahistoriabarbearia.com.br/public/img/logo.jpg" height="100px" width="auto">
             </div>
 
             <div>
