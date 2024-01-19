@@ -1,3 +1,16 @@
-.bg-menu {
-    background-color: #cebc96;
+.btn {
+    font-weight: 500 !important;
+}
+
+.bg-bege {
+    background-color: #f6f3ecbe;
+}
+
+.bg-menu,
+.btn-bege {
+    background-color: #cebc96 !important;
+}
+
+.btn-bege:hover {
+    background-color: #cebc96ae !important;
 }
