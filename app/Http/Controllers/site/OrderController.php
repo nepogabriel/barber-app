@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Http\Service\HourService;
 use App\Models\Appointment;
 use App\Models\Hour;
 use App\Models\Professional;
@@ -12,6 +13,13 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    private HourService $hourService;
+
+    public function __construct()
+    {
+        $this->hourService = new HourService();
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -44,7 +52,9 @@ class OrderController extends Controller
             ->get();
 
         $order['service'][0]->price = str_replace('.', ',', $order['service'][0]->price); 
-
+        $order['hour'][0]->date = $this->hourService->formatDate($order['hour'][0]->date);
+        $order['hour'][0]->time = $this->hourService->formatTime($order['hour'][0]->time);
+        
         return view('site.order.index')
             ->with('order', $order)
             ->with('order_session', $order_session);
