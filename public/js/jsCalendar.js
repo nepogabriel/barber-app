@@ -92,6 +92,20 @@ var jsCalendar = (function(){
                 'Novembro',
                 'Dezembro'
             ],
+            number_months : [
+                '01',
+                '02',
+                '03',
+                '04',
+                '05',
+                '06',
+                '07',
+                '08',
+                '09',
+                '10',
+                '11',
+                '12'
+            ],
             // Days Names
             //days : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
             days : [
@@ -1563,10 +1577,11 @@ var jsCalendar = (function(){
 
     // Init auto calendars
     // After the page loads
-    window.addEventListener('load', function() {
+    //window.addEventListener('load', function() {
         // Get calendars
         JsCalendar.autoFind();
-    }, false);
+
+    //}, false);
 
     // Return
     return JsCalendar;
