@@ -15,6 +15,7 @@
     background-color: #cebc96ae !important;
 }
 
+/* CALENDÁRIO CLIENTE */
 .jsCalendar.custom-calendar tbody td.jsCalendar-current {
     background-color: #cebc96;
 }

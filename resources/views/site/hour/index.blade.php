@@ -1,7 +1,8 @@
 <x-layout_site title="Escolha o horário">
 
     {{-- Calendar Element  --}}
-    <div class="auto-jsCalendar material-theme custom-calendar calendar-hour"></div>
+    {{-- <div class="auto-jsCalendar material-theme custom-calendar calendar-hour"></div> --}}
+    <div class="material-theme custom-calendar calendar-hour"></div>
 
     <form action="{{ route('site.hour.store') }}" method="post">
         @csrf
