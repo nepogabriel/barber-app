@@ -17,7 +17,8 @@
 
 /* CALENDÁRIO CLIENTE */
 .jsCalendar.custom-calendar tbody td.jsCalendar-current {
-    background-color: #cebc96;
+    background-color: transparent;
+    color: #000;
 }
 .jsCalendar.custom-calendar *::selection {
     background: #cebc96;
@@ -39,3 +40,11 @@
 .jsCalendar.classic-theme.custom-calendar thead .jsCalendar-nav-right:hover {
     background-color: #f6f3ecbe;
 }
+
+.jsCalendar tbody td:hover,
+.jsCalendar tbody td:active {
+    background-color: #cebc96;
+}
+
+/* LIST HOURS */
+

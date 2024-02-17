@@ -64,9 +64,64 @@ function listarHorarios(date) {
         if (error) {
             console.error(error);
         } else {
-            console.log('Resposta:', response);
+            // Enquanto houver um primeiro filho, remova-o
+            var listHours = document.getElementById('list_hours');
+                
+            while (listHours.firstChild) {
+                listHours.removeChild(listHours.firstChild);
+            }
+
+            if (response.hours && response.hours.length === 0) {
+                console.log('O array "hours" está vazio.');
+                
+                var li = document.createElement('li');
+                li.className = 'list-group-item text-center list-group-item-danger';
+                li.textContent = 'Esta data não possui horários.';
+
+                listHours.appendChild(li);
+            } else {
+                montarHorarios(response);
+            }
         }
     });
+}
+
+function montarHorarios(response) {
+    var listHours = document.getElementById('list_hours');
+    var horas = response.hours;
+
+    for (var i = 0; i < horas.length; i++) {
+        var hour = horas[i];
+
+        // Cria um elemento <li> com o conteúdo específico
+        var li = document.createElement('li');
+        li.className = 'list-group-item';
+
+        var input = document.createElement('input');
+        input.className = 'form-check-input me-1';
+        input.type = 'radio';
+        input.name = 'hour_id';
+        input.value = hour.id;
+        input.id = 'hour_' + hour.id;
+
+        // Se for a segunda li, adiciona a classe 'active'
+        // if (i === 1) {
+        //     li.classList.add('active');
+        //     input.checked = true;
+        // }
+
+        var label = document.createElement('label');
+        label.className = 'form-check-label';
+        label.htmlFor = 'hour_' + hour.id;
+        label.textContent = hour.time;
+
+        // Adiciona os elementos criados à li
+        li.appendChild(input);
+        li.appendChild(label);
+
+        // Adiciona a li à lista
+        listHours.appendChild(li);
+    }
 }
 
 function sendRequest(data, url, callback) {
@@ -81,11 +136,9 @@ function sendRequest(data, url, callback) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                // A requisição foi bem-sucedida
                 var response = JSON.parse(xhr.responseText);
                 callback(null, response);
             } else {
-                // A requisição falhou
                 callback('Erro na requisição. Status: ' + xhr.status, null);
             }
         }

@@ -2,12 +2,12 @@
 
     {{-- Calendar Element  --}}
     {{-- <div class="auto-jsCalendar material-theme custom-calendar calendar-hour"></div> --}}
-    <div class="material-theme custom-calendar calendar-hour"></div>
+    <div class="material-theme custom-calendar calendar-hour d-flex justify-content-center mb-3"></div>
 
     <form action="{{ route('site.hour.store') }}" method="post">
         @csrf
 
-        <ul class="list-group">
+        <ul id="list_hours" class="list-group">
             {{-- @foreach ($hours as $hour)
                 <li class="list-group-item">
                     <input class="form-check-input me-1" type="radio" name="hour_id" value="{{ $hour->id }}" id="firstRadio"
