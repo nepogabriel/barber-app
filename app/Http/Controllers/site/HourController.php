@@ -66,9 +66,33 @@ class HourController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        $order_professional_id = $request->session()->get('order.professional_id');
+        $order_hour_id = $request->session()->get('order.hour_id');
+
+        $hours = Hour::query()
+            ->orderBy('date')
+            ->orderBy('time')
+            ->where('professional_id', '=', $order_professional_id)
+            //->where('date', '>=', DB::raw('curdate()'))
+            ->whereRaw('date >= curdate()')
+            //->whereRaw('time >= curtime()')
+            ->where('checked', '=', '0')
+            ->get();
+
+        foreach ($hours as $hour) {
+            $hour->date = $this->hourService->formatDate($hour->date);
+            $hour->time = $this->hourService->formatTime($hour->time);
+        }
+
+        $data = [
+            'hours' => $hours,
+            'order_hour_id' => $order_hour_id
+        ]; 
+
+        return response()->json($data);
+        //dd($request);
     }
 
     /**

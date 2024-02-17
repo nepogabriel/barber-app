@@ -72,6 +72,7 @@ Route::controller(SiteProfessionalController::class)->group(function() {
 Route::controller(SiteHourController::class)->group(function() {
     Route::get('/horarios', 'index')->name('site.hour.index');
     Route::post('/horario/salvar', 'store')->name('site.hour.store');
+    Route::post('/horarios/buscar', 'show')->name('site.hour.show');
 });
 
 Route::controller(SiteClientController::class)->group(function() {

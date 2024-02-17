@@ -19,6 +19,7 @@ myCalendar.onDateClick(function(event, date){
     // Formatar a data no formato desejado: yyyy-mm-dd
     var dataFormatada = `${ano}-${mes}-${dia}`;
 
+    listarHorarios(dataFormatada);
     console.log('DATA: ', dataFormatada);
 });
 
@@ -51,25 +52,72 @@ if (table) {
 }
 */
 
+function listarHorarios(date) {
+    var data = {
+        date: date
+    };
+
+    var url = getUrl() + '/horarios/buscar';
+
+    sendRequest(data, url, function(error, response) {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log('Resposta:', response);
+        }
+    });
+}
+
+function sendRequest(data, url, callback) {
+    var xhr = new XMLHttpRequest();
+    var csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+
+    // Configurar a função de retorno de chamada
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                // A requisição foi bem-sucedida
+                var response = JSON.parse(xhr.responseText);
+                callback(null, response);
+            } else {
+                // A requisição falhou
+                callback('Erro na requisição. Status: ' + xhr.status, null);
+            }
+        }
+    };
+
+    // Converter dados para JSON e enviar a requisição
+    xhr.send(JSON.stringify(data));
+}
 function getHoursByDay(dados, method) {
-    var url = getUrl() + '/horarios/buscar'
+
+    var url = getUrl() + '/horarios/buscar';
+    var csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    console.log('CSRF: ', csrfToken);
+
     // Configuração da requisição
     var configuracao = {
         method: method, // Método HTTP
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken
         },
         body: JSON.stringify(dados) // Converte os dados para JSON e os envia no corpo da requisição
     };
 
     // Realiza a requisição POST usando a API Fetch
-    fetch(getUrl(), configuracao)
+    fetch(url, configuracao)
     .then(response => {
         // Verifica se a resposta é bem-sucedida (código de status 2xx)
         if (!response.ok) {
         throw new Error('Erro na requisição');
         }
         // Pode processar a resposta aqui se necessário
+        console.log('RESPOSTA: ', response);
         return response.json();
     })
     .then(data => {
@@ -80,6 +128,7 @@ function getHoursByDay(dados, method) {
     });
 
 }
+*/
 
 function getUrl() {
     var protocolo = window.location.protocol;

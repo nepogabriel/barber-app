@@ -197,7 +197,7 @@ var jsCalendar = (function(){
                 // Init arguments
                 obj.options = args[0];
                 // Get target
-                if (typeof args[0].target !== 'undefined') {
+                if (args[0] && typeof args[0].target !== 'undefined') {
                     obj.target = args[0].target;
                 }
                 else {
