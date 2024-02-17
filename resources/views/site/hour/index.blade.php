@@ -8,7 +8,7 @@
         @csrf
 
         <ul class="list-group">
-            @foreach ($hours as $hour)
+            {{-- @foreach ($hours as $hour)
                 <li class="list-group-item">
                     <input class="form-check-input me-1" type="radio" name="hour_id" value="{{ $hour->id }}" id="firstRadio"
                         @if ($hour->id == $order_hour_id)
@@ -17,7 +17,7 @@
                     />
                     <label class="form-check-label" for="firstRadio">{{ $hour->date }} - {{ $hour->time }}</label>
                 </li>
-            @endforeach
+            @endforeach --}}
         </ul>
 
         <div class="mt-3">

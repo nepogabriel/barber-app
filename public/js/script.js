@@ -1,27 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-// Get the element
-var element = document.querySelector('.calendar-hour');
-// Create the calendar
-var myCalendar = jsCalendar.new(element);
-// Get the inputs
-var inputA = document.getElementById("my-input-a");
-var inputB = document.getElementById("my-input-b");
-// Add events
-myCalendar.onDateClick(function(event, date){
-    dataOriginal = new Date(date.toString());
+var urlAtual = window.location.pathname;
+var parteAposUltimaBarra = urlAtual.substring(urlAtual.lastIndexOf('/') + 1);
 
-    // Obter ano, mês e dia
-    var ano = dataOriginal.getFullYear();
-    var mes = ("0" + (dataOriginal.getMonth() + 1)).slice(-2); // Adiciona zero à esquerda se for menor que 10
-    var dia = ("0" + dataOriginal.getDate()).slice(-2); // Adiciona zero à esquerda se for menor que 10
+//function showCalendar() {
+if (parteAposUltimaBarra == 'horarios') {
+    var element = document.querySelector('.calendar-hour');
+    var myCalendar = jsCalendar.new(element); // Create the calendar
 
-    // Formatar a data no formato desejado: yyyy-mm-dd
-    var dataFormatada = `${ano}-${mes}-${dia}`;
+    // Add events
+    myCalendar.onDateClick(function(event, date){
+        dataOriginal = new Date(date.toString());
 
-    listarHorarios(dataFormatada);
-    console.log('DATA: ', dataFormatada);
-});
+        // Obter ano, mês e dia
+        var ano = dataOriginal.getFullYear();
+        var mes = ("0" + (dataOriginal.getMonth() + 1)).slice(-2); // Adiciona zero à esquerda se for menor que 10
+        var dia = ("0" + dataOriginal.getDate()).slice(-2); // Adiciona zero à esquerda se for menor que 10
+
+        // Formatar a data no formato desejado: yyyy-mm-dd
+        var dataFormatada = `${ano}-${mes}-${dia}`;
+
+        listarHorarios(dataFormatada);
+    });
+}
 
 /*
 let table = document.querySelector('.calendar-hour table');
