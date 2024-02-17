@@ -93,42 +93,6 @@ function sendRequest(data, url, callback) {
     // Converter dados para JSON e enviar a requisição
     xhr.send(JSON.stringify(data));
 }
-function getHoursByDay(dados, method) {
-
-    var url = getUrl() + '/horarios/buscar';
-    var csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    console.log('CSRF: ', csrfToken);
-
-    // Configuração da requisição
-    var configuracao = {
-        method: method, // Método HTTP
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': csrfToken
-        },
-        body: JSON.stringify(dados) // Converte os dados para JSON e os envia no corpo da requisição
-    };
-
-    // Realiza a requisição POST usando a API Fetch
-    fetch(url, configuracao)
-    .then(response => {
-        // Verifica se a resposta é bem-sucedida (código de status 2xx)
-        if (!response.ok) {
-        throw new Error('Erro na requisição');
-        }
-        // Pode processar a resposta aqui se necessário
-        console.log('RESPOSTA: ', response);
-        return response.json();
-    })
-    .then(data => {
-        console.log('Resposta:', data);
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-    });
-
-}
-*/
 
 function getUrl() {
     var protocolo = window.location.protocol;
