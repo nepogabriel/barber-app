@@ -19,39 +19,10 @@ if (parteAposUltimaBarra == 'horarios') {
 
         // Formatar a data no formato desejado: yyyy-mm-dd
         var dataFormatada = `${ano}-${mes}-${dia}`;
-
+        
         listarHorarios(dataFormatada);
     });
 }
-
-/*
-let table = document.querySelector('.calendar-hour table');
-
-if (table) {
-    //table.setAttribute('id', 'calendar_hour');
-
-    table.addEventListener('click', function(event) {
-        // Verificar se o clique ocorreu em uma célula de dia
-        if (event.target.tagName === 'TD') {
-            // Capturar o valor do dia clicado
-            var dia = event.target.innerText;
-            var mes = document.getElementsByClassName('jsCalendar-title-name')[0].innerText;
-
-            // Exibir o valor do dia (você pode ajustar isso conforme necessário)
-            alert(`Dia clicado: ${dia} Mês: ${mes}`);
-
-            // var dados = {
-            //     dia: event.target.innerText,
-            //     mes: document.getElementsByClassName('jsCalendar-title-name')[0].innerText
-            // };
-
-            // getHoursByDay(dados, 'POST');
-        }
-    });
-} else {
-    console.log('Elemento não encontrado.');
-}
-*/
 
 function listarHorarios(date) {
     var data = {
@@ -73,7 +44,7 @@ function listarHorarios(date) {
 
             if (response.hours && response.hours.length === 0) {
                 var li = document.createElement('li');
-                li.className = 'list-group-item text-center list-group-item-danger';
+                li.className = 'list-group-item text-center list-group-item-secondary';
                 li.textContent = 'Esta data não possui horários.';
 
                 listHours.appendChild(li);
@@ -90,6 +61,7 @@ function montarHorarios(response) {
 
     for (var i = 0; i < horas.length; i++) {
         var hour = horas[i];
+        console.log('HOUR: ', hour);
 
         // Cria um elemento <li> com o conteúdo específico
         var li = document.createElement('li');

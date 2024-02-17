@@ -72,10 +72,10 @@ class HourController extends Controller
         $order_hour_id = $request->session()->get('order.hour_id');
 
         $hours = Hour::query()
-            ->select('id')    
-            ->select('time')
+            ->select('id', 'time')
             ->orderBy('time')
             ->whereRaw('date >= curdate()')
+            //  ->whereRaw('time >= curtime()')
             ->where('professional_id', '=', $order_professional_id)
             ->where('date', '=', $request->date)
             ->where('checked', '=', '0')

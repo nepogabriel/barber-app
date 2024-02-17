@@ -41,8 +41,7 @@
     background-color: #f6f3ecbe;
 }
 
-.jsCalendar tbody td:hover,
-.jsCalendar tbody td:active {
+.jsCalendar tbody td:hover {
     background-color: #cebc96;
 }
 
