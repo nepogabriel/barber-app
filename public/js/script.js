@@ -19,7 +19,7 @@ if (parteAposUltimaBarra == 'horarios') {
 
         // Formatar a data no formato desejado: yyyy-mm-dd
         var dataFormatada = `${ano}-${mes}-${dia}`;
-        
+
         listarHorarios(dataFormatada);
     });
 }
@@ -61,7 +61,6 @@ function montarHorarios(response) {
 
     for (var i = 0; i < horas.length; i++) {
         var hour = horas[i];
-        console.log('HOUR: ', hour);
 
         // Cria um elemento <li> com o conteúdo específico
         var li = document.createElement('li');
@@ -74,11 +73,9 @@ function montarHorarios(response) {
         input.value = hour.id;
         input.id = 'hour_' + hour.id;
 
-        // Se for a segunda li, adiciona a classe 'active'
-        // if (i === 1) {
-        //     li.classList.add('active');
-        //     input.checked = true;
-        // }
+        if (response.order_hour_id && response.order_hour_id == hour.id) {
+            input.checked = true;
+        }
 
         var label = document.createElement('label');
         label.className = 'form-check-label';
