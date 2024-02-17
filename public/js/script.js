@@ -72,8 +72,6 @@ function listarHorarios(date) {
             }
 
             if (response.hours && response.hours.length === 0) {
-                console.log('O array "hours" está vazio.');
-                
                 var li = document.createElement('li');
                 li.className = 'list-group-item text-center list-group-item-danger';
                 li.textContent = 'Esta data não possui horários.';
