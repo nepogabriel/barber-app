@@ -71,30 +71,25 @@ class HourController extends Controller
         $order_professional_id = $request->session()->get('order.professional_id');
         $order_hour_id = $request->session()->get('order.hour_id');
 
-        // $hours = Hour::query()
-        //     ->orderBy('date')
-        //     ->orderBy('time')
-        //     ->where('professional_id', '=', $order_professional_id)
-        //     //->whereRaw('date >= curdate()')
-        //     ->whereRaw('date', '=', $request->date)
-        //     //->whereRaw('time >= curtime()')
-        //     ->where('checked', '=', '0')
-        //     ->get();
+        $hours = Hour::query()
+            ->select('time')
+            ->orderBy('time')
+            ->where('professional_id', '=', $order_professional_id)
+            ->where('date', '=', $request->date)
+            ->where('checked', '=', '0')
+            ->get();
 
-        // foreach ($hours as $hour) {
-        //     $hour->date = $this->hourService->formatDate($hour->date);
-        //     $hour->time = $this->hourService->formatTime($hour->time);
-        // }
+        foreach ($hours as $hour) {
+            $hour->time = $this->hourService->formatTime($hour->time);
+        }
 
         $data = [
             'order_hour_id' => $order_hour_id ? $order_hour_id : false, 
             'order_professional_id' => $order_professional_id,
-            'date' => $request->date,
-            //'hours' => $hours
+            'hours' => $hours
         ]; 
 
         return response()->json($data);
-        //dd($request);
     }
 
     /**
