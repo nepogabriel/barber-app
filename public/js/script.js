@@ -4,7 +4,7 @@ var urlAtual = window.location.pathname;
 var parteAposUltimaBarra = urlAtual.substring(urlAtual.lastIndexOf('/') + 1);
 
 //function showCalendar() {
-if (parteAposUltimaBarra == 'horarios') {
+if (parteAposUltimaBarra == 'horarios' || parteAposUltimaBarra == 'public/horarios') {
     var element = document.querySelector('.calendar-hour');
     var myCalendar = jsCalendar.new(element); // Create the calendar
 
