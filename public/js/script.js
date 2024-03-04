@@ -29,7 +29,7 @@ function listarHorarios(date) {
         date: date
     };
 
-    var url = getUrl() + '/horarios/buscar';
+    var url = getUrl() + '/public/horarios/buscar';
 
     sendRequest(data, url, function(error, response) {
         if (error) {
@@ -37,7 +37,7 @@ function listarHorarios(date) {
         } else {
             // Enquanto houver um primeiro filho, remova-o
             var listHours = document.getElementById('list_hours');
-                
+
             while (listHours.firstChild) {
                 listHours.removeChild(listHours.firstChild);
             }
