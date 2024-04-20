@@ -9,6 +9,7 @@ use App\Http\Controllers\site\HourController as SiteHourController;
 use App\Http\Controllers\site\OrderController as SiteOrderController;
 use App\Http\Controllers\site\ProfessionalController as SiteProfessionalController;
 use App\Http\Controllers\site\ServiceController as SiteServiceController;
+use App\Http\Controllers\site\StartController as SiteStartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -83,6 +84,10 @@ Route::controller(SiteClientController::class)->group(function() {
 Route::controller(SiteOrderController::class)->group(function() {
     Route::get('/pedido', 'index')->name('site.order.index');
     Route::post('/pedido/salvar', 'store')->name('site.order.store');
+});
+
+Route::controller(SiteStartController::class)->group(function() {
+    Route::get('/inicio', 'index')->name('site.start.index');
 });
 
 Route::controller(AppointmentController::class)->group(function() {

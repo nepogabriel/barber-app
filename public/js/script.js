@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
 var urlAtual = window.location.pathname;
 var parteAposUltimaBarra = urlAtual.substring(urlAtual.lastIndexOf('/') + 1);
 
-//function showCalendar() {
 if (parteAposUltimaBarra == 'horarios' || parteAposUltimaBarra == 'public/horarios') {
     var element = document.querySelector('.calendar-hour');
     var myCalendar = jsCalendar.new(element); // Create the calendar
@@ -129,25 +128,29 @@ function getUrl() {
 
 });
 
+var urlAtual = window.location.pathname;
+var parteAposUltimaBarra = urlAtual.substring(urlAtual.lastIndexOf('/') + 1);
 
-const phoneInput = document.getElementById('telephone_client');
+if (parteAposUltimaBarra == 'cliente' || parteAposUltimaBarra == 'public/cliente') {
+    const phoneInput = document.getElementById('telephone_client');
 
-phoneInput.addEventListener('input', function() {
-    let input = this.value;
-    
-    // Remove todos os caracteres que não sejam dígitos
-    input = input.replace(/\D/g, '');
+    phoneInput.addEventListener('input', function(event) {
+        let input = this.value;
+        
+        // Remove todos os caracteres que não sejam dígitos
+        input = input.replace(/\D/g, '');
 
-    // Limite a entrada a 11 caracteres numéricos
-    if (input.length > 11) {
-        input = input.slice(0, 11);
-    }
+        // Limite a entrada a 11 caracteres numéricos
+        if (input.length > 11) {
+            input = input.slice(0, 11);
+        }
 
-    // Formate a entrada para o padrão desejado: (61) 99456-4567
-    if (input.length > 2) {
-        input = `(${input.substring(0, 2)}) ${input.substring(2, 7)}${input.substring(7)}`;
-    }
+        // Formate a entrada para o padrão desejado: (61) 99456-4567
+        if (input.length > 2) {
+            input = `(${input.substring(0, 2)}) ${input.substring(2, 7)}${input.substring(7)}`;
+        }
 
-    // Atualize o valor do campo de entrada com o formato aplicado
-    this.value = input;
-});
+        // Atualize o valor do campo de entrada com o formato aplicado
+        this.value = input;
+    });
+}
