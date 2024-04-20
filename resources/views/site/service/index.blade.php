@@ -28,6 +28,7 @@
         </ul>
 
         <div class="mt-3">
+            <a class="btn btn-outline-dark border-2" href="{{ route('site.start.index') }}">Voltar</a>
             <button type="submit" class="btn btn-bege border border-dark">Continuar</button>
         </div>
     </form>
