@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 
 class StartController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('site.start.index');
+        $message_order_success = $request->session()->get('message.order_success');
+
+        return view('site.start.index')
+        ->with('message_order_success', $message_order_success);
     }
 }

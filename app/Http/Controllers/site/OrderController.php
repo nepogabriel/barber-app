@@ -83,7 +83,7 @@ class OrderController extends Controller
             $request->session()->forget('order');
         }
 
-        return to_route('site.service.index')
+        return to_route('site.start.index')
             ->with('message.order_success', 'Agendamento confirmado com sucesso!');
     }
 

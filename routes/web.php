@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 $hash = 'a32c36de88a52ec108f6f1c5f8cc6572';
 
 Route::get('/', function () {
-    return redirect('/servicos');
+    return redirect('/inicio');
 });
 
 Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin', function () {
