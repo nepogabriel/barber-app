@@ -128,3 +128,26 @@ function getUrl() {
 }
 
 });
+
+
+const phoneInput = document.getElementById('telephone_client');
+
+phoneInput.addEventListener('input', function() {
+    let input = this.value;
+    
+    // Remove todos os caracteres que não sejam dígitos
+    input = input.replace(/\D/g, '');
+
+    // Limite a entrada a 11 caracteres numéricos
+    if (input.length > 11) {
+        input = input.slice(0, 11);
+    }
+
+    // Formate a entrada para o padrão desejado: (61) 99456-4567
+    if (input.length > 2) {
+        input = `(${input.substring(0, 2)}) ${input.substring(2, 7)}${input.substring(7)}`;
+    }
+
+    // Atualize o valor do campo de entrada com o formato aplicado
+    this.value = input;
+});
