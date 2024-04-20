@@ -88,6 +88,8 @@ Route::controller(SiteOrderController::class)->group(function() {
 
 Route::controller(SiteStartController::class)->group(function() {
     Route::get('/inicio', 'index')->name('site.start.index');
+    Route::get('/consultar', 'check')->name('site.start.check');
+    Route::post('/consulta/buscar', 'show')->name('site.start.show');
 });
 
 Route::controller(AppointmentController::class)->group(function() {

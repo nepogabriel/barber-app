@@ -14,4 +14,14 @@ class StartController extends Controller
         return view('site.start.index')
         ->with('message_order_success', $message_order_success);
     }
+
+    public function check()
+    {
+        return view('site.start.check');
+    }
+
+    public function show()
+    {
+        echo 'Chegou aqui!';
+    }
 }
