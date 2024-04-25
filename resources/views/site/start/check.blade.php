@@ -8,10 +8,18 @@
                 id="telephone_client"
                 name="telephone_client"
                 class="form-control"
-                @isset($telephone_client)
-                    value="{{ $telephone_client }}"
+                @isset($appointment[0]->telephone_client)
+                    value="{{ $appointment[0]->telephone_client }}"
                 @endisset
             />
+        </div>
+
+        <div class="mb-3">
+            @isset($appointment)
+                <p>Data: {{ $appointment[0]->date }}</p>
+                <p>Hora: {{ $appointment[0]->time }}</p>
+                <p>Profissional:{{ $appointment[0]->name }}</p>
+            @endisset
         </div>
 
         <div class="mt-3">

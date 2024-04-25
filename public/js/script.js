@@ -28,7 +28,7 @@ function listarHorarios(date) {
         date: date
     };
 
-    var url = getUrl() + '/public/horarios/buscar';
+    var url = getUrl() + '/horarios/buscar';
 
     sendRequest(data, url, function(error, response) {
         if (error) {
