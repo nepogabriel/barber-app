@@ -28,7 +28,7 @@ function listarHorarios(date) {
         date: date
     };
 
-    var url = getUrl() + '/horarios/buscar';
+    var url = getUrl() + '/public/horarios/buscar';
 
     sendRequest(data, url, function(error, response) {
         if (error) {
@@ -137,7 +137,7 @@ if ((parteAposUltimaBarra == 'cliente' || parteAposUltimaBarra == 'public/client
 
     phoneInput.addEventListener('input', function(event) {
         let input = this.value;
-        
+
         // Remove todos os caracteres que não sejam dígitos
         input = input.replace(/\D/g, '');
 
