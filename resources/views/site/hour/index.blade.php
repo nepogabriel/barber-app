@@ -1,4 +1,9 @@
 <x-layout_site title="Escolha o horário">
+    @isset($message_alert_user)
+        <div class="alert alert-success">
+            {{ $message_alert_user }}
+        </div>
+    @endisset
 
     {{-- Calendar Element  --}}
     {{-- <div class="auto-jsCalendar material-theme custom-calendar calendar-hour"></div> --}}

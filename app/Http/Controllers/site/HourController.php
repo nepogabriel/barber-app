@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\site\HourFormRequest;
 use App\Http\Service\HourService;
 use App\Models\Hour;
+use App\Models\HourControl;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HourController extends Controller
 {
@@ -58,6 +60,16 @@ class HourController extends Controller
      */
     public function store(HourFormRequest $request)
     {
+        if ($this->validateHourControl($request)) {
+            // Retornar para página de horários e colcoar aviso
+            $message_alert_user = 'Desculpe! Outro usuário escolheu o horário.';
+
+            return to_route('site.hour.index')
+                ->with('message_alert_user', $message_alert_user); 
+        }
+
+        $this->hourControl($request);
+
         $request->session()->put('order.hour_id', $request->hour_id);
 
         return to_route('site.client.index');
@@ -116,5 +128,44 @@ class HourController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    private function validateHourControl(Request $request): bool
+    {
+        $alert_user = false;
+
+        $hourControl = HourControl::query()
+            ->select('id', 'hour_id')
+            ->where('hour_id', '=', $request->hour_id)
+            ->get();
+        
+        if (isset($hourControl[0])) {
+            $id_hour_control = $request->session()->get('order.id_hour_control');
+            
+            if (($id_hour_control !== null && $hourControl[0]->id !== $id_hour_control )
+                || $hourControl[0]->hour_id == $request->hour_id) {
+                $alert_user = true;
+            }
+        }
+
+        return $alert_user;
+    }
+
+    private function hourControl(Request $request)
+    {
+        $condicao = $request->session()->get('order.id_hour_control') !== null;
+
+        if ($condicao) {
+            $hour_control = DB::table('hour_controls')
+              ->where('id', $request->session()->get('order.id_hour_control'))
+              ->update(['hour_id' => $request->hour_id]);
+        } else {
+            $hour_control = HourControl::create(['hour_id' => $request->hour_id]);
+            $id_hour_control = $hour_control->id;
+
+            if (isset($id_hour_control) && $id_hour_control) {
+                $request->session()->put('order.id_hour_control', $id_hour_control);
+            }
+        }
     }
 }
