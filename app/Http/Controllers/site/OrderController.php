@@ -25,9 +25,9 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        /* Colocar uma condição para verificar se existe as session,
-        caso não existe redirecionar o usuário para o página inicial 
-        (irá evitar do mesmo usuário cadastrar várias vezes o mesmo horário)*/
+        if ($request->session()->get('order.service_id') == null) {
+            return to_route('site.start.index');
+        }
 
         $order_session = [
             'service_id' => $request->session()->get('order.service_id'),
@@ -36,7 +36,6 @@ class OrderController extends Controller
             'name_client' => $request->session()->get('order.name_client'),
             'telephone_client' => $request->session()->get('order.telephone_client'),
         ];
-
 
         $order = [];
 
