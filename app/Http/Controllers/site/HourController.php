@@ -24,27 +24,33 @@ class HourController extends Controller
      */
     public function index(Request $request)
     {
-        $order_professional_id = $request->session()->get('order.professional_id');
+        //$order_professional_id = $request->session()->get('order.professional_id');
         $order_hour_id = $request->session()->get('order.hour_id');
 
-        $hours = Hour::query()
-            ->orderBy('date')
-            ->orderBy('time')
-            ->where('professional_id', '=', $order_professional_id)
-            //->where('date', '>=', DB::raw('curdate()'))
-            ->whereRaw('date >= curdate()')
-            //->whereRaw('time >= curtime()')
-            ->where('checked', '=', '0')
-            ->get();
+        // $hours = Hour::query()
+        //     ->orderBy('date')
+        //     ->orderBy('time')
+        //     ->where('professional_id', '=', $order_professional_id)
+        //     //->where('date', '>=', DB::raw('curdate()'))
+        //     ->whereRaw('date >= curdate()')
+        //     //->whereRaw('time >= curtime()')
+        //     ->where('checked', '=', '0')
+        //     ->get();
 
-        foreach ($hours as $hour) {
-            $hour->date = $this->hourService->formatDate($hour->date);
-            $hour->time = $this->hourService->formatTime($hour->time);
-        }
+        // foreach ($hours as $hour) {
+        //     $hour->date = $this->hourService->formatDate($hour->date);
+        //     $hour->time = $this->hourService->formatTime($hour->time);
+        // }
+
+        // O código comentado esta dentro da função
+        $hours = $this->getHours($request);
+
+        $message_alert_user = $request->session()->get('hour_control.alert_user');
 
         return view('site.hour.index')
             ->with('hours', $hours)
-            ->with('order_hour_id', $order_hour_id);
+            ->with('order_hour_id', $order_hour_id)
+            ->with('message_alert_user', $message_alert_user);
     }
 
     /**
@@ -61,11 +67,10 @@ class HourController extends Controller
     public function store(HourFormRequest $request)
     {
         if ($this->validateHourControl($request)) {
-            // Retornar para página de horários e colcoar aviso
-            $message_alert_user = 'Desculpe! Outro usuário escolheu o horário.';
+            $message_alert_user = 'Desculpe! Outro usuário escolheu o mesmo horário.';
 
             return to_route('site.hour.index')
-                ->with('message_alert_user', $message_alert_user); 
+                ->with('hour_control.alert_user', $message_alert_user); 
         }
 
         $this->hourControl($request);
@@ -167,5 +172,27 @@ class HourController extends Controller
                 $request->session()->put('order.id_hour_control', $id_hour_control);
             }
         }
+    }
+
+    private function getHours(Request $request)
+    {
+        $order_professional_id = $request->session()->get('order.professional_id');
+
+        $hours = Hour::query()
+            ->orderBy('date')
+            ->orderBy('time')
+            ->where('professional_id', '=', $order_professional_id)
+            //->where('date', '>=', DB::raw('curdate()'))
+            ->whereRaw('date >= curdate()')
+            //->whereRaw('time >= curtime()')
+            ->where('checked', '=', '0')
+            ->get();
+
+        foreach ($hours as $hour) {
+            $hour->date = $this->hourService->formatDate($hour->date);
+            $hour->time = $this->hourService->formatTime($hour->time);
+        }
+
+        return $hours;
     }
 }

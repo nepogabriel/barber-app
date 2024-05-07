@@ -1,6 +1,6 @@
 <x-layout_site title="Escolha o horário">
     @isset($message_alert_user)
-        <div class="alert alert-success">
+        <div class="alert alert-danger">
             {{ $message_alert_user }}
         </div>
     @endisset
