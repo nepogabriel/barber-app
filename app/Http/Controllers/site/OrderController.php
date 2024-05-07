@@ -25,6 +25,10 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
+        /* Colocar uma condição para verificar se existe as session,
+        caso não existe redirecionar o usuário para o página inicial 
+        (irá evitar do mesmo usuário cadastrar várias vezes o mesmo horário)*/
+
         $order_session = [
             'service_id' => $request->session()->get('order.service_id'),
             'professional_id' => $request->session()->get('order.professional_id'),
@@ -80,6 +84,9 @@ class OrderController extends Controller
               ->update(['checked' => 1]);
 
         if ($appointment && $hour) {
+            $hourControl = new HourController();
+            $hourControl->destroyHourControl($request->hour_id);
+
             $request->session()->forget('order');
         }
 

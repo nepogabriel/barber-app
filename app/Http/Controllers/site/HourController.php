@@ -130,9 +130,9 @@ class HourController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroyHourControl(int $hour_id)
     {
-        //
+        HourControl::where('hour_id', $hour_id)->delete();
     }
 
     private function validateHourControl(Request $request): bool
