@@ -132,7 +132,9 @@ var urlAtual = window.location.pathname;
 var parteAposUltimaBarra = urlAtual.substring(urlAtual.lastIndexOf('/') + 1);
 
 if ((parteAposUltimaBarra == 'cliente' || parteAposUltimaBarra == 'public/cliente')
-    || parteAposUltimaBarra == 'consultar' || parteAposUltimaBarra == 'public/consultar') {
+    || (parteAposUltimaBarra == 'consultar' || parteAposUltimaBarra == 'public/consultar')
+    || (parteAposUltimaBarra == 'buscar' || parteAposUltimaBarra == 'public/contulta/buscar')) {
+
     const phoneInput = document.getElementById('telephone_client');
 
     phoneInput.addEventListener('input', function(event) {

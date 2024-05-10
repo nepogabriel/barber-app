@@ -15,11 +15,13 @@
         </div>
 
         <div class="mb-3">
-            @isset($appointment)
+            @if(isset($appointment[0]))
                 <p>Data: {{ $appointment[0]->date }}</p>
                 <p>Hora: {{ $appointment[0]->time }}</p>
                 <p>Profissional:{{ $appointment[0]->name }}</p>
-            @endisset
+            @elseif(isset($appointment) and !isset($appointment[0]))
+                <p class="text-danger">Agendamento não encontrado! Verifique o número de telefone.</p>
+            @endif
         </div>
 
         <div class="mt-3">

@@ -37,9 +37,11 @@ class StartController extends Controller
             ->select('appointments.telephone_client', 'hours.date', 'hours.time', 'professionals.name')
             ->where('appointments.telephone_client', $request->telephone_client)
             ->get();
-
-        $appointment[0]->date = $this->hourService->formatDate($appointment[0]->date);
-        $appointment[0]->time = $this->hourService->formatTime($appointment[0]->time);
+        
+        if (isset($appointment[0])) {
+            $appointment[0]->date = $this->hourService->formatDate($appointment[0]->date);
+            $appointment[0]->time = $this->hourService->formatTime($appointment[0]->time);
+        }
 
         return view('site.start.check')
             ->with('appointment', $appointment);
