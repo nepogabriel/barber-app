@@ -36,8 +36,9 @@ class StartController extends Controller
             ->join('professionals', 'hours.professional_id', '=', 'professionals.id')
             ->select('appointments.telephone_client', 'hours.date', 'hours.time', 'professionals.name')
             ->where('appointments.telephone_client', $request->telephone_client)
+            ->whereRaw('date >= CURDATE() - INTERVAL 1 DAY')
             ->get();
-        
+
         if (isset($appointment[0])) {
             $appointment[0]->date = $this->hourService->formatDate($appointment[0]->date);
             $appointment[0]->time = $this->hourService->formatTime($appointment[0]->time);
