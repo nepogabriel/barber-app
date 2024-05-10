@@ -18,7 +18,7 @@
             @if(isset($appointment[0]))
                 <p>Data: {{ $appointment[0]->date }}</p>
                 <p>Hora: {{ $appointment[0]->time }}</p>
-                <p>Profissional:{{ $appointment[0]->name }}</p>
+                <p>Profissional: {{ $appointment[0]->name }}</p>
             @elseif(isset($appointment) and !isset($appointment[0]))
                 <p class="text-danger">Agendamento não encontrado! Verifique o número de telefone.</p>
             @endif
