@@ -143,12 +143,11 @@ class HourController extends Controller
             ->select('id', 'hour_id')
             ->where('hour_id', '=', $request->hour_id)
             ->get();
-        
+
         if (isset($hourControl[0])) {
             $id_hour_control = $request->session()->get('order.id_hour_control');
-            
-            if (($id_hour_control !== null && $hourControl[0]->id !== $id_hour_control )
-                || $hourControl[0]->hour_id == $request->hour_id) {
+
+            if ($id_hour_control !== null && $hourControl[0]->id !== $id_hour_control) {
                 $alert_user = true;
             }
         }
