@@ -7,6 +7,7 @@ use App\Http\Requests\site\HourFormRequest;
 use App\Http\Service\HourService;
 use App\Models\Hour;
 use App\Models\HourControl;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -140,15 +141,24 @@ class HourController extends Controller
         $alert_user = false;
 
         $hourControl = HourControl::query()
-            ->select('id', 'hour_id')
+            ->select('id', 'hour_id', 'updated_at')
             ->where('hour_id', '=', $request->hour_id)
             ->get();
 
         if (isset($hourControl[0])) {
             $id_hour_control = $request->session()->get('order.id_hour_control');
 
-            if ($id_hour_control !== null && $hourControl[0]->id !== $id_hour_control) {
+            $data = new DateTime($hourControl[0]->updated_at);
+            $data_minutos = clone $data;
+            $data_minutos->modify('+10 minutes');
+
+            $data_atual = new DateTime();
+
+            // Verifique se a data/hora atual é maior que a data/hora fornecida mais 10 minutos
+            if (($id_hour_control !== null && $hourControl[0]->id !== $id_hour_control && $data_atual <= $data_minutos)) {
                 $alert_user = true;
+            } else {
+                $this->destroyHourControl($hourControl[0]->id);
             }
         }
 
