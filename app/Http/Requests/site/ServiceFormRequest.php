@@ -22,7 +22,7 @@ class ServiceFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'service_id' => ['required'],
+            'service_id' => ['required', 'max:3'],
         ];
     }
 
@@ -30,6 +30,7 @@ class ServiceFormRequest extends FormRequest
     {
         return [
             'service_id.required' => 'Escolha um serviço para continuar.',
+            'service_id.max' => 'Escolha até 3 serviços para continuar.',
         ];
     }
 }
