@@ -57,36 +57,57 @@ function listarHorarios(date) {
 function montarHorarios(response) {
     var listHours = document.getElementById('list_hours');
     var horas = response.hours;
-
-    for (var i = 0; i < horas.length; i++) {
-        var hour = horas[i];
-
-        // Cria um elemento <li> com o conteúdo específico
-        var li = document.createElement('li');
-        li.className = 'list-group-item';
-
-        var input = document.createElement('input');
-        input.className = 'form-check-input me-1';
-        input.type = 'radio';
-        input.name = 'hour_id';
-        input.value = hour.id;
-        input.id = 'hour_' + hour.id;
-
-        if (response.order_hour_id && response.order_hour_id == hour.id) {
-            input.checked = true;
+    var servicos = response.service;
+    
+    for (var j = 0; j < servicos.length; j++) {
+        var div = document.createElement('div');
+        
+        if (servicos.length == 2) {
+            div.className = 'col-sm-12 col-md-6';
+        } else if (servicos.length === 3) {
+            div.className = 'col-sm-12 col-md-4';
+        } else {
+            div.className = 'col-sm-12 col-md-12';
         }
+                                                                                                                                                                                                                         
+        // Colocar o nome do serviço
+        div.textContent = 'Nome do serviço';                                                                                                                                                                                                                                             
+        listHours.appendChild(div);
 
-        var label = document.createElement('label');
-        label.className = 'form-check-label';
-        label.htmlFor = 'hour_' + hour.id;
-        label.textContent = hour.time;
+        var ul = document.createElement('ul');
+        ul.className = 'list-group';
+        div.appendChild(ul);
 
-        // Adiciona os elementos criados à li
-        li.appendChild(input);
-        li.appendChild(label);
+        for (var i = 0; i < horas.length; i++) {
+            var hour = horas[i];
 
-        // Adiciona a li à lista
-        listHours.appendChild(li);
+            // Cria um elemento <li> com o conteúdo específico
+            var li = document.createElement('li');
+            li.className = 'list-group-item';
+
+            var input = document.createElement('input');
+            input.className = 'form-check-input me-1';
+            input.type = 'radio';
+            input.name = 'hour_id';
+            input.value = hour.id;
+            input.id = 'hour_' + hour.id;
+
+            if (response.order_hour_id && response.order_hour_id == hour.id) {
+                input.checked = true;
+            }
+
+            var label = document.createElement('label');
+            label.className = 'form-check-label';
+            label.htmlFor = 'hour_' + hour.id;
+            label.textContent = hour.time;
+
+            // Adiciona os elementos criados à li
+            li.appendChild(input);
+            li.appendChild(label);
+
+            // Adiciona a li à lista
+            ul.appendChild(li);
+        }
     }
 }
 

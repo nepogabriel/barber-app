@@ -106,8 +106,9 @@ class HourController extends Controller
         $data = [
             'order_hour_id' => $order_hour_id ? $order_hour_id : false, 
             'order_professional_id' => $order_professional_id,
-            'hours' => $hours
-        ]; 
+            'hours' => $hours,
+            'service' => $request->session()->get('order.service_id'),
+        ];
 
         return response()->json($data);
     }
