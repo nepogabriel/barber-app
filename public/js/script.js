@@ -42,11 +42,15 @@ function listarHorarios(date) {
             }
 
             if (response.hours && response.hours.length === 0) {
+                var ul = document.createElement('ul');
+                ul.className = 'list-group';
+                listHours.appendChild(ul);
+
                 var li = document.createElement('li');
                 li.className = 'list-group-item text-center list-group-item-secondary';
                 li.textContent = 'Esta data não possui horários.';
 
-                listHours.appendChild(li);
+                ul.appendChild(li);
             } else {
                 montarHorarios(response);
             }
@@ -62,7 +66,7 @@ function montarHorarios(response) {
     for (var j = 0; j < servicos.length; j++) {
         var div = document.createElement('div');
         
-        if (servicos.length == 2) {
+        if (servicos.length === 2) {
             div.className = 'col-sm-12 col-md-6';
         } else if (servicos.length === 3) {
             div.className = 'col-sm-12 col-md-4';
@@ -70,8 +74,7 @@ function montarHorarios(response) {
             div.className = 'col-sm-12 col-md-12';
         }
                                                                                                                                                                                                                          
-        // Colocar o nome do serviço
-        div.textContent = 'Nome do serviço';                                                                                                                                                                                                                                             
+        div.textContent = 'Serviço: ' + servicos[j]['name'];                                                                                                                                                                                                                                             
         listHours.appendChild(div);
 
         var ul = document.createElement('ul');
@@ -88,7 +91,7 @@ function montarHorarios(response) {
             var input = document.createElement('input');
             input.className = 'form-check-input me-1';
             input.type = 'radio';
-            input.name = 'hour_id';
+            input.name = `hour_id[${servicos[j]['id']}]`
             input.value = hour.id;
             input.id = 'hour_' + hour.id;
 

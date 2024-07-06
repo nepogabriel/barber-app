@@ -7,6 +7,7 @@ use App\Http\Requests\site\HourFormRequest;
 use App\Http\Service\HourService;
 use App\Models\Hour;
 use App\Models\HourControl;
+use App\Models\Service;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -103,11 +104,18 @@ class HourController extends Controller
             $hour->time = $this->hourService->formatTime($hour->time);
         }
 
+        if ($request->session()->get('order.service_id') !== null) {
+            $service = Service::query()
+                ->select('id', 'name')
+                ->whereIn('id', $request->session()->get('order.service_id'))
+                ->get();
+        }
+
         $data = [
             'order_hour_id' => $order_hour_id ? $order_hour_id : false, 
             'order_professional_id' => $order_professional_id,
             'hours' => $hours,
-            'service' => $request->session()->get('order.service_id'),
+            'service' => $service,
         ];
 
         return response()->json($data);
