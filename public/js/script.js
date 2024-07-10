@@ -28,7 +28,7 @@ function listarHorarios(date) {
         date: date
     };
 
-    var url = getUrl() + '/public/horarios/buscar';
+    var url = getUrl() + '/horarios/buscar';
 
     sendRequest(data, url, function(error, response) {
         if (error) {
@@ -73,7 +73,7 @@ function montarHorarios(response) {
         } else {
             div.className = 'col-sm-12 col-md-12';
         }
-                                                                                                                                                                                                                         
+
         div.textContent = 'Serviço: ' + servicos[j]['name'];                                                                                                                                                                                                                                             
         listHours.appendChild(div);
 

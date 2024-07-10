@@ -29,22 +29,6 @@ class HourController extends Controller
         //$order_professional_id = $request->session()->get('order.professional_id');
         $order_hour_id = $request->session()->get('order.hour_id');
 
-        // $hours = Hour::query()
-        //     ->orderBy('date')
-        //     ->orderBy('time')
-        //     ->where('professional_id', '=', $order_professional_id)
-        //     //->where('date', '>=', DB::raw('curdate()'))
-        //     ->whereRaw('date >= curdate()')
-        //     //->whereRaw('time >= curtime()')
-        //     ->where('checked', '=', '0')
-        //     ->get();
-
-        // foreach ($hours as $hour) {
-        //     $hour->date = $this->hourService->formatDate($hour->date);
-        //     $hour->time = $this->hourService->formatTime($hour->time);
-        // }
-
-        // O código comentado esta dentro da função
         $hours = $this->getHours($request);
 
         $message_alert_user = $request->session()->get('hour_control.alert_user');
@@ -68,12 +52,13 @@ class HourController extends Controller
      */
     public function store(HourFormRequest $request)
     {
-        if ($this->validateHourControl($request)) {
-            $message_alert_user = 'Desculpe! Outro usuário escolheu o mesmo horário.';
 
-            return to_route('site.hour.index')
-                ->with('hour_control.alert_user', $message_alert_user); 
-        }
+        // if ($this->validateHourControl($request)) {
+        //     $message_alert_user = 'Desculpe! Outro usuário escolheu o mesmo horário.';
+
+        //     return to_route('site.hour.index')
+        //         ->with('hour_control.alert_user', $message_alert_user); 
+        // }
 
         $this->hourControl($request);
 
@@ -174,21 +159,40 @@ class HourController extends Controller
         return $alert_user;
     }
 
-    private function hourControl(Request $request)
+    private function hourControl(Request $request): void
     {
-        $condicao = $request->session()->get('order.id_hour_control') !== null;
+        $session_hour_control = $request->session()->get('order.id_hour_control');
 
-        if ($condicao) {
-            $hour_control = DB::table('hour_controls')
-              ->where('id', $request->session()->get('order.id_hour_control'))
-              ->update(['hour_id' => $request->hour_id]);
-        } else {
-            $hour_control = HourControl::create(['hour_id' => $request->hour_id]);
-            $id_hour_control = $hour_control->id;
-
-            if (isset($id_hour_control) && $id_hour_control) {
-                $request->session()->put('order.id_hour_control', $id_hour_control);
+        $id_hour_control = [];
+        
+        if ($session_hour_control !== null && count($request->hour_id) == count($session_hour_control)) {
+            foreach ($request->hour_id as $key => $hour_id) {
+                $hour_control = DB::table('hour_controls')
+                ->where('id', $session_hour_control[$key])
+                ->update(['hour_id' => $hour_id]);
             }
+        } else {
+            $select_hour_control = (array) DB::table('hour_controls')
+                ->select('hour_id')
+                ->whereIn('id', $request->hour_id);
+
+            foreach ($request->hour_id as $key => $hour_id) {
+                if (in_array($hour_id, $select_hour_control)) {
+                    $this->destroyHourControl($hour_id);
+                }
+
+                $hour_control = HourControl::create(['hour_id' => $hour_id]);
+                $id = $hour_control->id;
+
+                if (isset($id) && $id) {
+                    $id_hour_control[$key] = $id;
+                }
+            }
+        }
+
+        if (!empty($id_hour_control)) {
+            $request->session()->forget('order.id_hour_control');
+            $request->session()->put('order.id_hour_control', $id_hour_control);
         }
     }
 
@@ -200,9 +204,7 @@ class HourController extends Controller
             ->orderBy('date')
             ->orderBy('time')
             ->where('professional_id', '=', $order_professional_id)
-            //->where('date', '>=', DB::raw('curdate()'))
             ->whereRaw('date >= curdate()')
-            //->whereRaw('time >= curtime()')
             ->where('checked', '=', '0')
             ->get();
 
