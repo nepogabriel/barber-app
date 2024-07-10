@@ -1,44 +1,29 @@
-# Comandos Laravel:
-Form Request (Para validações)
-- php artisan make:request <NomeFormRequest>
-
-# Criar o Controller: 
-- php artisan make:controller NomeController --resource
-
-# Status da migration:
-- php artisan migrate:status
-
-# Criar tabelas bases do lavavel: 
-- php artisan migrate
-
-# Criar tabela especifica laravel:
-- php artisan make:migration create_products_table
-
-# Adicionando coluna na tabela:
-- php artisan make:migration add_category_to_products_table
-
-# Deleta e migra todas as tabelas novamente:
-- php artisan migrate:fresh
-
-# Rollback migrate:
-- php artisan migrate:rollback
-
-# Refresh migrate (faz o rollback e o migrate em um comando):
-- php artisan migrate:refresh
-
-# Criando model:
-- php artisan make:model Event
-
-# Gerando key p/ clone projeto laravel:
-- php artisan key:generate
-
-# Criar FormRequest
-- php artisan make:request NomeFormRequest
+# 🗓️ Barber App - Agendamento
 ---
-# Limpar cache Laravel:
-- php artisan config:cache
-- php artisan config:clear
-- php artisan route:cache
-- php artisan route:clear
-- php artisan view:clear
-- php artisan cache:clear
+## 🗒️ Descrição
+O Barber App é um sistema de auto-agendamento projetado para otimizar o tempo dos profissionais de barbearia no dia a dia. Ele permite que os clientes agendem serviços de forma rápida e eficiente, ao mesmo tempo em que oferece aos administradores uma maneira fácil de gerenciar seus serviços e horários.
+
+## ️📊 Funcionalidades Principais
+
+### Administrador
+- **Gerenciamento de Serviços:** Criação de serviços (nome, preço).
+- **Gerenciamento de Profissionais:** Adição de profissionais (nome, função).
+- **Gerenciamento de Horários:** Criação de horários (data, hora, vínculo com o profissional).
+- **Listagem de Agendamentos:** Visualização de agendamentos separados por profissional.
+
+### Cliente
+- **Seleção de Serviço:** Escolha do serviço desejado.
+- **Escolha do Profissional:** Seleção do profissional disponível.
+- **Consulta de Horários Disponíveis:** Listagem de horários disponíveis do profissional escolhido.
+- **Agendamento:** Informar nome e telefone do cliente e confirmar o agendamento.
+- **Consulta de Agendamentos:** Visualização dos horários agendados pelo número de telefone.
+
+## ⚙️ Requisitos de Sistema
+Docker
+Laravel Sail
+Laravel 10
+Composer
+---
+## 👥 Contribuidores
+Gabriel Ribeiro.
+🌐 https://linkedin.com/in/gabriel-ribeiro-br/
