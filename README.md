@@ -19,10 +19,10 @@ O Barber App é um sistema de auto-agendamento projetado para otimizar o tempo d
 - **Consulta de Agendamentos:** Visualização dos horários agendados pelo número de telefone.
 
 ## ⚙️ Requisitos de Sistema
-Docker
-Laravel Sail
-Laravel 10
-Composer
+- Docker
+- Laravel Sail
+- Laravel 10
+- Composer
 ---
 ## 👥 Contribuidores
 Gabriel Ribeiro.
