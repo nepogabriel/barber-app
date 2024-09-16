@@ -161,6 +161,7 @@ class HourController extends Controller
 
     private function hourControl(Request $request): void
     {
+        //$request->session()->forget('order.id_hour_control');
         $session_hour_control = $request->session()->get('order.id_hour_control');
 
         $id_hour_control = [];
@@ -172,12 +173,13 @@ class HourController extends Controller
                 ->update(['hour_id' => $hour_id]);
             }
         } else {
-            $select_hour_control = (array) DB::table('hour_controls')
-                ->select('hour_id')
-                ->whereIn('id', $request->hour_id);
-
             foreach ($request->hour_id as $key => $hour_id) {
-                if (in_array($hour_id, $select_hour_control)) {
+                $select_hour_control = DB::table('hour_controls')
+                    ->select('hour_id')
+                    ->where('hour_id', $hour_id)
+                    ->get();
+                
+                if (isset($select_hour_control->hour_id) && $hour_id == $select_hour_control->hour_id) {
                     $this->destroyHourControl($hour_id);
                 }
 
