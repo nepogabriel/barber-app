@@ -47,7 +47,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Configurações</a>
+                        <a class="nav-link" href="{{ route('admin.setting.index') }}">Configurações</a>
                     </li>
 
                     <li class="nav-item">
