@@ -9,8 +9,9 @@
         <div class="mb-3">
             <label for="template-client" class="form-label">Tema cliente:</label>
             <select class="form-select" name="template_client" id="template-client">
-                <option value="x">tema 1</option>
-                <option value="y">tema 2</option>
+                @foreach ($template_clients as $template)
+                <option value="{{ $template }}">{{ $template }}</option>
+                @endforeach
             </select>
         </div>
     

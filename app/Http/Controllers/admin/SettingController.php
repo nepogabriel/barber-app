@@ -12,7 +12,17 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('admin.setting.index');
+        $path = public_path('css/clients');
+	    $template_clients = array_diff(scandir($path), array('.', '..'));
+
+        $templates = [];
+
+        foreach ($template_clients as $template) {
+            $templates[] = str_replace(".css", '', $template);
+        }
+
+        return view('admin.setting.index')
+            ->with('template_clients', $templates);
     }
 
     /**
