@@ -100,4 +100,5 @@ Route::controller(AppointmentController::class)->group(function() {
 
 Route::controller(SettingController::class)->group(function () {
     Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracao', 'index')->name('admin.setting.index');
+    Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracao/salvar', 'store')->name('admin.setting.store');
 });

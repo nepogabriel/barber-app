@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
+    private string $mensagem_success = 'Configurações atualizadas com sucesso!';
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $path = public_path('css/clients');
 	    $template_clients = array_diff(scandir($path), array('.', '..'));
@@ -21,8 +23,14 @@ class SettingController extends Controller
             $templates[] = str_replace(".css", '', $template);
         }
 
+        $settings = Setting::query()->get();
+
+        $message_success = $request->session()->get('message.success');
+
         return view('admin.setting.index')
-            ->with('template_clients', $templates);
+            ->with('settings', $settings)
+            ->with('template_clients', $templates)
+            ->with('message_success', $message_success);
     }
 
     /**
@@ -38,7 +46,14 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->setting_id !== null) {
+            $this->update($request, $request->setting_id);
+        } else {
+            Setting::create($request->all());
+        }
+
+        return to_route('admin.setting.index')
+            ->with('message.success', $this->mensagem_success);
     }
 
     /**
@@ -62,7 +77,12 @@ class SettingController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $setting = Setting::find($id);
+        $setting->fill($request->all());
+        $setting->save();
+
+        return to_route('admin.setting.index',)
+            ->with('message.success', $this->mensagem_success);
     }
 
     /**
