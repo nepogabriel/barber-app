@@ -2,17 +2,21 @@
     font-weight: 500 !important;
 }
 
-.bg-bege {
+.bg-body {
     background-color: #f6f3ecbe;
 }
 
-.bg-menu,
+.bg-menu {
+    background-color: var(--primary-color, #cebc96) !important;
+}
+
 .btn-bege {
-    background-color: #cebc96 !important;
+    background-color: var(--primary-color, #cebc96) !important;
+    color: #FFF !important;
 }
 
 .btn-bege:hover {
-    background-color: #cebc96ae !important;
+    background-color: var(--btn-hover, #cebc96ae) !important;
 }
 
 /* CALENDÁRIO CLIENTE */
@@ -21,20 +25,20 @@
     color: #000;
 }
 .jsCalendar.custom-calendar *::selection {
-    background: #cebc96;
+    background: var(--primary-color, #cebc96);
 }
 .jsCalendar.custom-calendar *::-moz-selection {
-    background: #cebc96;
+    background: var(--primary-color, #cebc96);
 }
 .jsCalendar.material-theme.custom-calendar thead {
-    background-color: #cebc96;
+    background-color: var(--primary-color, #cebc96);
 }
 .jsCalendar.material-theme.custom-calendar thead .jsCalendar-nav-left:hover,
 .jsCalendar.material-theme.custom-calendar thead .jsCalendar-nav-right:hover {
     background-color: #f6f3ecbe;
 }
 .jsCalendar.classic-theme.custom-calendar thead {
-    background-color: #cebc96;
+    background-color: var(--primary-color, #cebc96);
 }
 .jsCalendar.classic-theme.custom-calendar thead .jsCalendar-nav-left:hover,
 .jsCalendar.classic-theme.custom-calendar thead .jsCalendar-nav-right:hover {
@@ -42,7 +46,8 @@
 }
 
 .jsCalendar tbody td:hover {
-    background-color: #cebc96;
+    background-color: var(--primary-color, #cebc96);
+    color: var(--text-date-hover, #000);
 }
 
 /* LIST HOURS */
