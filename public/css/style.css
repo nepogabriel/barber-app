@@ -12,7 +12,7 @@
 
 .btn-bege {
     background-color: var(--primary-color, #cebc96) !important;
-    color: #FFF !important;
+    color: var(--btn-text-color, #000) !important;
 }
 
 .btn-bege:hover {

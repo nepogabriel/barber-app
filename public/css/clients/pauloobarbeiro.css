@@ -1,5 +1,7 @@
 :root {
     --primary-color: #000;
+
+    --btn-text-color: #FFF;
     --btn-hover: #272727;
 
     /* Calendar */
