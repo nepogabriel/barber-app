@@ -26,11 +26,17 @@ class AppServiceProvider extends ServiceProvider
         $setting_service = new SettingService();
         $settings = $setting_service->getSettings();
 
-        if ($settings) {
-            $url .= $settings->logo_header;
-
+        if (isset($settings->template_client) && $settings->template_client) {
             View::share('template_client', $settings->template_client);
+        } else {
+            View::share('template_client', 'default');
+        }
+
+        if (isset($settings->logo_header) && $settings->logo_header) {
+            $url .= $settings->logo_header;
             View::share('logo_header', $settings->logo_header);
+        } else {
+            View::share('logo_header', '/img/no_image.png');
         }
     }
 }

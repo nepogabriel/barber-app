@@ -10,7 +10,8 @@
 
             <div>
 {{--                <img src="img/logo.jpeg" height="100px" width="auto">--}}
-                <img src="https://velhahistoriabarbearia.com.br/public/img/logo.jpg" height="100px" width="auto">
+                {{-- <img src="https://velhahistoriabarbearia.com.br/public/img/logo.jpg" height="100px" width="auto"> --}}
+                <img src="{{ $logo_header }}" height="100px" width="auto">
             </div>
 
             <div>
