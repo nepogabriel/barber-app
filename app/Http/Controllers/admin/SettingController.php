@@ -55,7 +55,7 @@ class SettingController extends Controller
 
             $image->move(public_path('img/uploads'), $image_name);
             
-            $image_path = 'uploads/' . $image_name;
+            $image_path = '/img/uploads/' . $image_name;
 
             $request_all['logo_header'] = $image_path;
         }

@@ -7,12 +7,12 @@ use App\Models\Setting;
 class SettingService
 {
 
-    public function getTemplateClient(): mixed
+    public function getSettings(): mixed
     {
         $settings = Setting::query()->get();
 
         if ($settings)
-            return $settings[0]->template_client;
+            return $settings[0];
 
         return false;
     }

@@ -21,10 +21,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $setting_service = new SettingService();
-        $template_client = $setting_service->getTemplateClient();
+        $url = url('/');
 
-        if ($template_client)
-            View::share('template_client', $template_client);
+        $setting_service = new SettingService();
+        $settings = $setting_service->getSettings();
+
+        if ($settings) {
+            $url .= $settings->logo_header;
+
+            View::share('template_client', $settings->template_client);
+            View::share('logo_header', $settings->logo_header);
+        }
     }
 }
