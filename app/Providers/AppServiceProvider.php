@@ -36,7 +36,13 @@ class AppServiceProvider extends ServiceProvider
             $url .= $settings->logo_header;
             View::share('logo_header', $settings->logo_header);
         } else {
-            View::share('logo_header', '/img/no_image.png');
+            $logo_header = '/img/no_image.png';
+
+            if (!file_exists(public_path($logo_header))) {
+                $logo_header = 'https://velhahistoriabarbearia.com.br/public/img/logo.jpg';
+            }
+
+            View::share('logo_header', $logo_header);
         }
     }
 }
