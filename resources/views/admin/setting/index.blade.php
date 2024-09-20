@@ -5,7 +5,7 @@
         </div>
     @endisset
 
-    <form action="{{ route('admin.setting.store') }} " method="post">
+    <form action="{{ route('admin.setting.store') }} " method="post" enctype="multipart/form-data">
         @csrf
 
         <input
@@ -24,6 +24,11 @@
                 </option>
                 @endforeach
             </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="logo-header" class="form-label">Logo Menu</label>
+            <input class="form-control" type="file" name="logo_header" id="logo-header">
         </div>
     
         <a class="btn btn-danger" href="#">Cancelar</a>

@@ -46,10 +46,24 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
+        $request_all = $request->all();
+
+        if ($request->hasFile('logo_header')) {
+            $image = $request->file('logo_header');
+
+            $image_name = time() . '.' . $image->getClientOriginalExtension();
+
+            $image->move(public_path('img/uploads'), $image_name);
+            
+            $image_path = 'uploads/' . $image_name;
+
+            $request_all['logo_header'] = $image_path;
+        }
+
         if ($request->setting_id !== null) {
-            $this->update($request, $request->setting_id);
+            $this->update($request_all, $request->setting_id);
         } else {
-            Setting::create($request->all());
+            Setting::create($request_all);
         }
 
         return to_route('admin.setting.index')
@@ -75,10 +89,10 @@ class SettingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update($request_all, string $id)
     {
         $setting = Setting::find($id);
-        $setting->fill($request->all());
+        $setting->fill($request_all);
         $setting->save();
 
         return to_route('admin.setting.index',)

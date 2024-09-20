@@ -20,3 +20,4 @@ yarn-error.log
 /.well-knowng
 .htaccess
 /cgi-bin
+/public/img/uploads/*
