@@ -16,7 +16,43 @@
         </div>
     </section>
 
-    <section id="about">
-        ABOUT
+    <section id="about" class="d-flex align-items-center my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-7 d-flex justify-content-center flex-column">
+                    <h3 class="mb-5">Sobre Nós</h3>
+
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique temporibus in, vero expedita officia repellat dicta, nostrum natus, at sit facere doloribus illum et velit facilis debitis harum! Nemo, sequi.
+
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, in.
+                        
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga cumque quo quia nulla totam velit, cum placeat ipsa, dolore aut laudantium harum? Blanditiis quis facere quaerat doloribus neque dolorem asperiores.
+                        
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga cumque quo quia nulla totam velit, cum placeat ipsa, dolore aut laudantium harum? Blanditiis quis facere quaerat doloribus neque dolorem asperiores.
+                    </p>
+                </div>
+
+                <div class="col-sm-12 col-md-5">
+                    <div class="about-image">
+                        <img src="/img/aboutus.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="our-services">
+        teste
+        {{-- <div class="container">
+            <div class="row">
+                <div class="card" style="width: 18rem;">
+                    <img src="/img/service-1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+            </div>
+        </div> --}}
     </section>
 </x-layout_site_home>
