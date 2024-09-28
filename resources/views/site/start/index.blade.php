@@ -1,15 +1,22 @@
-<x-layout_site title="Início">
-    @isset($message_order_success)
-        <div class="alert alert-success">
-            {{ $message_order_success }}
+<x-layout_site_home title="Início">
+    <section class="start">
+        <div class="container d-flex align-items-center justify-content-center flex-column">
+            <div class="slogan">
+                <h1>Matenha seu corte limpo</h1>
+            </div>
+            <div class="container-btn-home">
+                <a class="btn btn-bege border-2 border-dark" href="{{ route('site.service.index') }}">
+                    <i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;&nbsp;Agendar Serviço
+                </a>
+
+                <a class="btn btn-outline-dark border-2" href="{{ route('site.start.check') }}">
+                    <i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;Consultar Agendamento
+                </a>
+            </div>
         </div>
-    @endisset
+    </section>
 
-    <div class="mt-3 d-flex justify-content-center">
-        <a class="btn btn-bege border-2 border-dark" href="{{ route('site.service.index') }}">Agendar Serviço</a>
-    </div>
-
-    <div class="mt-3 d-flex justify-content-center">
-        <a class="btn btn-outline-dark border-2" href="{{ route('site.start.check') }}">Consultar Agendamento</a>
-    </div>
-</x-layout_site>
+    <section id="about">
+        ABOUT
+    </section>
+</x-layout_site_home>

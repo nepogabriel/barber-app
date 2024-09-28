@@ -1,9 +1,10 @@
-.btn {
-    font-weight: 500 !important;
+body {
+    font-family: var(--font-family, "Ubuntu"), "Helvetica", "Arial", sans-serif;
+    background-color: var(--bg-body, #f6f3ecbe);
 }
 
-.bg-body {
-    background-color: #f6f3ecbe;
+.btn {
+    font-weight: 500 !important;
 }
 
 .bg-menu {
@@ -50,5 +51,52 @@
     color: var(--text-date-hover, #000);
 }
 
-/* LIST HOURS */
+.start {
+    background-image: 
+        url('/img/line-section.png'), 
+        linear-gradient(rgb(34 34 34 / 28%), rgba(34, 34, 34, 0)), 
+        linear-gradient(rgba(34, 34, 34, 0), rgb(34 34 34 / 28%)), 
+        url('/img/bg-home.jpg');
+    background-repeat: no-repeat, no-repeat;
+    background-position: bottom left, left bottom;
+    background-size: 100%, auto, cover;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 20px;  
+}
 
+.start,
+.start .container {
+    height: 60vh;
+}
+
+.start .slogan h1 {
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.container-btn-home {
+    text-align: center;
+}
+
+.container-btn-home .btn {
+    margin: 5px;
+}
+
+#about {
+    height: 40vh;
+    background: url('/img/bg-lotus.png');
+    background-repeat: no-repeat, no-repeat;
+}
+
+@media (max-width: 768px) {
+    .start,
+    .start .container {
+        height: 45vh;
+    }
+}
