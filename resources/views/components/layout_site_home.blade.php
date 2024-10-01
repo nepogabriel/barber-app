@@ -19,17 +19,17 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#about">Sobre nós</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#our-services">Serviços</a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#map">Endereço</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Contato</a>
+                        <a class="nav-link" aria-current="page" href="#footer">Contato</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Endereço</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Agendar</a>
+                    <li class="nav-item appointment">
+                        <a class="nav-link" aria-current="page" href="#"><i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Agendar</a>
                     </li>
                     </ul>
                 </div>

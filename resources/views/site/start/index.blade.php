@@ -42,7 +42,7 @@
         </div>
     </section>
 
-    <section id="our-services">
+    {{-- <section id="our-services">
         <div class="container">
             <div class="row">
                 <div class="card" style="width: 18rem;">
@@ -53,5 +53,56 @@
                   </div>
             </div>
         </div>
+    </section> --}}
+
+    <section id="map">
+        {{-- <div class="col-sm-12">
+            <div class="mapa transparent"> --}}
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.9174536412092!2d-48.04387968255621!3d-15.808306000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3307e138fb2f%3A0x51649c7c01bbfd85!2sCol%C3%A9gio+Alub+Vicente+Pires+II!5e0!3m2!1spt-BR!2sbr!4v1564900228031!5m2!1spt-BR!2sbr" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                {{-- </div>
+            </div> --}}
     </section>
+
+    <footer id="footer">
+        <div class="container py-5">
+           <div class="row">
+              <div class="col-sm-12 col-md-3">
+                 <h3>Our location</h3>
+                 <p>2900 Lapeer Rd, Port Hurons, MI 49070</p>
+                 <ul class="social-link flex">
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+                 </ul>
+                 <!--/.social-link-->
+              </div>
+
+              <div class="col-sm-12 col-md-3">
+                 <h3>Working Hours</h3>
+                 <p>Monday - Friday 8AM - 6PM</p>
+                 <p>Saturday - Sunday 9AM - 5PM</p>
+              </div>
+
+              <div class="col-sm-12 col-md-3">
+                 <h3>Office Phone</h3>
+                 <p><a href="#">+1 (800) 478-42-51</a></p>
+                 <p><a href="#">+1 (800) 474-23-82</a></p>
+              </div>
+
+              <div class="col-sm-12 col-md-3">
+                 <h3>Email</h3>
+                 <p><a href="#">info@companyname.com</a></p>
+                 <p><a href="#">sale@companyname.com</a></p>
+              </div>
+           </div>
+        </div>
+
+        <div class="copyright">
+           <p>Copyright &copy; Todos os direitos reservados.</p>
+        </div>
+        <!--/.copyright-->
+
+     </footer>
 </x-layout_site_home>
