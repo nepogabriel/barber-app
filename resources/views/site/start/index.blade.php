@@ -1,5 +1,5 @@
 <x-layout_site_home title="Início">
-    <section class="start">
+    <section id="start">
         <div class="container d-flex align-items-center justify-content-center flex-column">
             <div class="slogan">
                 <h1>Matenha seu corte limpo</h1>
@@ -35,7 +35,7 @@
 
                 <div class="col-sm-12 col-md-5">
                     <div class="about-image">
-                        <img src="/img/aboutus.png" alt="">
+                        <img src="/img/foto2.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -43,8 +43,7 @@
     </section>
 
     <section id="our-services">
-        teste
-        {{-- <div class="container">
+        <div class="container">
             <div class="row">
                 <div class="card" style="width: 18rem;">
                     <img src="/img/service-1.jpg" class="card-img-top" alt="...">
@@ -53,6 +52,6 @@
                     </div>
                   </div>
             </div>
-        </div> --}}
+        </div>
     </section>
 </x-layout_site_home>
