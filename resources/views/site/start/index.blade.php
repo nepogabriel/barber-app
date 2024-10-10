@@ -100,13 +100,13 @@
 
                  <ul class="list-inline">
                     <li class="list-inline-item">
-                        <a href="#" class="social-media"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
+                        <a href="#" class="social-media" target="_blank"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#" class="social-media"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>
+                        <a href="#" class="social-media" target="_blank"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#" class="social-media"><i class="fa fa-whatsapp fa-lg" aria-hidden="true"></i></a>
+                        <a href="#" class="social-media" target="_blank"><i class="fa fa-whatsapp fa-lg" aria-hidden="true"></i></a>
                     </li>
                  </ul>
               </div>
@@ -116,7 +116,7 @@
 
                 <p><a href="tel://6133589999" class="text-white">(31) 98766-5331</a></p>
                 <p><a href="tel://6133589999" class="text-white">(62) 98694-5980</a></p>
-                <a href="https://api.whatsapp.com/send?phone=61 99359-8181&text=Ol%C3%A1%21+Gostaria+de+solicitar+um+atendimento" class="btn btn-success">
+                <a href="https://api.whatsapp.com/send?phone=61 99359-8181&text=Ol%C3%A1%21+Gostaria+de+solicitar+um+atendimento" class="btn btn-success" target="_blank">
                     <i class="fa fa-whatsapp" aria-hidden="true"></i> Falar no Whatsapp
                 </a>
               </div>
@@ -136,4 +136,10 @@
         </div>
 
     </footer>
+
+    <div class="fixed-buttons-container">
+        <a href="https://api.whatsapp.com/send?phone=556133581011&amp;text=Ol%C3%A1%21+Gostaria+de+solicitar+um+atendimento" class="btn_fixed_whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
 </x-layout_site_home>
