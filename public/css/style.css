@@ -159,17 +159,22 @@ body {
 }
 
 #about {
-    height: 40em;
+    height: 650px;
 }
 
 .about-image {
     border-radius: 100px 0 100px 0;
     position: relative;
+    width: 500px;
+    height: 550px;
+    overflow: hidden;
 }
 
 .about-image img {
+    height: 100%;
     width: 100%;
     border-radius: 100px 0 100px 0;
+    object-fit: cover; /* Garante que a imagem preencha a div proporcionalmente, cortando se necessário */
 }
 
 #our-services {
@@ -245,6 +250,11 @@ body {
         border: none !important;
     }
 
+    .about-image {
+        width: 400px;
+        height: 450px;
+    }
+
     #footer .data-footer {
         text-align: center;
         margin-top: 1rem;
@@ -260,6 +270,6 @@ body {
     }
 
     #about {
-        height: 55em;
+        height: 980px;
     }
 }
