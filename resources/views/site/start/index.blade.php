@@ -16,7 +16,7 @@
         </div>
     </section>
 
-    <section id="about" class="d-flex align-items-center my-5">
+    <section id="about" class="d-flex align-items-center">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-7 d-flex justify-content-center flex-column">
@@ -42,67 +42,98 @@
         </div>
     </section>
 
-    {{-- <section id="our-services">
+    <section id="hours" class="py-5">
         <div class="container">
+        
+            <h2 class="text-center mb-5">Horário de Funcionamento</h2>
             <div class="row">
-                <div class="card" style="width: 18rem;">
-                    <img src="/img/service-1.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                  </div>
+            <div class="col-md-6 offset-md-3">
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <strong>Segunda-feira:</strong>
+                    <span>Fechado</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <strong>Terça-feira:</strong>
+                    <span>09:00 - 12:00 / 13:30 - 18:00</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <strong>Quarta-feira:</strong>
+                    <span><strong>09:00 - 12:00 / 13:00 - 18:00</strong></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <strong>Quinta-feira:</strong>
+                    <span>09:00 - 12:00 / 13:00 - 18:00</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <strong>Sexta-feira:</strong>
+                    <span>09:00 - 12:00 / 13:00 - 18:00</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <strong>Sábado:</strong>
+                    <span>09:00 - 12:00 / 13:00 - 18:00</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <strong>Domingo:</strong>
+                    <span>Fechado</span>
+                </li>
+                </ul>
+            </div>
             </div>
         </div>
-    </section> --}}
+      </section>
 
     <section id="map">
-        {{-- <div class="col-sm-12">
-            <div class="mapa transparent"> --}}
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.9174536412092!2d-48.04387968255621!3d-15.808306000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3307e138fb2f%3A0x51649c7c01bbfd85!2sCol%C3%A9gio+Alub+Vicente+Pires+II!5e0!3m2!1spt-BR!2sbr!4v1564900228031!5m2!1spt-BR!2sbr" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                {{-- </div>
-            </div> --}}
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.9174536412092!2d-48.04387968255621!3d-15.808306000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3307e138fb2f%3A0x51649c7c01bbfd85!2sCol%C3%A9gio+Alub+Vicente+Pires+II!5e0!3m2!1spt-BR!2sbr!4v1564900228031!5m2!1spt-BR!2sbr" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
     </section>
 
     <footer id="footer">
         <div class="container py-5">
            <div class="row">
-              <div class="col-sm-12 col-md-3">
-                 <h3>Our location</h3>
-                 <p>2900 Lapeer Rd, Port Hurons, MI 49070</p>
-                 <ul class="social-link flex">
-                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>
-                    <li><a href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+              <div class="col-sm-12 col-md-3 data-footer">
+                <img class="logo-img-footer" src="/img/no_image.png" alt="Gabriel Ribeiro">
+                <h3 class="mt-3">Nome da Loja</h3>
+              </div>
+
+              <div class="col-sm-12 col-md-3 data-footer">
+                 <h3 class="title-footer">Redes Sociais</h3>
+
+                 <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="#" class="social-media"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="social-media"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="social-media"><i class="fa fa-whatsapp fa-lg" aria-hidden="true"></i></a>
+                    </li>
                  </ul>
-                 <!--/.social-link-->
               </div>
 
-              <div class="col-sm-12 col-md-3">
-                 <h3>Working Hours</h3>
-                 <p>Monday - Friday 8AM - 6PM</p>
-                 <p>Saturday - Sunday 9AM - 5PM</p>
+              <div class="col-sm-12 col-md-3 data-footer">
+                <h3 class="title-footer">Contatos</h3>
+
+                <p><a href="tel://6133589999" class="text-white">(31) 98766-5331</a></p>
+                <p><a href="tel://6133589999" class="text-white">(62) 98694-5980</a></p>
+                <a href="https://api.whatsapp.com/send?phone=61 99359-8181&text=Ol%C3%A1%21+Gostaria+de+solicitar+um+atendimento" class="btn btn-success">
+                    <i class="fa fa-whatsapp" aria-hidden="true"></i> Falar no Whatsapp
+                </a>
               </div>
 
-              <div class="col-sm-12 col-md-3">
-                 <h3>Office Phone</h3>
-                 <p><a href="#">+1 (800) 478-42-51</a></p>
-                 <p><a href="#">+1 (800) 474-23-82</a></p>
-              </div>
+              <div class="col-sm-12 col-md-3 data-footer">
+                 <h3 class="title-footer">Endereço</h3>
 
-              <div class="col-sm-12 col-md-3">
-                 <h3>Email</h3>
-                 <p><a href="#">info@companyname.com</a></p>
-                 <p><a href="#">sale@companyname.com</a></p>
+                 <p>QR 414, Conjunto M, Lote 01, Loja 01 - Samambaia Norte</p>
+                 <p>Brasília - DF</p>
+                 <p>72320-300</p>
               </div>
            </div>
         </div>
 
         <div class="copyright">
-           <p>Copyright &copy; Todos os direitos reservados.</p>
+           <span>Copyright &copy; Todos os direitos reservados.</span>
         </div>
-        <!--/.copyright-->
 
-     </footer>
+    </footer>
 </x-layout_site_home>
