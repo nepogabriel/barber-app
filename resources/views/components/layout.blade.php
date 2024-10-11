@@ -4,7 +4,7 @@
 
             <div>
                 <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-                    +
+                    <i class="fa fa-bars" aria-hidden="true"></i>
                 </button>
             </div>
 
