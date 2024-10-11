@@ -72,20 +72,20 @@ body {
     border: 2px solid #FFF;
 }
 
-.btn {
+/* .btn {
     font-weight: 500 !important;
-}
+} */
 
 .bg-menu {
     background-color: var(--primary-color, #cebc96) !important;
 }
 
-.btn-bege {
+.btn-layout {
     background-color: var(--primary-color, #cebc96) !important;
     color: var(--btn-text-color, #000) !important;
 }
 
-.btn-bege:hover {
+.btn-layout:hover {
     background-color: var(--btn-hover, #cebc96ae) !important;
 }
 

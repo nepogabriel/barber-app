@@ -1,0 +1,13 @@
+:root {
+    /* BODY */
+    --font-family: 'Poppins';
+    --bg-body: #f6f3ecbe;
+
+    --primary-color: #cebc96;
+
+    --btn-text-color: #000;
+    --btn-hover: #cebc96ae;
+
+    /* Calendar */
+    --text-date-hover: #000;
+}
