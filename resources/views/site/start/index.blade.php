@@ -114,8 +114,8 @@
               <div class="col-sm-12 col-md-3 data-footer">
                 <h3 class="title-footer">Contatos</h3>
 
-                <p><a href="tel://6133589999" class="text-white">(31) 98766-5331</a></p>
-                <p><a href="tel://6133589999" class="text-white">(62) 98694-5980</a></p>
+                <p><a href="tel://6133589999" class="contacts">(31) 98766-5331</a></p>
+                <p><a href="tel://6133589999" class="contacts">(62) 98694-5980</a></p>
                 <a href="https://api.whatsapp.com/send?phone=61 99359-8181&text=Ol%C3%A1%21+Gostaria+de+solicitar+um+atendimento" class="btn btn-success" target="_blank">
                     <i class="fa fa-whatsapp" aria-hidden="true"></i> Falar no Whatsapp
                 </a>

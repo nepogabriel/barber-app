@@ -45,17 +45,22 @@ body {
 }
 
 .nav-color-home {
-	background-color: rgb(0 0 0 / 81%) !important;
+    background-color: var(--menu-bg, rgb(0 0 0 / 81%)) !important;
 	transition: blackground 0.5s linear;
 }
 
+.nav-color-home .collapse {
+    opacity: 1;
+}
+
 .nav-color-home .navbar-nav .nav-link {
-    color: #FFF;
+    color: var(--menu-color, #FFF);
 }
 
 .nav-color-home .navbar-nav .nav-link:focus,
 .nav-color-home .navbar-nav .nav-link:hover {
-    border-bottom: 1px solid #FFF !important;
+    color: var(--menu-color, #FFF) !important;
+    border-bottom: 1px solid var(--menu-color, #FFF) !important;
 }
 
 .nav-color-home .navbar-nav .appointment .nav-link {
@@ -188,8 +193,8 @@ body {
 }
 
 #footer {
-    color: #FFF;
-    background-color: #222222;
+    color: var(--footer-color, #FFF);
+    background-color: var(--footer-bg, #222222);
 }
 
 #footer .logo-img-footer {
@@ -202,17 +207,18 @@ body {
     font-weight: bold;
 }
 
-#footer .data-footer .social-media {
-    color: #FFF !important;
+#footer .data-footer .social-media,
+#footer .data-footer .contacts {
+    color: var(--footer-color, #FFF) !important;
 }
 
 .copyright {
-    border-top: 1px solid gray;
-	background-color: #222222;
+    border-top: 1px solid var(--footer-line, gray);
+	background-color: var(--footer-bg, #222222);
 	padding: 30px 15px;
 	text-align: center;
 	font-size: 14px;
-	color: var(--color-white);
+	color: var(--footer-color, #FFF);
 }
 
 .btn_fixed_whatsapp {
@@ -254,12 +260,12 @@ body {
     }
 
     #navbarSupportedContent .navbar-nav .nav-link {
-        color: #FFF;
+        color: #FFF !important;
         text-align: center;
     }
 
     #navbar-home .navbar-nav .appointment .nav-link {
-        color: #222222;
+        color: #222222 !important;
     }
 
     .navbar-toggler {
