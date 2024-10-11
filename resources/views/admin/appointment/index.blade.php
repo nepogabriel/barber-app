@@ -48,7 +48,7 @@
                                         <form action="{{ route('admin.appointment.destroy', $appointment->id) }}" method="post" class="ms-2">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            <button class="btn btn-danger btn-sm"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
                                         </form>
                                     </span>
                                 </td>

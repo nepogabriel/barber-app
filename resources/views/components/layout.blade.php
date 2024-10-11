@@ -15,7 +15,7 @@
             </div>
 
             <div>
-                SAIR
+                {{-- SAIR --}}
             </div>
         </div>
 
@@ -48,12 +48,21 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.setting.index') }}">Configurações</a>
+                        <a class="nav-link dropdown-toggle" href="" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Configuração
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="{{ route('admin.setting.index') }}">Geral</a></li>
+                            <li><a class="dropdown-item" href="#">Sobre Nós</a></li>
+                            <li><a class="dropdown-item" href="#">Funcionamento</a></li>
+                            <li><a class="dropdown-item" href="#">Rodapé</a></li>
+                        </ul>
                     </li>
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">Sair</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>
