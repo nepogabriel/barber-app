@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-5 col-lg-7 d-flex justify-content-center flex-column">
-                    <h3 class="mb-5">Sobre Nós</h3>
+                    <h2 class="mb-5">Sobre Nós</h2>
 
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique temporibus in, vero expedita officia repellat dicta, nostrum natus, at sit facere doloribus illum et velit facilis debitis harum! Nemo, sequi.
@@ -44,41 +44,41 @@
 
     <section id="hours" class="pb-5">
         <div class="container">
-        
             <h2 class="text-center mb-5">Horário de Funcionamento</h2>
+            
             <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <strong>Segunda-feira:</strong>
-                    <span>Fechado</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <strong>Terça-feira:</strong>
-                    <span>09:00 - 12:00 / 13:30 - 18:00</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <strong>Quarta-feira:</strong>
-                    <span><strong>09:00 - 12:00 / 13:00 - 18:00</strong></span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <strong>Quinta-feira:</strong>
-                    <span>09:00 - 12:00 / 13:00 - 18:00</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <strong>Sexta-feira:</strong>
-                    <span>09:00 - 12:00 / 13:00 - 18:00</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <strong>Sábado:</strong>
-                    <span>09:00 - 12:00 / 13:00 - 18:00</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <strong>Domingo:</strong>
-                    <span>Fechado</span>
-                </li>
-                </ul>
-            </div>
+                <div class="col-md-6 offset-md-3">
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <strong>Segunda-feira:</strong>
+                        <span>Fechado</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <strong>Terça-feira:</strong>
+                        <span>09:00 - 12:00 / 13:30 - 18:00</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <strong>Quarta-feira:</strong>
+                        <span>09:00 - 12:00 / 13:00 - 18:00</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <strong>Quinta-feira:</strong>
+                        <span>09:00 - 12:00 / 13:00 - 18:00</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <strong>Sexta-feira:</strong>
+                        <span>09:00 - 12:00 / 13:00 - 18:00</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <strong>Sábado:</strong>
+                        <span>09:00 - 12:00 / 13:00 - 18:00</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <strong>Domingo:</strong>
+                        <span>Fechado</span>
+                    </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>

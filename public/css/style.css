@@ -150,7 +150,8 @@ body {
 }
 
 #start .slogan h1 {
-    font-weight: 600;
+    font-family: "Cormorant", serif;
+    font-weight: 700;
     text-transform: uppercase;
     text-align: center;
 }
@@ -238,6 +239,14 @@ body {
     justify-content: center;
 }
 
+#about h2,
+#hours h2 {
+    font-family: "Cormorant", serif;
+    font-size: 40px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
 @media (min-width: 992px) {
     #navbar-home {
         height: 17%;
@@ -300,5 +309,9 @@ body {
 
     #about {
         height: 980px;
+    }
+
+    #about h2 {
+        text-align: center;
     }
 }
