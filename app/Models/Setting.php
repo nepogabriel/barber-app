@@ -13,6 +13,7 @@ class Setting extends Model
         'template_client',
         'logo_header',
         'favicon',
+        'whatsapp',
         'meta_title',
         'meta_description',
         'meta_keywords'
