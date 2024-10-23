@@ -54,9 +54,10 @@
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="{{ route('admin.setting.index') }}">Geral</a></li>
-                            <li><a class="dropdown-item" href="#">Sobre Nós</a></li>
+                            <li><a class="dropdown-item" href="#">Layout</a></li>
+                            {{-- <li><a class="dropdown-item" href="#">Sobre Nós</a></li>
                             <li><a class="dropdown-item" href="#">Funcionamento</a></li>
-                            <li><a class="dropdown-item" href="#">Rodapé</a></li>
+                            <li><a class="dropdown-item" href="#">Rodapé</a></li> --}}
                         </ul>
                     </li>
 

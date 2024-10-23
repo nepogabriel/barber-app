@@ -27,7 +27,10 @@
         </div>
 
         <div class="mb-3">
-            <label for="logo-header" class="form-label">Logo Menu</label>
+            <label for="logo-header" class="form-label">Logo Menu:</label>
+            <div class="col-sm-12">
+                <img class="config-logo-header" src="{{ $logo_header }}" alt="Logo">
+            </div>
             <input class="form-control" type="file" name="logo_header" id="logo-header">
         </div>
     
