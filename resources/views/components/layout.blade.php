@@ -24,9 +24,9 @@
         </button> --}}
 
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-            <div class="offcanvas-header">
+            <div class="py-3 px-3 d-flex justify-content-end">
                 {{-- <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">MENU</h5> --}}
-                <img src="/img/logo.jpeg" height="70px" width="auto">
+                {{-- <img src="/img/logo.jpeg" height="70px" width="auto"> --}}
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
