@@ -247,6 +247,12 @@ body {
     text-transform: capitalize;
 }
 
+/***** ADMIN *****/
+.config-logo-header {
+    height: 150px;
+    width: auto;
+}
+
 @media (min-width: 992px) {
     #navbar-home {
         height: 17%;
