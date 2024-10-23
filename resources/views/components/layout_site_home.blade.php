@@ -3,8 +3,8 @@
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar-home">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="#">
-                    <h1 class="logo_text">Gabriel Ribeiro</h1>
-                    <img class="logo_img" src="/img/no_image.png" alt="Gabriel Ribeiro">
+                    <h1 class="logo_text">Barbearia</h1>
+                    <img class="logo_img" src="{{ $logo_header }}" alt="Barbearia">
                 </a>
                 
                 <button class="navbar-toggler menu-mobile-home" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
