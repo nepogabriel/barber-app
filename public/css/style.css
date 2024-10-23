@@ -1,6 +1,6 @@
 body {
     font-family: var(--font-family, "Ubuntu"), "Helvetica", "Arial", sans-serif;
-    background-color: var(--bg-body, #f6f3ecbe);
+    background-color: var(--bg-body, #FFF);
 }
 
 #container-navbar {
