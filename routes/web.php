@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AppointmentController;
 use App\Http\Controllers\admin\HourController;
 use App\Http\Controllers\admin\ModuleController;
+use App\Http\Controllers\admin\modules\FooterController;
 use App\Http\Controllers\admin\ProfessionalController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\SettingController;
@@ -105,5 +106,9 @@ Route::controller(SettingController::class)->group(function () {
 });
 
 Route::controller(ModuleController::class)->group(function () {
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/modulos', 'index')->name('admin.module.index');
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/modulos', 'index')->name('admin.modules.index');
+});
+
+Route::controller(FooterController::class)->group(function() {
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/modulo/{path}/editar', 'edit')->name('admin.modules.footer.edit');
 });
