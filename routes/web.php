@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AppointmentController;
 use App\Http\Controllers\admin\HourController;
+use App\Http\Controllers\admin\ModuleController;
 use App\Http\Controllers\admin\ProfessionalController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\SettingController;
@@ -101,4 +102,8 @@ Route::controller(AppointmentController::class)->group(function() {
 Route::controller(SettingController::class)->group(function () {
     Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracao', 'index')->name('admin.setting.index');
     Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracao/salvar', 'store')->name('admin.setting.store');
+});
+
+Route::controller(ModuleController::class)->group(function () {
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/modulos', 'index')->name('admin.module.index');
 });
