@@ -5,5 +5,7 @@
         </div>
     @endisset
 
-    {{ $modules }}
+    <section id="modules">
+        {{ $footer}}
+    </section>
 </x-layout>
