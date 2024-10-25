@@ -253,6 +253,11 @@ body {
     width: auto;
 }
 
+.btn-uncheck {
+    text-align: center;
+    vertical-align: middle;
+}
+
 @media (min-width: 992px) {
     #navbar-home {
         height: 17%;
