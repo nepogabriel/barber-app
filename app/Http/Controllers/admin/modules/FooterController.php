@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 
 class FooterController extends Controller
 {
-    public const CODE = 'footer';
+    const CODE = 'footer';
     public SettingService $setting;
 
     public function __construct()
     {
         $this->setting = new SettingService;
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -38,6 +39,17 @@ class FooterController extends Controller
         $data = $this->prepareFields();
 
         return view('admin.modules.footer.edit')->with('data', $data);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $this->setting->editSetting(self::CODE, $request);
+
+        return to_route('admin.modules.index')
+            ->with('message.success', "Alteração realizada com sucesso!");
     }
 
     public function prepareFields()

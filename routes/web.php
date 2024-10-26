@@ -111,4 +111,5 @@ Route::controller(ModuleController::class)->group(function () {
 
 Route::controller(FooterController::class)->group(function() {
     Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/modulo/{path}/editar', 'edit')->name('admin.modules.footer.edit');
+    Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/modulo/footer/salvar', 'store')->name('admin.modules.footer.store');
 });

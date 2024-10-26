@@ -10,8 +10,8 @@ class Module extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'status',
-        'settings'
+        'code',
+        'key',
+        'value'
     ];
 }

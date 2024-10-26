@@ -4,6 +4,7 @@ namespace App\Http\Service;
 
 use App\Models\Module;
 use App\Models\Setting;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use stdClass;
 
@@ -37,9 +38,19 @@ class SettingService
         return $value;
     }
 
-    public function editSetting($code, $data)
+    public function editSetting($code, Request $request)
     {
-        //
+        foreach ($request->all() as $key => $value) {
+            if ($key == '_token' || $key == 'token')
+                continue;
+
+            $key_table = $code . '_' . $key;
+
+            Module::updateOrCreate(
+                ['key' => $key_table],
+                ['code' => $code, 'key' => $key_table, 'value' => $value]
+            );
+        }
     }
 
     public function prepareFields($code, $fields): object
