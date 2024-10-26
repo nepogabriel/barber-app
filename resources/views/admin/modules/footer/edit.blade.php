@@ -6,27 +6,23 @@
     @endisset
 
     <section id="modules">
-        {{-- 
-            Adicionar google maps
-            Logo footer
-            Nome da loja
-            Redes sociais
-            Números de telefone
-            Endereço escrito da loja
-        --}}
 
-        <form action="" method="post">
+        <form action="{{ route('admin.modules.footer.store') }}" method="post">
             @csrf
-        
-            {{-- @if($update)
-            @method('PUT')
-            @endif --}}
+
+            <div class="mb-3">
+                <label for="footer-status" class="form-label">Status:</label>
+                <select id="footer-status" name="status" class="form-control">
+                    <option value="1" @if(isset($data->status) && $data->status == '1') selected @endisset>Habilitado</option>
+                    <option value="0" @if(isset($data->status) && $data->status == '0') selected @endisset>Desabilitado</option>
+                </select>
+            </div>
         
             <div class="mb-3">
                 <label for="store-address" class="form-label">Endereço da loja:</label>
                 <input type="text"
                         class="form-control"
-                        id="store-address"
+                        id="footer-store-address"
                         name="store_address"
                         @isset($data->store_address)
                             value="{{ $data->store_address }}"

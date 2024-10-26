@@ -55,6 +55,7 @@ class FooterController extends Controller
     public function prepareFields()
     {
         $fields = [
+            'status' => 0,
             'store_address' => '',
         ];
 

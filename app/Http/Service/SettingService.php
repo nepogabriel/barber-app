@@ -30,11 +30,11 @@ class SettingService
         $setting = Module::query()
         ->select('value')
         ->where('key', '=', $key)
-        ->get();
+        ->first();
 
         if (isset($setting->value))
             $value = $setting->value;
-        
+
         return $value;
     }
 
