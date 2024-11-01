@@ -8,7 +8,7 @@ class ModuleService
     public function getDirectories(): array
     {
         $directories = [];
-        $path = resource_path('views/admin/modules');
+        $path = resource_path('views/admin/settings/modules');
 
         // Verifica se o caminho é uma pasta válida
         if (is_dir($path)) {

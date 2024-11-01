@@ -7,7 +7,7 @@
 
     <section id="modules">
 
-        <form action="{{ route('admin.modules.footer.store') }}" method="post">
+        <form action="{{ route('admin.settings.modules.footer.store') }}" method="post">
             @csrf
 
             <div class="mb-3">
@@ -29,7 +29,7 @@
                         @endisset/>
             </div>
         
-            <a class="btn btn-danger" href="{{ route('admin.modules.index') }}">Cancelar</a>
+            <a class="btn btn-danger" href="{{ route('admin.settings.modules.index') }}">Cancelar</a>
             <button type="submit" class="btn btn-dark">Salvar</button>
         </form>
     </section>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin\modules;
+namespace App\Http\Controllers\admin\settings\modules;
 
 use App\Http\Controllers\Controller;
 use App\Http\Service\SettingService;
@@ -27,7 +27,7 @@ class FooterController extends Controller
 
         $message_success = $request->session()->get('message.success');
 
-        return view('admin.modules.footer.index', ['modules' => $modules])
+        return view('admin.settings.modules.footer.index', ['modules' => $modules])
             ->with('message_success', $message_success);
     }
 
@@ -38,7 +38,7 @@ class FooterController extends Controller
     {
         $data = $this->prepareFields();
 
-        return view('admin.modules.footer.edit')->with('data', $data);
+        return view('admin.settings.modules.footer.edit')->with('data', $data);
     }
 
     /**
@@ -48,7 +48,7 @@ class FooterController extends Controller
     {
         $this->setting->editSetting(self::CODE, $request);
 
-        return to_route('admin.modules.index')
+        return to_route('admin.settings.modules.index')
             ->with('message.success', "Alteração realizada com sucesso!");
     }
 

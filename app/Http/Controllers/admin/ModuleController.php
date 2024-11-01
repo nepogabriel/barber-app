@@ -19,7 +19,7 @@ class ModuleController extends Controller
 
         $message_success = $request->session()->get('message.success');
 
-        return view('admin.modules.index', ['modules' => $modules])
+        return view('admin.settings.modules.index', ['modules' => $modules])
             ->with('message_success', $message_success);
     }
 

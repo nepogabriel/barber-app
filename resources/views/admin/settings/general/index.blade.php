@@ -5,7 +5,7 @@
         </div>
     @endisset
 
-    <form action="{{ route('admin.setting.store') }} " method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.settings.general.store') }} " method="post" enctype="multipart/form-data">
         @csrf
 
         <input

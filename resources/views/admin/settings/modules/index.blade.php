@@ -12,7 +12,7 @@
                 {{ $name }}
 
                 <span class="d-flex">
-                    <a href="{{ route('admin.modules.' . $path . '.edit', $path) }}" class="btn btn-dark btn-sm">
+                    <a href="{{ route('admin.settings.modules.' . $path . '.edit', $path) }}" class="btn btn-dark btn-sm">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                     </a>
                 </span>
