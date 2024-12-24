@@ -29,8 +29,16 @@
                                 <td>{{ $appointment->name }}</td>
                                 <td class="text-center">
                                     <span>{{ $appointment->name_client }}</span><br>
-                                    <button class="btn btn-success btn-sm"><i class="fab fa-whatsapp" aria-hidden="true"></i></button>
-                                    <button class="btn btn-secondary btn-sm"><i class="fa fa-volume-control-phone" aria-hidden="true"></i></button>
+
+                                    @isset ($appointment->phone)
+                                        <a class="btn btn-success btn-sm" href="https://api.whatsapp.com/send?phone={{ $appointment->phone }}">
+                                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                        </a>
+
+                                        <a class="btn btn-secondary btn-sm" href="tel://{{ $appointment->phone }}">
+                                            <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                                        </a>
+                                    @endisset
                                 </td>
 
                                 {{-- <td class="">
