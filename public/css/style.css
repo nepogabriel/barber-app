@@ -323,7 +323,7 @@ body {
     }
 
     #about {
-        height: 860px;
+        height: 960px;
     }
 
     #about h2 {
@@ -331,6 +331,6 @@ body {
     }
 
     .about-image {
-        height: 300px !important;
+        height: 400px !important;
     }
 }

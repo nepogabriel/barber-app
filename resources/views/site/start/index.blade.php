@@ -35,7 +35,7 @@
 
                 <div class="col-sm-12 col-md-7 col-lg-5 d-flex justify-content-center align-items-center">
                     <div class="about-image">
-                        <img src="/img/ft-barber-small.jpg" alt="">
+                        <img src="/img/img_paulo.jpeg" alt="">
                     </div>
                 </div>
             </div>
@@ -84,15 +84,15 @@
     </section> --}}
 
     <section id="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.9174536412092!2d-48.04387968255621!3d-15.808306000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3307e138fb2f%3A0x51649c7c01bbfd85!2sCol%C3%A9gio+Alub+Vicente+Pires+II!5e0!3m2!1spt-BR!2sbr!4v1564900228031!5m2!1spt-BR!2sbr" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d959.7436593532198!2d-48.0181528!3d-15.8052913!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a33c90677c8cd%3A0x56ace47907f92780!2sMan%E2%80%99s%20house%20barbershop!5e0!3m2!1spt-BR!2sbr!4v1735050121497!5m2!1spt-BR!2sbr" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
     </section>
 
     <footer id="footer">
         <div class="container py-5">
            <div class="row">
               <div class="col-sm-12 col-md-3 data-footer">
-                <img class="logo-img-footer" src="/img/no_image.png" alt="Gabriel Ribeiro">
-                <h3 class="mt-3">Nome da Loja</h3>
+                <img class="logo-img-footer" src="{{ $logo_header }}" alt="Gabriel Ribeiro">
+                <h3 class="mt-3">Paulo "O Barbeiro"</h3>
               </div>
 
               <div class="col-sm-12 col-md-3 data-footer">
@@ -100,23 +100,22 @@
 
                  <ul class="list-inline">
                     <li class="list-inline-item">
-                        <a href="#" class="social-media" target="_blank"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/paulo.obarbeiro" class="social-media" target="_blank"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
                     </li>
-                    <li class="list-inline-item">
+                    {{-- <li class="list-inline-item">
                         <a href="#" class="social-media" target="_blank"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>
                     </li>
                     <li class="list-inline-item">
                         <a href="#" class="social-media" target="_blank"><i class="fa fa-whatsapp fa-lg" aria-hidden="true"></i></a>
-                    </li>
+                    </li> --}}
                  </ul>
               </div>
 
               <div class="col-sm-12 col-md-3 data-footer">
                 <h3 class="title-footer">Contatos</h3>
 
-                <p><a href="tel://6133589999" class="contacts">(31) 98766-5331</a></p>
-                <p><a href="tel://6133589999" class="contacts">(62) 98694-5980</a></p>
-                <a href="https://api.whatsapp.com/send?phone=61 99359-8181&text=Ol%C3%A1%21+Gostaria+de+solicitar+um+atendimento" class="btn btn-success" target="_blank">
+                <p><a href="tel://61995352649" class="contacts">(61) 99535-2649</a></p>
+                <a href="https://api.whatsapp.com/send?phone=5561995352649&amp;text=Ol%C3%A1%21+Gostaria+de+solicitar+um+atendimento" class="btn btn-success" target="_blank">
                     <i class="fa fa-whatsapp" aria-hidden="true"></i> Falar no Whatsapp
                 </a>
               </div>
@@ -124,9 +123,10 @@
               <div class="col-sm-12 col-md-3 data-footer">
                  <h3 class="title-footer">Endereço</h3>
 
-                 <p>QR 414, Conjunto M, Lote 01, Loja 01 - Samambaia Norte</p>
+                 <p>Man's House Barbearia (em frente a Casa & Festa)</p>
+                 <p>Rua 05 chácara 114 lote 22 - St. Hab. Vicente Pires</p>
                  <p>Brasília - DF</p>
-                 <p>72320-300</p>
+                 <p>72006-170</p>
               </div>
            </div>
         </div>
@@ -138,7 +138,7 @@
     </footer>
 
     <div class="fixed-buttons-container">
-        <a href="https://api.whatsapp.com/send?phone=556133581011&amp;text=Ol%C3%A1%21+Gostaria+de+solicitar+um+atendimento" class="btn_fixed_whatsapp" target="_blank">
+        <a href="https://api.whatsapp.com/send?phone=5561995352649&amp;text=Ol%C3%A1%21+Gostaria+de+solicitar+um+atendimento" class="btn_fixed_whatsapp" target="_blank">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>

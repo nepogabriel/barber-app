@@ -36,15 +36,15 @@
             <input class="form-control" type="file" name="logo_header" id="logo-header">
         </div>
 
-        <hr>
+        {{-- <hr>
 
         <div class="mb-3">
             <label for="number-whatsapp" class="form-label">Número Whatsapp:</label>
             <input class="form-control" type="text" name="whatsapp" 
                 @isset($settings[0]->whatsapp)
                     value="{{ $settings[0]->whatsapp }}"
-                @endisset /> {{-- Adicionar validação para número de telefone--}}
-        </div>
+                @endisset /> Adicionar validação para número de telefone
+        </div> --}}
     
         <a class="btn btn-danger" href="#">Cancelar</a>
         <button type="submit" class="btn btn-dark">Salvar</button>

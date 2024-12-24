@@ -54,7 +54,7 @@
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="{{ route('admin.settings.general.index') }}">Geral</a></li>
-                            <li><a class="dropdown-item" href="{{ route('admin.settings.modules.index') }}">Módulos</a></li>
+                            {{-- <li><a class="dropdown-item" href="{{ route('admin.settings.modules.index') }}">Módulos</a></li> --}}
                             {{-- <li><a class="dropdown-item" href="#">Sobre Nós</a></li>
                             <li><a class="dropdown-item" href="#">Funcionamento</a></li>
                             <li><a class="dropdown-item" href="#">Rodapé</a></li> --}}
