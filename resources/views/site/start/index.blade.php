@@ -35,14 +35,14 @@
 
                 <div class="col-sm-12 col-md-7 col-lg-5 d-flex justify-content-center align-items-center">
                     <div class="about-image">
-                        <img src="/img/foto1.jpg" alt="">
+                        <img src="/img/ft-barber-small.jpg" alt="">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="hours" class="pb-5">
+    {{-- <section id="hours" class="pb-5">
         <div class="container">
             <h2 class="text-center mb-5">Horário de Funcionamento</h2>
             
@@ -81,7 +81,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section id="map">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.9174536412092!2d-48.04387968255621!3d-15.808306000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3307e138fb2f%3A0x51649c7c01bbfd85!2sCol%C3%A9gio+Alub+Vicente+Pires+II!5e0!3m2!1spt-BR!2sbr!4v1564900228031!5m2!1spt-BR!2sbr" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>

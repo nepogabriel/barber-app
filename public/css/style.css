@@ -17,7 +17,7 @@ body {
 }
 
 .navbar .navbar-brand .logo_img {
-    height: 140px;
+    height: 125px;
     width: auto;
 }
 
@@ -323,10 +323,14 @@ body {
     }
 
     #about {
-        height: 980px;
+        height: 860px;
     }
 
     #about h2 {
         text-align: center;
+    }
+
+    .about-image {
+        height: 300px !important;
     }
 }
