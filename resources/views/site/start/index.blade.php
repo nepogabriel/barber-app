@@ -42,46 +42,50 @@
         </div>
     </section>
 
-    {{-- <section id="hours" class="pb-5">
+    <section id="hours" class="pb-5">
         <div class="container">
             <h2 class="text-center mb-5">Horário de Funcionamento</h2>
             
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <strong>Segunda-feira:</strong>
-                        <span>Fechado</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <strong>Terça-feira:</strong>
-                        <span>09:00 - 12:00 / 13:30 - 18:00</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <strong>Quarta-feira:</strong>
-                        <span>09:00 - 12:00 / 13:00 - 18:00</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <strong>Quinta-feira:</strong>
-                        <span>09:00 - 12:00 / 13:00 - 18:00</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <strong>Sexta-feira:</strong>
-                        <span>09:00 - 12:00 / 13:00 - 18:00</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <strong>Sábado:</strong>
-                        <span>09:00 - 12:00 / 13:00 - 18:00</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <strong>Domingo:</strong>
-                        <span>Fechado</span>
-                    </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Segunda-feira:</strong>
+                            <span>09:00 - 19:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Terça-feira:</strong>
+                            <span>09:00 - 18:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Quarta-feira:</strong>
+                            <span>09:00 - 18:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Quinta-feira:</strong>
+                            <span>09:00 - 18:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Sexta-feira:</strong>
+                            <span>09:00 - 19:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Sábado:</strong>
+                            <span>09:00 - 18:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Domingo:</strong>
+                            <span>Fechado</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Feriados:</strong>
+                            <span>Fechado</span>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
 
     <section id="map">
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d959.7436593532198!2d-48.0181528!3d-15.8052913!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a33c90677c8cd%3A0x56ace47907f92780!2sMan%E2%80%99s%20house%20barbershop!5e0!3m2!1spt-BR!2sbr!4v1735050121497!5m2!1spt-BR!2sbr" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
