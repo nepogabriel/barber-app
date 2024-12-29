@@ -1,5 +1,7 @@
 <x-layout title="Horários">
-    <a href="{{ route('admin.hour.create') }}" class="btn btn-dark mb-2">Cadastrar Horário</a>
+    <a href="{{ route('admin.hour.create') }}" class="btn btn-dark mb-2">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Cadastrar Horário
+    </a>
 
     @isset($message_success)
         <div class="alert alert-success">
@@ -45,13 +47,13 @@
                                 <td class="d-flex justify-content-end">
                                     <span class="d-flex">
                                         <a href="{{ route('admin.hour.edit', $hour->id) }}" class="btn btn-dark btn-sm">
-                                            E
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                     
                                         <form action="{{ route('admin.hour.destroy', $hour->id) }}" method="post" class="ms-2">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger btn-sm">X</button>
+                                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                         </form>
                                     </span>
                                 </td>

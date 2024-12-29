@@ -4,7 +4,7 @@
 
             <div>
                 <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-                    +
+                    <i class="fa fa-bars" aria-hidden="true"></i>
                 </button>
             </div>
 
@@ -15,7 +15,7 @@
             </div>
 
             <div>
-                SAIR
+                {{-- SAIR --}}
             </div>
         </div>
 
@@ -24,9 +24,9 @@
         </button> --}}
 
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-            <div class="offcanvas-header">
+            <div class="py-3 px-3 d-flex justify-content-end">
                 {{-- <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">MENU</h5> --}}
-                <img src="/img/logo.jpeg" height="70px" width="auto">
+                {{-- <img src="/img/logo.jpeg" height="70px" width="auto"> --}}
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -48,12 +48,22 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.setting.index') }}">Configurações</a>
+                        <a class="nav-link dropdown-toggle" href="" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Configurações
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="{{ route('admin.settings.general.index') }}">Geral</a></li>
+                            {{-- <li><a class="dropdown-item" href="{{ route('admin.settings.modules.index') }}">Módulos</a></li> --}}
+                            {{-- <li><a class="dropdown-item" href="#">Sobre Nós</a></li>
+                            <li><a class="dropdown-item" href="#">Funcionamento</a></li>
+                            <li><a class="dropdown-item" href="#">Rodapé</a></li> --}}
+                        </ul>
                     </li>
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">Sair</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

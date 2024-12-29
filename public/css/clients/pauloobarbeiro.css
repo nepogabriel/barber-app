@@ -1,9 +1,22 @@
 :root {
+    /* BODY */
+    --font-family: 'Poppins';
+    --bg-body: #FFF;
+
     --primary-color: #000;
+
+    /* MENU */
+    --menu-bg: rgb(0 0 0 / 81%);
+    --menu-color: #FFF;
 
     --btn-text-color: #FFF;
     --btn-hover: #272727;
 
     /* Calendar */
     --text-date-hover: #FFF;
+
+    /* FOOTER */
+    --footer-bg: #222222;
+    --footer-color: #FFF;
+    --footer-line: gray;
 }

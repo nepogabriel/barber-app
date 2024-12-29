@@ -157,3 +157,20 @@ if ((parteAposUltimaBarra == 'cliente' || parteAposUltimaBarra == 'public/client
         this.value = input;
     });
 }
+
+function checkNavbarColor() {
+    var navbar = document.querySelector('#navbar-home');
+    
+    if (navbar) {
+        if (window.scrollY > 100) {
+            navbar.classList.add('nav-color-home');
+        } else {
+            navbar.classList.remove('nav-color-home');
+        }
+    }
+}
+
+// Verificar o scroll quando a página é carregada
+window.addEventListener("DOMContentLoaded", checkNavbarColor);
+// Atualizar o background quando o scroll acontece
+window.addEventListener("scroll", checkNavbarColor);

@@ -26,7 +26,7 @@
 
         <div class="mt-3">
             <a class="btn btn-outline-dark border-2" href="{{ route('site.start.index') }}">Voltar</a>
-            <button type="submit" class="btn btn-bege border-2 border-dark">Consultar</button>
+            <button type="submit" class="btn btn-layout border-2 border-dark">Consultar</button>
         </div>
     </form>
 </x-layout_site>

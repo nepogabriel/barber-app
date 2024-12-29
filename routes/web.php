@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\admin\AppointmentController;
 use App\Http\Controllers\admin\HourController;
+use App\Http\Controllers\admin\ModuleController;
+use App\Http\Controllers\admin\settings\modules\FooterController;
 use App\Http\Controllers\admin\ProfessionalController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\SettingController;
+use App\Http\Controllers\admin\settings\GeneralController;
 use App\Http\Controllers\site\ClientController as SiteClientController;
 use App\Http\Controllers\site\HourController as SiteHourController;
 use App\Http\Controllers\site\OrderController as SiteOrderController;
@@ -85,6 +88,7 @@ Route::controller(SiteClientController::class)->group(function() {
 Route::controller(SiteOrderController::class)->group(function() {
     Route::get('/pedido', 'index')->name('site.order.index');
     Route::post('/pedido/salvar', 'store')->name('site.order.store');
+    Route::get('/pedido/agendado', 'show')->name('site.order.show');
 });
 
 Route::controller(SiteStartController::class)->group(function() {
@@ -98,7 +102,21 @@ Route::controller(AppointmentController::class)->group(function() {
     Route::delete('/a32c36de88a52ec108f6f1c5f8cc6572/admin/agendamento/excluir/{appointment}', 'destroy')->name('admin.appointment.destroy');
 });
 
-Route::controller(SettingController::class)->group(function () {
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracao', 'index')->name('admin.setting.index');
-    Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracao/salvar', 'store')->name('admin.setting.store');
+// Route::controller(SettingController::class)->group(function () {
+//     Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracao', 'index')->name('admin.setting.index');
+//     Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracao/salvar', 'store')->name('admin.setting.store');
+// });
+
+Route::controller(GeneralController::class)->group(function () {
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracoes/geral', 'index')->name('admin.settings.general.index');
+    Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracao/salvar', 'store')->name('admin.settings.general.store');
+});
+
+Route::controller(ModuleController::class)->group(function () {
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracoes/modulos', 'index')->name('admin.settings.modules.index');
+});
+
+Route::controller(FooterController::class)->group(function() {
+    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracoes/modulo/{path}/editar', 'edit')->name('admin.settings.modules.footer.edit');
+    Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracoes/modulo/footer/salvar', 'store')->name('admin.settings.modules.footer.store');
 });

@@ -37,6 +37,10 @@ class AppointmentController extends Controller
         foreach ($appointments as $appointment) {
             $appointment->date = $this->hourService->formatDate($appointment->date);
             $appointment->time = $this->hourService->formatTime($appointment->time);
+
+            if ($appointment->telephone_client) {
+                $appointment->phone = preg_replace('/\D/', '', $appointment->telephone_client);
+            }
         }
 
         $message_success = $request->session()->get('message.success');
