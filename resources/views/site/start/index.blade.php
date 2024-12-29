@@ -20,16 +20,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-5 col-lg-7 d-flex justify-content-center flex-column">
-                    <h2 class="mb-5">Sobre Nós</h2>
+                    <h2 class="mb-5">Sobre Mim</h2>
 
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique temporibus in, vero expedita officia repellat dicta, nostrum natus, at sit facere doloribus illum et velit facilis debitis harum! Nemo, sequi.
-
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, in.
-                        
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga cumque quo quia nulla totam velit, cum placeat ipsa, dolore aut laudantium harum? Blanditiis quis facere quaerat doloribus neque dolorem asperiores.
-                        
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga cumque quo quia nulla totam velit, cum placeat ipsa, dolore aut laudantium harum? Blanditiis quis facere quaerat doloribus neque dolorem asperiores.
+                    Minha paixão pela barbearia começou cedo, ainda na adolescência, quando tive meu primeiro contato com lâminas e máquinas para uso pessoal. O que começou como uma necessidade com o tempo se tornou um interesse genuíno, que me levou a aprofundar nesse universo.
+                    <br><br>
+                    Em 2014, decidi transformar essa paixão em profissão e iniciei minha carreira como barbeiro. Desde então, venho buscando me aprimorar constantemente, aprendendo novas técnicas e tendências com conteúdos de fora do país. Também dediquei tempo para me especializar no atendimento ao cliente, porque acredito que cada pessoa merece um tratamento único e personalizado.
+                    <br><br>
+                    Com toda essa bagagem, criei meu lema: "Mantenha seu corte limpo". Ele reflete o meu compromisso em oferecer um trabalho de qualidade, aliado a um ambiente acolhedor e a um serviço que valorize a sua confiança e estilo. Essa é a minha história, e é um prazer fazer parte da sua.
                     </p>
                 </div>
 
