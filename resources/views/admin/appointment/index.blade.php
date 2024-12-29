@@ -31,7 +31,7 @@
                                     <span>{{ $appointment->name_client }}</span><br>
 
                                     @isset ($appointment->phone)
-                                        <a class="btn btn-success btn-sm" href="https://api.whatsapp.com/send?phone={{ $appointment->phone }}">
+                                        <a class="btn btn-success btn-sm" href="https://api.whatsapp.com/send?phone={{ $appointment->phone }}" target="_blank">
                                             <i class="fab fa-whatsapp" aria-hidden="true"></i>
                                         </a>
 
