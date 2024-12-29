@@ -1,21 +1,96 @@
-.btn {
-    font-weight: 500 !important;
+body {
+    font-family: var(--font-family, "Ubuntu"), "Helvetica", "Arial", sans-serif;
+    background-color: var(--bg-body, #FFF);
 }
 
-.bg-body {
-    background-color: #f6f3ecbe;
+#container-navbar {
+    height: 120px;
 }
+
+#navbar-home {
+    background-color: transparent;
+}
+
+.navbar .logo_text {
+	font-size: 0;
+	margin: 0;
+}
+
+.navbar .navbar-brand .logo_img {
+    height: 125px;
+    width: auto;
+}
+
+#navbar-home .navbar-nav .nav-link {
+    font-weight: 600;
+}
+
+#navbar-home .navbar-nav .nav-link:focus,
+#navbar-home .navbar-nav .nav-link:hover {
+    color: #FFF;
+    border-bottom: 1px solid #000;
+}
+
+#navbar-home .navbar-nav .appointment .nav-link {
+    background-color: #FFF;
+    border-radius: 20px;
+    width: 120px;
+    text-align: center;
+}
+
+#navbar-home .navbar-nav .appointment .nav-link:focus,
+#navbar-home .navbar-nav .appointment .nav-link:hover {
+    color: #222222;
+    border: none;
+}
+
+.nav-color-home {
+    background-color: var(--menu-bg, rgb(0 0 0 / 81%)) !important;
+	transition: blackground 0.5s linear;
+}
+
+.nav-color-home .collapse {
+    opacity: 1;
+}
+
+.nav-color-home .navbar-nav .nav-link {
+    color: var(--menu-color, #FFF);
+}
+
+.nav-color-home .navbar-nav .nav-link:focus,
+.nav-color-home .navbar-nav .nav-link:hover {
+    color: var(--menu-color, #FFF) !important;
+    border-bottom: 1px solid var(--menu-color, #FFF) !important;
+}
+
+.nav-color-home .navbar-nav .appointment .nav-link {
+    color: rgba( 0,0,0 , 0.65);
+}
+
+.nav-color-home .navbar-nav .appointment .nav-link:focus,
+.nav-color-home .navbar-nav .appointment .nav-link:hover {
+    color: #222222 !important;
+    border: none !important;
+}
+
+.menu-mobile-home {
+    border: 2px solid #FFF;
+}
+
+/* .btn {
+    font-weight: 500 !important;
+} */
 
 .bg-menu {
     background-color: var(--primary-color, #cebc96) !important;
 }
 
-.btn-bege {
+.btn-layout {
     background-color: var(--primary-color, #cebc96) !important;
     color: var(--btn-text-color, #000) !important;
 }
 
-.btn-bege:hover {
+.btn-layout:hover {
     background-color: var(--btn-hover, #cebc96ae) !important;
 }
 
@@ -50,5 +125,212 @@
     color: var(--text-date-hover, #000);
 }
 
-/* LIST HOURS */
+#start {
+    background-image: 
+        url('/img/line-section.png'), 
+        linear-gradient(rgb(34 34 34 / 28%), rgba(34, 34, 34, 0)), 
+        linear-gradient(rgba(34, 34, 34, 0), rgb(34 34 34 / 28%)), 
+        url('/img/bg-home.jpg');
+    background-repeat: no-repeat, no-repeat;
+    background-position: bottom left, left bottom;
+    background-size: 100%, auto, cover;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 20px;  
+}
 
+#start,
+#start .container {
+    height: 800px;
+    margin-top: -120px;
+}
+
+#start .slogan h1 {
+    font-family: "Cormorant", serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.container-btn-home {
+    text-align: center;
+}
+
+.container-btn-home .btn {
+    margin: 5px;
+}
+
+#about {
+    height: 650px;
+}
+
+.about-image {
+    border-radius: 100px 0 100px 0;
+    position: relative;
+    width: 500px;
+    height: 550px;
+    overflow: hidden;
+}
+
+.about-image img {
+    height: 100%;
+    width: 100%;
+    border-radius: 100px 0 100px 0;
+    object-fit: cover; /* Garante que a imagem preencha a div proporcionalmente, cortando se necessário */
+}
+
+#our-services {
+    height: 200px;
+}
+
+#map iframe {
+    width: 100%;
+    height: 400px;
+    display: block;
+}
+
+#footer {
+    color: var(--footer-color, #FFF);
+    background-color: var(--footer-bg, #222222);
+}
+
+#footer .logo-img-footer {
+    height: 100px;
+    width: auto;
+}
+
+#footer .title-footer {
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+#footer .data-footer .social-media,
+#footer .data-footer .contacts {
+    color: var(--footer-color, #FFF) !important;
+}
+
+.copyright {
+    border-top: 1px solid var(--footer-line, gray);
+	background-color: var(--footer-bg, #222222);
+	padding: 30px 15px;
+	text-align: center;
+	font-size: 14px;
+	color: var(--footer-color, #FFF);
+}
+
+.btn_fixed_whatsapp {
+    position: fixed;
+    z-index: 99999;
+    bottom: 15px;
+    right: 10px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #26da69;
+    font-size: 40px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#about h2,
+#hours h2 {
+    font-family: "Cormorant", serif;
+    font-size: 40px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+/***** ADMIN *****/
+.config-logo-header {
+    height: 150px;
+    width: auto;
+}
+
+.btn-uncheck {
+    text-align: center;
+    vertical-align: middle;
+}
+
+@media (min-width: 992px) {
+    #navbar-home {
+        height: 17%;
+    }
+}
+
+/* No mobile, o dropdown do menu terá background branco */  
+@media (max-width: 991.98px) {
+    #navbarSupportedContent {
+        background-color: #000;
+        opacity: 0.8;
+        border-radius: 15px;
+        padding-right: 3rem;
+        padding-left: 3rem;
+    }
+
+    #navbarSupportedContent .appointment {
+        display: flex;
+        justify-content: center;
+    }
+
+    #navbarSupportedContent .navbar-nav .nav-link {
+        color: #FFF !important;
+        text-align: center;
+    }
+
+    #navbar-home .navbar-nav .appointment .nav-link {
+        color: #222222 !important;
+    }
+
+    .navbar-toggler {
+        background-color: transparent; /* Para o botão de toggling manter transparente */
+    }
+
+    #navbar-home .navbar-nav .nav-link:focus,
+    #navbar-home .navbar-nav .nav-link:hover,
+    .nav-color-home .navbar-nav .nav-link:focus,
+    .nav-color-home .navbar-nav .nav-link:hover {
+        border: none !important;
+    }
+
+    .about-image {
+        width: 400px;
+        height: 450px;
+    }
+
+    #footer .data-footer {
+        text-align: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar .navbar-brand .logo_img {
+        height: 100px;
+    }
+
+    #start,
+    #start .container {
+        height: 45vh;
+        padding-top: 110px;
+    }
+
+    #about {
+        height: 1160px;
+    }
+
+    #about h2 {
+        text-align: center;
+    }
+
+    .about-image {
+        height: 400px !important;
+    }
+}

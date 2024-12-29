@@ -27,7 +27,7 @@
 
         <div class="mt-3">
             <a class="btn btn-outline-dark border-2" href="{{ route('site.professional.index') }}">Voltar</a>
-            <button type="submit" class="btn btn-bege border-2 border-dark">Continuar</button>
+            <button type="submit" class="btn btn-layout border-2 border-dark">Continuar</button>
         </div>
     </form>
 </x-layout_site>

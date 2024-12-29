@@ -13,8 +13,8 @@
             <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">Data</th>
-                    <th scope="col">Horário</th>
+                    <th scope="col">Data/Horário</th>
+                    {{-- <th scope="col">Horário</th> --}}
                     <th scope="col">Serviço</th>
                     <th scope="col" class="text-center">Cliente</th>
                     <th scope="col"></th>
@@ -24,12 +24,21 @@
                     @foreach ($appointments as $appointment)
                         @if ($appointment->professional_id == $professional->id)
                             <tr>
-                                <td>{{ $appointment->date }}</td>
-                                <td>{{ $appointment->time }}</td>
+                                <td>{{ $appointment->date }}<br>{{ $appointment->time }}</td>
+                                {{-- <td>{{ $appointment->time }}</td> --}}
                                 <td>{{ $appointment->name }}</td>
                                 <td class="text-center">
-                                    {{ $appointment->name_client }}
-                                    {{ $appointment->telephone_client }}
+                                    <span>{{ $appointment->name_client }}</span><br>
+
+                                    @isset ($appointment->phone)
+                                        <a class="btn btn-success btn-sm" href="https://api.whatsapp.com/send?phone={{ $appointment->phone }}" target="_blank">
+                                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                        </a>
+
+                                        <a class="btn btn-secondary btn-sm" href="tel://{{ $appointment->phone }}">
+                                            <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                                        </a>
+                                    @endisset
                                 </td>
 
                                 {{-- <td class="">
@@ -39,8 +48,8 @@
                                         Não
                                     @endif
                                 </td> --}}
-                                <td class="d-flex justify-content-end">
-                                    <span class="d-flex">
+                                <td class="btn-uncheck">
+                                    <span>
                                         {{-- <a href="{{ route('admin.hour.edit', $appointment->id) }}" class="btn btn-dark btn-sm">
                                             E
                                         </a> --}}
@@ -48,7 +57,7 @@
                                         <form action="{{ route('admin.appointment.destroy', $appointment->id) }}" method="post" class="ms-2">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger btn-sm">X</button>
+                                            <button class="btn btn-danger btn-sm"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
                                         </form>
                                     </span>
                                 </td>

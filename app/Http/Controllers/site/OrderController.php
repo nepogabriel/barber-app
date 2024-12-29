@@ -89,16 +89,19 @@ class OrderController extends Controller
             $request->session()->forget('order');
         }
 
-        return to_route('site.start.index')
+        return to_route('site.order.show')
             ->with('message.order_success', 'Agendamento confirmado com sucesso!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        $message_order_success = $request->session()->get('message.order_success');
+
+        return view('site.order.show')
+            ->with('message', $message_order_success);
     }
 
     /**

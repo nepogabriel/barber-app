@@ -12,14 +12,10 @@ class Setting extends Model
     protected $fillable = [
         'template_client',
         'logo_header',
-        'logo_footer',
         'favicon',
+        'whatsapp',
         'meta_title',
         'meta_description',
-        'meta_keywords',
-        'address_store',
-        'phone_store',
-        'email_store',
-        'opening_hours'
+        'meta_keywords'
     ];
 }

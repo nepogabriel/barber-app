@@ -20,7 +20,7 @@
                         <label class="form-check-label" for="firstRadio">{{ $service->name }}</label>
                     </div>
 
-                    <span class="d-flex btn btn-sm btn-bege border border-dark">
+                    <span class="d-flex btn btn-sm btn-layout border border-dark">
                         R$&nbsp;{{ $service->price }}
                     </span>
                 </li>
@@ -29,7 +29,7 @@
 
         <div class="mt-3">
             <a class="btn btn-outline-dark border-2" href="{{ route('site.start.index') }}">Voltar</a>
-            <button type="submit" class="btn btn-bege border border-dark">Continuar</button>
+            <button type="submit" class="btn btn-layout border-2 border-dark">Continuar</button>
         </div>
     </form>
 </x-layout_site>
