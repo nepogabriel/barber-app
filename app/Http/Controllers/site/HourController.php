@@ -155,10 +155,10 @@ class HourController extends Controller
             $data_atual = new DateTime();
 
             // Verifique se a data/hora atual é maior que a data/hora fornecida mais 10 minutos
-            if (($id_hour_control !== null && $hourControl[0]->id !== $id_hour_control && $data_atual <= $data_minutos)) {
+            if ((!isset($id_hour_control) || $hourControl[0]->id !== $id_hour_control) && $data_atual <= $data_minutos) {
                 $alert_user = true;
-            } else {
-                $this->destroyHourControl($hourControl[0]->id);
+            } else if ($data_atual > $data_minutos) {
+                $this->destroyHourControl($hourControl[0]->hour_id);
             }
         }
 
