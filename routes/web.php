@@ -88,7 +88,7 @@ Route::controller(SiteClientController::class)->group(function() {
 Route::controller(SiteOrderController::class)->group(function() {
     Route::get('/pedido', 'index')->name('site.order.index');
     Route::post('/pedido/salvar', 'store')->name('site.order.store');
-    Route::get('/pedido/agendado', 'show')->name('site.order.show');
+    Route::get('/pedido/confirmado', 'show')->name('site.order.show');
 });
 
 Route::controller(SiteStartController::class)->group(function() {
