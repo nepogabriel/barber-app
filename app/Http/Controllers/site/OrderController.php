@@ -26,7 +26,7 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         if ($request->session()->get('order.service_id') == null) {
-            return to_route('site.start.index');
+            return to_route('site.order.show');
         }
 
         $order_session = [

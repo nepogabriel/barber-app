@@ -51,4 +51,12 @@
             <button type="submit" class="btn btn-layout border-2 border-dark">Confirmar</button>
         </div>
     </form>
+
+<script>
+window.addEventListener("pageshow", function (event) {
+  if (event.persisted) {
+    window.location.reload();
+  }
+});
+</script>
 </x-layout_site>
