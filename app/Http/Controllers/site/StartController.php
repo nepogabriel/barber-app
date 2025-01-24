@@ -31,20 +31,24 @@ class StartController extends Controller
 
     public function show(Request $request)
     {
-        $appointment = DB::table('appointments')
+        $appointments = DB::table('appointments')
             ->join('hours', 'appointments.hour_id', '=', 'hours.id')
             ->join('professionals', 'hours.professional_id', '=', 'professionals.id')
             ->select('appointments.telephone_client', 'hours.date', 'hours.time', 'professionals.name')
             ->where('appointments.telephone_client', $request->telephone_client)
             ->whereRaw('date >= CURDATE() - INTERVAL 1 DAY')
+            ->orderBy('hours.date')
+            ->orderBy('hours.time')
             ->get();
 
-        if (isset($appointment[0])) {
-            $appointment[0]->date = $this->hourService->formatDate($appointment[0]->date);
-            $appointment[0]->time = $this->hourService->formatTime($appointment[0]->time);
+        if (isset($appointments) && $appointments->isNotEmpty()) {
+            foreach ($appointments as $key => $appointment) {
+                $appointments[$key]->date = $this->hourService->formatDate($appointment->date);
+                $appointments[$key]->time = $this->hourService->formatTime($appointment->time);
+            }
         }
 
         return view('site.start.check')
-            ->with('appointment', $appointment);
+            ->with('appointments', $appointments);
     }
 }
