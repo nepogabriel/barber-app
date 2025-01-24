@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-5 col-lg-7 d-flex justify-content-center flex-column">
-                    <h2 class="mb-5">O Barbeiro</h2>
+                    <h2 class="mb-5">“ O Barbeiro “</h2>
 
                     <p>
                     Minha paixão pela barbearia começou cedo, ainda na adolescência, quando tive meu primeiro contato com lâminas e máquinas para uso pessoal. O que começou como uma necessidade com o tempo se tornou um interesse genuíno, que me levou a aprofundar nesse universo.
@@ -94,7 +94,7 @@
            <div class="row">
               <div class="col-sm-12 col-md-3 data-footer">
                 <img class="logo-img-footer" src="{{ $logo_header }}" alt="Gabriel Ribeiro">
-                <h3 class="mt-3">Paulo "O Barbeiro"</h3>
+                <h3 class="mt-3">Paulo “ O Barbeiro “</h3>
               </div>
 
               <div class="col-sm-12 col-md-3 data-footer">
