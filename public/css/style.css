@@ -91,13 +91,13 @@ body {
 }
 
 .btn-layout {
-    background-color: var(--primary-color, #cebc96) !important;
-    color: var(--btn-text-color, #000) !important;
+    background-color: #FFF !important;
+    color: #000 !important;
 }
 
-.btn-layout:hover {
+/* .btn-layout:hover {
     background-color: var(--btn-hover, #cebc96ae) !important;
-}
+} */
 
 /* CALENDÁRIO CLIENTE */
 .jsCalendar.custom-calendar tbody td.jsCalendar-current {
@@ -159,6 +159,7 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     text-align: center;
+    color: #FFF;
 }
 
 .container-btn-home {

@@ -9,7 +9,7 @@
                     <i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;&nbsp;Agendar Serviço
                 </a>
 
-                <a class="btn btn-outline-dark border-2" href="{{ route('site.start.check') }}">
+                <a class="btn btn-outline-light border-2" href="{{ route('site.start.check') }}">
                     <i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;Consultar Agendamento
                 </a>
             </div>
@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-5 col-lg-7 d-flex justify-content-center flex-column">
-                    <h2 class="mb-5">Sobre Mim</h2>
+                    <h2 class="mb-5">O Barbeiro</h2>
 
                     <p>
                     Minha paixão pela barbearia começou cedo, ainda na adolescência, quando tive meu primeiro contato com lâminas e máquinas para uso pessoal. O que começou como uma necessidade com o tempo se tornou um interesse genuíno, que me levou a aprofundar nesse universo.
@@ -57,7 +57,7 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>Quarta-feira:</strong>
-                            <span>09:00 - 18:00</span>
+                            <span>Fechado</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>Quinta-feira:</strong>
@@ -77,7 +77,7 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>Feriados:</strong>
-                            <span>Fechado</span>
+                            <span>A consultar</span>
                         </li>
                     </ul>
                 </div>
