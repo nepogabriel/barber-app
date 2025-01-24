@@ -5,7 +5,7 @@
                 <h1>Matenha seu corte limpo</h1>
             </div>
             <div class="container-btn-home">
-                <a class="btn btn-layout border-2 border-dark" href="{{ route('site.service.index') }}">
+                <a class="btn btn-start-home border-2 border-dark" href="{{ route('site.service.index') }}">
                     <i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;&nbsp;Agendar Serviço
                 </a>
 

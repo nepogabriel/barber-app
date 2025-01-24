@@ -91,6 +91,15 @@ body {
 }
 
 .btn-layout {
+    background-color: var(--primary-color, #cebc96) !important;
+    color: var(--btn-text-color, #000) !important;
+}
+
+.btn-layout:hover {
+    background-color: var(--btn-hover, #cebc96ae) !important;
+}
+
+.btn-start-home {
     background-color: #FFF !important;
     color: #000 !important;
 }
