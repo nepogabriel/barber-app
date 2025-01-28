@@ -25,14 +25,19 @@ body {
     font-weight: 600;
 }
 
+#navbar-home .navbar-nav .nav-link {
+    color: var(--menu-color, #000);
+}
+
 #navbar-home .navbar-nav .nav-link:focus,
 #navbar-home .navbar-nav .nav-link:hover {
-    color: #FFF;
+    color: var(--menu-color-hover, #FFF);
     border-bottom: 1px solid #000;
 }
 
 #navbar-home .navbar-nav .appointment .nav-link {
-    background-color: #FFF;
+    background-color: var(--menu-bg-agendar, #FFF);
+    color: var(--menu-color-agendar, #000);
     border-radius: 20px;
     width: 120px;
     text-align: center;
@@ -94,6 +99,15 @@ body {
     background-color: var(--btn-hover, #cebc96ae) !important;
 }
 
+.btn-start-home {
+    background-color: #FFF !important;
+    color: #000 !important;
+}
+
+/* .btn-layout:hover {
+    background-color: var(--btn-hover, #cebc96ae) !important;
+} */
+
 /* CALENDÁRIO CLIENTE */
 .jsCalendar.custom-calendar tbody td.jsCalendar-current {
     background-color: transparent;
@@ -129,8 +143,8 @@ body {
     background-image: 
         url('/img/line-section.png'), 
         linear-gradient(rgb(34 34 34 / 28%), rgba(34, 34, 34, 0)), 
-        linear-gradient(rgba(34, 34, 34, 0), rgb(34 34 34 / 28%)), 
-        url('/img/bg-home.jpg');
+        linear-gradient(rgba(34, 34, 34, 0), rgb(34 34 34 / 28%));
+    background-color: var(--bg-inicio-home, transparent);
     background-repeat: no-repeat, no-repeat;
     background-position: bottom left, left bottom;
     background-size: 100%, auto, cover;
@@ -154,6 +168,7 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     text-align: center;
+    color: #FFF;
 }
 
 .container-btn-home {
@@ -318,7 +333,7 @@ body {
 
     #start,
     #start .container {
-        height: 45vh;
+        height: 50vh;
         padding-top: 110px;
     }
 

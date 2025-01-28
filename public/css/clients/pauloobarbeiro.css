@@ -8,9 +8,15 @@
     /* MENU */
     --menu-bg: rgb(0 0 0 / 81%);
     --menu-color: #FFF;
+    --menu-color-hover: #FFF;
+    --menu-bg-agendar: #FFF;
+    --menu-color-agendar: #000;
 
     --btn-text-color: #FFF;
     --btn-hover: #272727;
+
+    /* HOME */
+    --bg-inicio-home: #000;  
 
     /* Calendar */
     --text-date-hover: #FFF;
