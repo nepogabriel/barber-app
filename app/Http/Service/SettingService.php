@@ -10,6 +10,8 @@ use stdClass;
 
 class SettingService
 {
+    public const CODE_GENERAL = 'genereal';
+    public const CODE_FOOTER = 'footer';
 
     public function getSettings(): mixed
     {
@@ -27,7 +29,7 @@ class SettingService
     {
         $value = '';
 
-        $setting = Module::query()
+        $setting = Setting::query()
         ->select('value')
         ->where('key', '=', $key)
         ->first();
@@ -38,15 +40,15 @@ class SettingService
         return $value;
     }
 
-    public function editSetting($code, Request $request)
+    public function editSetting(string $code, array $request): void
     {
-        foreach ($request->all() as $key => $value) {
+        foreach ($request as $key => $value) {
             if ($key == '_token' || $key == 'token')
                 continue;
 
             $key_table = $code . '_' . $key;
 
-            Module::updateOrCreate(
+            Setting::updateOrCreate(
                 ['key' => $key_table],
                 ['code' => $code, 'key' => $key_table, 'value' => $value]
             );
