@@ -10,12 +10,8 @@ class Setting extends Model
     use HasFactory;
 
     protected $fillable = [
-        'template_client',
-        'logo_header',
-        'favicon',
-        'whatsapp',
-        'meta_title',
-        'meta_description',
-        'meta_keywords'
+        'code',
+        'key',
+        'value'
     ];
 }

@@ -8,13 +8,9 @@ use Illuminate\Http\Request;
 
 class FooterController extends Controller
 {
-    const CODE = 'footer';
-    public SettingService $setting;
-
-    public function __construct()
-    {
-        $this->setting = new SettingService;
-    }
+    public function __construct(
+        public SettingService $settingService
+    ) {}
 
     /**
      * Display a listing of the resource.
@@ -46,7 +42,12 @@ class FooterController extends Controller
      */
     public function store(Request $request)
     {
-        $this->setting->editSetting(self::CODE, $request);
+        $data = [
+            'status' => $request->status,
+            'store_address' => $request->store_address,
+        ];
+
+        $this->settingService->editSetting(SettingService::CODE_FOOTER, $data);
 
         return to_route('admin.settings.modules.index')
             ->with('message.success', "Alteração realizada com sucesso!");
@@ -59,6 +60,6 @@ class FooterController extends Controller
             'store_address' => '',
         ];
 
-        return $this->setting->prepareFields(self::CODE, $fields);
+        return $this->settingService->prepareFields(SettingService::CODE_FOOTER, $fields);
     }
 }
