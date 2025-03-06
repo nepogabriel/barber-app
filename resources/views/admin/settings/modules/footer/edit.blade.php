@@ -13,8 +13,8 @@
             <div class="mb-3">
                 <label for="footer-status" class="form-label">Status:</label>
                 <select id="footer-status" name="status" class="form-control">
-                    <option value="1" @if(isset($data->status) && $data->status == '1') selected @endisset>Habilitado</option>
-                    <option value="0" @if(isset($data->status) && $data->status == '0') selected @endisset>Desabilitado</option>
+                    <option value="1" @if(isset($data->status) && $data->status == '1') selected @endif>Habilitado</option>
+                    <option value="0" @if(isset($data->status) && $data->status == '0') selected @endif>Desabilitado</option>
                 </select>
             </div>
         
