@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Http\Service\SettingService;
+use App\View\Composers\SettingsComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,9 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $settingService = new SettingService();
-        $settings = $settingService->getSettings();
-        View::share('template_client', $settings->template_client);
-        View::share('logo_header', $settings->logo_header);
+        View::composer('*', SettingsComposer::class);
     }
 }
