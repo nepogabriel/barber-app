@@ -13,16 +13,18 @@ class SettingService
     public const CODE_GENERAL = 'genereal';
     public const CODE_FOOTER = 'footer';
 
-    public function getSettings(): mixed
+    // Transferir para GeneralService
+    public function getSettings(): object
     {
-        if (Schema::hasTable('settings')) {
-            $settings = Setting::query()->get();
+        $fields = [
+            'template_client' => 'default',
+            'logo_header' => '/img/no_image.png',
+        ];
 
-            if (isset($settings[0]) && $settings[0])
-                return $settings[0];
-        }
+        $settingService = new SettingService();
+        $result = $settingService->prepareFields(SettingService::CODE_GENERAL, $fields);
 
-        return false;
+        return $result;
     }
 
     public function getSetting(string $key): string
