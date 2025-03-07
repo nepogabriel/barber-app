@@ -12,8 +12,8 @@
             @foreach ($services as $service)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        <input class="form-check-input me-1" type="radio" name="service_id" value="{{ $service->id }}"
-                            @if ($service->id == $order_service_id)
+                        <input class="form-check-input me-1" type="checkbox" name="service_id[]" value="{{ $service->id }}"
+                            @if (isset($order_service_id) && in_array($service->id, $order_service_id))
                                 checked
                             @endif
                         />
