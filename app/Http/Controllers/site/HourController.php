@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\DB;
 
 class HourController extends Controller
 {
-    public function __construct(
-        private HourService $hourService
-    ) {}
+    private HourService $hourService;
+
+    public function __construct()
+    {
+        $this->hourService = new HourService();
+    }
 
     /**
      * Display a listing of the resource.

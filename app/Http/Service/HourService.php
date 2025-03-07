@@ -7,9 +7,12 @@ use DateTime;
 
 class HourService
 {
-    public function __construct(
-        private HourRepository $hourRepository
-    ) {}
+    private HourRepository $hourRepository;
+
+    public function __construct()
+    {
+        $this->hourRepository = new HourRepository;
+    }
 
     public function formatDate($date)
     {
