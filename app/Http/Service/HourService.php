@@ -2,10 +2,15 @@
 
 namespace App\Http\Service;
 
+use App\Repositories\Site\HourRepository;
 use DateTime;
 
 class HourService
 {
+    public function __construct(
+        private HourRepository $hourRepository
+    ) {}
+
     public function formatDate($date)
     {
         $dataObjeto = new DateTime($date);
@@ -16,5 +21,16 @@ class HourService
     {
         $horaObjeto = new DateTime($time);
         return $horaObjeto->format("H:i");
+    }
+
+    public function getHours($professional_id, $date)
+    {
+        $hours = $this->hourRepository->getHours($professional_id, $date);
+
+        foreach ($hours as $hour) {
+            $hour->time = $this->formatTime($hour->time);
+        }
+
+        return $hours;
     }
 }

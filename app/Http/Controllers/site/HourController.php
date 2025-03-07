@@ -7,43 +7,24 @@ use App\Http\Requests\site\HourFormRequest;
 use App\Http\Service\HourService;
 use App\Models\Hour;
 use App\Models\HourControl;
+use App\Services\Site\ServiceService;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HourController extends Controller
 {
-    private HourService $hourService;
-
-    public function __construct()
-    {
-        $this->hourService = new HourService();
-    }
+    public function __construct(
+        private HourService $hourService
+    ) {}
 
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        //$order_professional_id = $request->session()->get('order.professional_id');
         $order_hour_id = $request->session()->get('order.hour_id');
 
-        // $hours = Hour::query()
-        //     ->orderBy('date')
-        //     ->orderBy('time')
-        //     ->where('professional_id', '=', $order_professional_id)
-        //     //->where('date', '>=', DB::raw('curdate()'))
-        //     ->whereRaw('date >= curdate()')
-        //     //->whereRaw('time >= curtime()')
-        //     ->where('checked', '=', '0')
-        //     ->get();
-
-        // foreach ($hours as $hour) {
-        //     $hour->date = $this->hourService->formatDate($hour->date);
-        //     $hour->time = $this->hourService->formatTime($hour->time);
-        // }
-
-        // O código comentado esta dentro da função
         $hours = $this->getHours($request);
 
         $message_alert_user = $request->session()->get('hour_control.alert_user');
@@ -89,25 +70,19 @@ class HourController extends Controller
         $order_professional_id = $request->session()->get('order.professional_id');
         $order_hour_id = $request->session()->get('order.hour_id');
 
-        $hours = Hour::query()
-            ->select('id', 'time')
-            ->orderBy('time')
-            ->whereRaw('date >= curdate()')
-            //  ->whereRaw('time >= curtime()')
-            ->where('professional_id', '=', $order_professional_id)
-            ->where('date', '=', $request->date)
-            ->where('checked', '=', '0')
-            ->get();
+        $hours = $this->hourService->getHours($order_professional_id, $request->date);
 
-        foreach ($hours as $hour) {
-            $hour->time = $this->hourService->formatTime($hour->time);
+        if ($request->session()->get('order.service_id') !== null) {
+            $serviceService = new ServiceService();
+            $services = $serviceService->getNameOfServices($request->session()->get('order.service_id'));
         }
 
         $data = [
             'order_hour_id' => $order_hour_id ? $order_hour_id : false, 
             'order_professional_id' => $order_professional_id,
-            'hours' => $hours
-        ]; 
+            'hours' => $hours,
+            'services' => $services,
+        ];
 
         return response()->json($data);
     }
