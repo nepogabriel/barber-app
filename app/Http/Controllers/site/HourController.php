@@ -6,11 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\site\HourFormRequest;
 use App\Http\Service\HourService;
 use App\Models\Hour;
-use App\Models\HourControl;
+use App\Services\Site\HourControlService;
 use App\Services\Site\ServiceService;
 use DateTime;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class HourController extends Controller
 {
@@ -51,14 +50,16 @@ class HourController extends Controller
      */
     public function store(HourFormRequest $request)
     {
-        if ($this->validateHourControl($request)) {
+        $hourControlService = new HourControlService();
+
+        if ($hourControlService->validateHourControl($request)) {
             $message_alert_user = 'Desculpe! Outro usuário escolheu o mesmo horário.';
 
             return to_route('site.hour.index')
                 ->with('hour_control.alert_user', $message_alert_user); 
         }
 
-        $this->hourControl($request);
+        $hourControlService->hourControl($request);
 
         $request->session()->put('order.hour_id', $request->hour_id);
 
@@ -106,60 +107,6 @@ class HourController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroyHourControl(int $hour_id)
-    {
-        HourControl::where('hour_id', $hour_id)->delete();
-    }
-
-    private function validateHourControl(Request $request): bool
-    {
-        $alert_user = false;
-
-        $hourControl = HourControl::query()
-            ->select('id', 'hour_id', 'updated_at')
-            ->where('hour_id', '=', $request->hour_id)
-            ->get();
-
-        if (isset($hourControl[0])) {
-            $id_hour_control = $request->session()->get('order.id_hour_control');
-
-            $data = new DateTime($hourControl[0]->updated_at);
-            $data_minutos = clone $data;
-            $data_minutos->modify('+10 minutes');
-
-            $data_atual = new DateTime();
-
-            // Verifique se a data/hora atual é maior que a data/hora fornecida mais 10 minutos
-            if ((!isset($id_hour_control) || $hourControl[0]->id !== $id_hour_control) && $data_atual <= $data_minutos) {
-                $alert_user = true;
-            } else if ($data_atual > $data_minutos) {
-                $this->destroyHourControl($hourControl[0]->hour_id);
-            }
-        }
-
-        return $alert_user;
-    }
-
-    private function hourControl(Request $request)
-    {
-        $condicao = $request->session()->get('order.id_hour_control') !== null;
-
-        if ($condicao) {
-            $hour_control = DB::table('hour_controls')
-              ->where('id', $request->session()->get('order.id_hour_control'))
-              ->update(['hour_id' => $request->hour_id]);
-        } else {
-            $hour_control = HourControl::create(['hour_id' => $request->hour_id]);
-            $id_hour_control = $hour_control->id;
-
-            if (isset($id_hour_control) && $id_hour_control) {
-                $request->session()->put('order.id_hour_control', $id_hour_control);
-            }
-        }
-    }
 
     private function getHours(Request $request)
     {

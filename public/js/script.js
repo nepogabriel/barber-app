@@ -85,7 +85,7 @@ function montarHorarios(response) {
             var input = document.createElement('input');
             input.className = 'form-check-input me-1';
             input.type = 'radio';
-            input.name = 'hour_id';
+            input.name = `hour_id[${services[j]['id']}]`;
             input.value = hour.id;
             input.id = 'hour_' + hour.id;
 

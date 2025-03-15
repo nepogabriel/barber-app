@@ -8,6 +8,7 @@ use App\Models\Appointment;
 use App\Models\Hour;
 use App\Models\Professional;
 use App\Models\Service;
+use App\Services\Site\HourControlService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -83,8 +84,8 @@ class OrderController extends Controller
               ->update(['checked' => 1]);
 
         if ($appointment && $hour) {
-            $hourControl = new HourController();
-            $hourControl->destroyHourControl($request->hour_id);
+            $hourControlService = new HourControlService();
+            $hourControlService->destroyHourControl($request->hour_id);
 
             $request->session()->forget('order');
         }
