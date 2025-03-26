@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Site;
 
-use App\Http\Requests\site\HourFormRequest;
 use App\Models\HourControl;
 use Illuminate\Support\Facades\DB;
 
@@ -23,11 +22,12 @@ class HourControlRepository
             ->get();
     }
 
-    public function updateHourControl(HourFormRequest $request)
+    public function updateHourControl(int $id_hour_control, array $hours_id)
     {
-        return DB::table('hour_controls')
-              ->where('id', $request->session()->get('order.ids_hour_control'))
-              ->update(['hour_id' => $request->hour_id]);
+        return HourControl::where(
+            'id', 
+            $id_hour_control
+            )->update($hours_id);
     }
 
     public function destroyHourControl(int $hour_id): void

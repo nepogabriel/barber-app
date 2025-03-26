@@ -15,26 +15,15 @@ class HourControlService
         $this->hourControlRepository = new HourControlRepository();
     }
 
-    public function validateHourControl(HourFormRequest $request): bool
+    public function validateHourControl(array $hours_id, array $ids_hour_control_selected): bool
     {
         $alert_user = false;
 
-        $hours_control = $this->hourControlRepository->getHourControl($request->hour_id);
-        //$ids_hour_control = $this->getIdsHourControl($request->hour_id);
+        $hours_control = $this->hourControlRepository->getHourControl($hours_id);
 
-        if (!empty($hours_control)) {
-            $ids_hour_control_selected = $request->session()->get('order.ids_hour_control') ?: [];
-
-            //dd($ids_hour_control_selected);
-
+        if (!empty($hours_control))
             $alert_user = $this->checkIfHourIsAvaliable($hours_control, $ids_hour_control_selected);
 
-            // if ((!isset($ids_hour_control) || $hourControl[0]->id !== $id_hour_control) && $data_atual <= $data_minutos) {
-            //     $alert_user = true;
-            // } else if ($data_atual > $data_minutos) {
-            //     $this->destroyHourControl($hourControl[0]->hour_id);
-            // }
-        }
 
         return $alert_user;
     }
@@ -44,9 +33,9 @@ class HourControlService
         $ids_hour_control = $request->session()->get('order.ids_hour_control') ?: [];
         
         if (!empty($ids_hour_control)) {
-            $hour_control = $this->hourControlRepository->updateHourControl($request); // passar um array no parâmetro em vez do $request
+            $this->updateHourControl($ids_hour_control, $request->hour_id);
         } else {
-            $hour_control = $this->createHourControl($request->hour_id);
+            $this->createHourControl($request->hour_id);
             $ids_hour_control = $this->getIdsHourControl($request->hour_id);
             
             if (!empty($ids_hour_control)) {
@@ -69,6 +58,22 @@ class HourControlService
         }
 
         return $this->hourControlRepository->createHourControl($hours_id_query);
+    }
+
+    public function updateHourControl($ids_hour_control, $hours_id): void
+    {
+        
+        $ids_hour_control = array_values($ids_hour_control);
+        $new_hours_id = array_values($hours_id);
+        $new_hours = array_combine($ids_hour_control, $new_hours_id);
+
+        foreach ($new_hours as $id_hour_control => $hour_id) {
+            $hour_id_query = [
+                'hour_id' => $hour_id,
+            ];
+
+            $this->hourControlRepository->updateHourControl($id_hour_control, $hour_id_query);
+        }
     }
 
     public function destroyHourControl(int $hour_id): void
