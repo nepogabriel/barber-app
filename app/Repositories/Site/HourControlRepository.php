@@ -22,6 +22,14 @@ class HourControlRepository
             ->get();
     }
 
+    public function getHourControlByIdHourControl(array $ids_hour_control)
+    {
+        return HourControl::query()
+            ->select('id', 'hour_id', 'service_id')
+            ->whereIn('id', $ids_hour_control)
+            ->get();
+    }
+
     public function updateHourControl(int $id_hour_control, array $hours_id)
     {
         return HourControl::where(

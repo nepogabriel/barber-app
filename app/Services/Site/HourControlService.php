@@ -30,10 +30,10 @@ class HourControlService
 
     public function hourControl(HourFormRequest $request): void
     {
-        $ids_hour_control = $request->session()->get('order.ids_hour_control') ?: [];
+        $ids_hour_control_selected = $request->session()->get('order.ids_hour_control') ?: [];
         
-        if (!empty($ids_hour_control)) {
-            $this->updateHourControl($ids_hour_control, $request->hour_id);
+        if (!empty($ids_hour_control_selected)) {
+            $this->updateHourControl($request->hour_id, $ids_hour_control_selected);
         } else {
             $this->createHourControl($request->hour_id);
             $ids_hour_control = $this->getIdsHourControl($request->hour_id);
@@ -49,9 +49,10 @@ class HourControlService
         $hours_id_query = [];
         $now = now();
 
-        foreach ($hours_id as $hour_id) {
+        foreach ($hours_id as $service_id => $hour_id) {
             $hours_id_query[] = [
                 'hour_id' => $hour_id,
+                'service_id' => $service_id,
                 'created_at' => $now,
                 'updated_at' => $now
             ];
@@ -60,19 +61,23 @@ class HourControlService
         return $this->hourControlRepository->createHourControl($hours_id_query);
     }
 
-    public function updateHourControl($ids_hour_control, $hours_id): void
+    private function updateHourControl(array $new_hours_id, array $ids_hour_control_selected)
     {
-        
-        $ids_hour_control = array_values($ids_hour_control);
-        $new_hours_id = array_values($hours_id);
-        $new_hours = array_combine($ids_hour_control, $new_hours_id);
+        $results = $this->hourControlRepository->getHourControlByIdHourControl($ids_hour_control_selected);
 
-        foreach ($new_hours as $id_hour_control => $hour_id) {
-            $hour_id_query = [
-                'hour_id' => $hour_id,
-            ];
+        // caso retorne vazio deveria lançar uma exceção aqui OU apenas deixar o fluxo seguir?
 
-            $this->hourControlRepository->updateHourControl($id_hour_control, $hour_id_query);
+        foreach ($results as $result) {
+            if (isset($new_hours_id[$result['service_id']]) && $new_hours_id[$result['service_id']] != $result['hour_id']) {
+                $hours_id = [
+                    'hour_id' => $new_hours_id[$result['service_id']]
+                ];
+
+                $this->hourControlRepository->updateHourControl($result['id'], $hours_id);
+            }
+
+            // Talvez seria ideal atualizar a sessão com os novos ID Hour Control e ID Hour, porque o número de horários/servços podem diminuir.
+            // Talvez deletar os serviços que o usuário 'descatou' durante o fluxo.
         }
     }
 
