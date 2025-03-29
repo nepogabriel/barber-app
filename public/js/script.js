@@ -87,7 +87,7 @@ function montarHorarios(response) {
             input.type = 'radio';
             input.name = `hour_id[${services[j]['id']}]`;
             input.value = hour.id;
-            input.id = 'hour_' + hour.id;
+            input.id = `hour_${hour.id}_${services[j]['id']}`;
 
             if (response.order_hour_id && response.order_hour_id == hour.id) {
                 input.checked = true;
@@ -95,7 +95,7 @@ function montarHorarios(response) {
 
             var label = document.createElement('label');
             label.className = 'form-check-label';
-            label.htmlFor = 'hour_' + hour.id;
+            label.htmlFor = `hour_${hour.id}_${services[j]['id']}`;
             label.textContent = hour.time;
 
             // Adiciona os elementos criados à li
