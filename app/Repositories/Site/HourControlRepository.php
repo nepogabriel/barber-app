@@ -42,4 +42,9 @@ class HourControlRepository
     {
         HourControl::where('hour_id', $hour_id)->delete();
     }
+
+    public function delete($ids)
+    {
+        HourControl::whereIn('id', $ids)->delete();
+    }
 }

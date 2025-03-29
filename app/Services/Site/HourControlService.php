@@ -70,24 +70,28 @@ class HourControlService
 
         // caso retorne vazio deveria lançar uma exceção aqui OU apenas deixar o fluxo seguir?
 
-        $new_session = [];
+        $ids_hour_control_to_delete = [];
 
         foreach ($results as $result) {
+            // Pensar no seguinte cenário: Caso o cliente adicione depois um novo serviço OU troque o serviço (talvez o updateOrCreate ajude no lugar apenas do update)
+
             if (isset($new_hours_id[$result['service_id']]) && $new_hours_id[$result['service_id']] != $result['hour_id']) {
                 $new_id_hour = $new_hours_id[$result['service_id']];
                 $id_hour_control = $result['id'];
 
-                $new_session[$new_id_hour] = $id_hour_control;
-                
                 $hours_id = [
                     'hour_id' => $new_id_hour
                 ];
 
                 $this->hourControlRepository->updateHourControl($id_hour_control, $hours_id);
+            } else if (!isset($new_hours_id[$result->service_id])) {
+                $ids_hour_control_to_delete[$result->hour_id] = $result->id;
             }
         }
 
-        // Utilizar o array diff para pegar a diferença da sessão atual e sessão nova, essas horas diferentes será deletada no banco de dados
+        $this->delete($ids_hour_control_to_delete);
+
+        $new_session = array_diff($ids_hour_control_selected, $ids_hour_control_to_delete);
 
         if (!empty($new_session))
             $this->session->put('order.ids_hour_control', $new_session);
@@ -96,6 +100,11 @@ class HourControlService
     public function destroyHourControl(int $hour_id): void
     {
         $this->hourControlRepository->destroyHourControl($hour_id);
+    }
+
+    public function delete(array $ids_hour_control_to_delete): void
+    {
+        $this->hourControlRepository->delete($ids_hour_control_to_delete);
     }
 
     private function getIdsHourControl(array $hour_id): array
