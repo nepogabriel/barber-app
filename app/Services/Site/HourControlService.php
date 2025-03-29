@@ -3,6 +3,7 @@
 namespace App\Services\Site;
 
 use App\Http\Requests\site\HourFormRequest;
+use App\Interfaces\SessionInterface;
 use App\Repositories\Site\HourControlRepository;
 use DateTime;
 
@@ -10,7 +11,9 @@ class HourControlService
 {
     private HourControlRepository $hourControlRepository;
 
-    public function __construct()
+    public function __construct(
+        private SessionInterface $session
+    )
     {
         $this->hourControlRepository = new HourControlRepository();
     }
@@ -67,18 +70,27 @@ class HourControlService
 
         // caso retorne vazio deveria lançar uma exceção aqui OU apenas deixar o fluxo seguir?
 
+        $new_session = [];
+
         foreach ($results as $result) {
             if (isset($new_hours_id[$result['service_id']]) && $new_hours_id[$result['service_id']] != $result['hour_id']) {
+                $new_id_hour = $new_hours_id[$result['service_id']];
+                $id_hour_control = $result['id'];
+
+                $new_session[$new_id_hour] = $id_hour_control;
+                
                 $hours_id = [
-                    'hour_id' => $new_hours_id[$result['service_id']]
+                    'hour_id' => $new_id_hour
                 ];
 
-                $this->hourControlRepository->updateHourControl($result['id'], $hours_id);
+                $this->hourControlRepository->updateHourControl($id_hour_control, $hours_id);
             }
-
-            // Talvez seria ideal atualizar a sessão com os novos ID Hour Control e ID Hour, porque o número de horários/servços podem diminuir.
-            // Talvez deletar os serviços que o usuário 'descatou' durante o fluxo.
         }
+
+        // Utilizar o array diff para pegar a diferença da sessão atual e sessão nova, essas horas diferentes será deletada no banco de dados
+
+        if (!empty($new_session))
+            $this->session->put('order.ids_hour_control', $new_session);
     }
 
     public function destroyHourControl(int $hour_id): void
@@ -99,7 +111,7 @@ class HourControlService
         return $ids_hour_control;
     }
 
-    private function checkIfHourIsAvaliable($hours_control, $ids_hour_control_selected)
+    private function checkIfHourIsAvaliable($hours_control, $ids_hour_control_selected): bool
     {
         $alert_user = false;
         $current_date = new DateTime();

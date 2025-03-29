@@ -15,7 +15,9 @@ class HourController extends Controller
 {
     private HourService $hourService;
 
-    public function __construct()
+    public function __construct(
+        private HourControlService $hour_control_service
+    )
     {
         $this->hourService = new HourService();
     }
@@ -45,23 +47,18 @@ class HourController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(HourFormRequest $request)
     {
-        $hourControlService = new HourControlService();
-
         $ids_hour_control_selected = $request->session()->get('order.ids_hour_control') ?: [];
 
-        if ($hourControlService->validateHourControl($request->hour_id, $ids_hour_control_selected)) {
+        if ($this->hour_control_service->validateHourControl($request->hour_id, $ids_hour_control_selected)) {
             $message_alert_user = 'Desculpe! Outro usuário escolheu o mesmo horário.';
 
             return to_route('site.hour.index')
                 ->with('hour_control.alert_user', $message_alert_user); 
         }
 
-        $hourControlService->hourControl($request);
+        $this->hour_control_service->hourControl($request);
 
         $request->session()->put('order.hour_id', $request->hour_id);
 
