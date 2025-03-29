@@ -75,15 +75,12 @@ class HourControlService
         foreach ($results as $result) {
             // Pensar no seguinte cenário: Caso o cliente adicione depois um novo serviço OU troque o serviço (talvez o updateOrCreate ajude no lugar apenas do update)
 
-            if (isset($new_hours_id[$result['service_id']]) && $new_hours_id[$result['service_id']] != $result['hour_id']) {
-                $new_id_hour = $new_hours_id[$result['service_id']];
-                $id_hour_control = $result['id'];
-
+            if (isset($new_hours_id[$result->service_id]) && $new_hours_id[$result->service_id] != $result->hour_id) {
                 $hours_id = [
-                    'hour_id' => $new_id_hour
+                    'hour_id' => $new_hours_id[$result->service_id]
                 ];
 
-                $this->hourControlRepository->updateHourControl($id_hour_control, $hours_id);
+                $this->hourControlRepository->updateHourControl($result->id, $hours_id);
             } else if (!isset($new_hours_id[$result->service_id])) {
                 $ids_hour_control_to_delete[$result->hour_id] = $result->id;
             }
