@@ -11,17 +11,17 @@ class LaravelSession implements SessionInterface
         private Request $request
     ) {}
 
-    public function get(string $key, $default = null): mixed
+    public function get(string $key, mixed $default = null): mixed
     {
         return $this->request->session()->get($key, $default);
     }
 
-    public function put(string $key, $value): void
+    public function put(string|array $key, mixed $value): void
     {
         $this->request->session()->put($key, $value);
     }
 
-    public function forget(string $key): void
+    public function forget(string|array $key): void
     {
         $this->request->session()->forget($key);
     }
