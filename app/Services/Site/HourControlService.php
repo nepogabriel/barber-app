@@ -18,17 +18,31 @@ class HourControlService
         $this->hourControlRepository = new HourControlRepository();
     }
 
-    public function validateHourControl(array $hours_id, array $ids_hour_control_selected): bool
+    public function validateHourControl(array $hours_id, array $ids_hour_control_selected): array
     {
         $alert_user = false;
+        $message = '';
+        
+        if($alert_user = $this->checkSameHour($hours_id)) {
+            $message = 'Ops! Não permitido o mesmo horário para serviços diferentes.';
+
+            return [
+                'alert_user' => $alert_user,
+                'message' => $message,
+            ];
+        }
 
         $hours_control = $this->hourControlRepository->getHourControl($hours_id);
 
-        if (!empty($hours_control))
+        if (!empty($hours_control)) {
             $alert_user = $this->checkIfHourIsAvaliable($hours_control, $ids_hour_control_selected);
+            $message = $alert_user ? 'Desculpe! Outro usuário escolheu o mesmo horário.' : '';
+        }
 
-
-        return $alert_user;
+        return [
+            'alert_user' => $alert_user,
+            'message' => $message,
+        ];
     }
 
     public function hourControl(array $hours_id): void
@@ -164,5 +178,16 @@ class HourControlService
 
         if ($result->isNotEmpty())
             $this->ids_hour_control_selected[$result->first()?->hour_id] = $result->first()?->id;
+    }
+
+    private function checkSameHour(array $hours_id): bool
+    {
+        $alert_user = false;
+
+        if (count(array_unique($hours_id)) <= 1) {
+            $alert_user = true;
+        }
+
+        return $alert_user;
     }
 }

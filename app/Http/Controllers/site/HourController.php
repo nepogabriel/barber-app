@@ -40,8 +40,10 @@ class HourController extends Controller
     {
         $ids_hour_control_selected = $request->session()->get('order.ids_hour_control') ?: [];
 
-        if ($this->hour_control_service->validateHourControl($request->hour_id, $ids_hour_control_selected)) {
-            $message_alert_user = 'Desculpe! Outro usuário escolheu o mesmo horário.';
+        $alert_user = $this->hour_control_service->validateHourControl($request->hour_id, $ids_hour_control_selected);
+
+        if (isset($alert_user['alert_user']) && $alert_user['alert_user']) {
+            $message_alert_user = $alert_user['message'] ?: 'Desculpe! Outro usuário escolheu o mesmo horário.';
 
             return to_route('site.hour.index')
                 ->with('hour_control.alert_user', $message_alert_user); 
