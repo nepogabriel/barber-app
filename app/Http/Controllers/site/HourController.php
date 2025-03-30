@@ -51,7 +51,8 @@ class HourController extends Controller
 
         $this->hour_control_service->hourControl($request->hour_id);
 
-        $request->session()->put('order.hour_id', $request->hour_id);
+        $hours_id = array_map('intval', $request->hour_id);
+        $request->session()->put('order.hour_id', $hours_id);
 
         return to_route('site.client.index');
     }
@@ -59,7 +60,7 @@ class HourController extends Controller
     public function show(Request $request)
     {
         $order_professional_id = $request->session()->get('order.professional_id');
-        $order_hour_id = $request->session()->get('order.hour_id');
+        $order_hour_id = $request->session()->get('order.hour_id') ?: [];
 
         $hours = $this->hourService->getHours($order_professional_id, $request->date);
 
@@ -69,7 +70,7 @@ class HourController extends Controller
         }
 
         $data = [
-            'order_hour_id' => $order_hour_id ? $order_hour_id : false, 
+            'order_hour_id' => $order_hour_id,
             'order_professional_id' => $order_professional_id,
             'hours' => $hours,
             'services' => $services,
