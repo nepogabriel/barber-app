@@ -5,6 +5,7 @@ namespace App\Services\Site;
 use App\Interfaces\SessionInterface;
 use App\Repositories\Site\HourControlRepository;
 use DateTime;
+use Illuminate\Database\Eloquent\Collection;
 
 class HourControlService
 {
@@ -35,8 +36,16 @@ class HourControlService
         $hours_control = $this->hourControlRepository->getHourControl($hours_id);
 
         if (!empty($hours_control)) {
-            $alert_user = $this->checkIfHourIsAvaliable($hours_control, $ids_hour_control_selected);
-            $message = $alert_user ? 'Desculpe! Outro usuário escolheu o mesmo horário.' : '';
+            $check_hour = $this->checkIfHourIsAvaliable($hours_control, $ids_hour_control_selected);
+
+            $services_name = '';
+
+            if (isset($check_hour['hours_id']) && !empty($check_hour['hours_id'])) {
+                $services_name = $this->includeServiceNameInAlert($hours_id, $check_hour['hours_id']);
+            }
+
+            $alert_user = $check_hour['alert_user'];
+            $message = $check_hour['alert_user'] ? (string) 'Desculpe! Outro usuário escolheu o mesmo horário. ' . $services_name : '';
         }
 
         return [
@@ -132,9 +141,10 @@ class HourControlService
         return $ids_hour_control;
     }
 
-    private function checkIfHourIsAvaliable($hours_control, $ids_hour_control_selected): bool
+    private function checkIfHourIsAvaliable(Collection $hours_control, array $ids_hour_control_selected): array
     {
         $alert_user = false;
+        $hours_id = [];
         $current_date = new DateTime();
 
         foreach ($hours_control as $hour_control) {
@@ -143,13 +153,19 @@ class HourControlService
             if (
                 (empty($ids_hour_control_selected) || (isset($ids_hour_control_selected[$hour_control->hour_id]) && $hour_control->id !== $ids_hour_control_selected[$hour_control->hour_id])) 
                 && $current_date <= $expired_date) {
+
                 $alert_user = true;
+                $hours_id[] = (int) $hour_control->hour_id;
+
             } else if ($current_date > $expired_date) {
                 $this->destroyHourControl($hour_control->hour_id);
             }
         }
 
-        return $alert_user;
+        return [
+            'alert_user' => $alert_user,
+            'hours_id' => $hours_id,
+        ];
     }
 
     private function addTenMinutes($updated_at)
@@ -189,5 +205,37 @@ class HourControlService
         }
 
         return $alert_user;
+    }
+
+    private function includeServiceNameInAlert(array $hours_id, array $alert_hours_id): string
+    {
+        $services_id = [];
+
+        foreach ($hours_id as $service_id => $hour_id) {
+            if (!in_array($hour_id, $alert_hours_id))
+                continue;
+
+            $services_id[] = $service_id;
+        }
+
+        $service_service = new ServiceService();
+        $services = $service_service->getNameOfServices($services_id);
+
+        $message = 'Serviço: ';
+        $names = '';
+        $quantidade = 1;
+
+        foreach ($services as $service) {
+            if ($quantidade > 1) {
+                $message = 'Serviços: ';
+                $names .= ' e ';
+            }
+
+            $names .= (string) $service->name;
+
+            $quantidade++;
+        }
+
+        return (string) $message . $names;
     }
 }
