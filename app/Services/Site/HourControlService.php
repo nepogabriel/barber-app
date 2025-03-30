@@ -10,6 +10,7 @@ use DateTime;
 class HourControlService
 {
     private HourControlRepository $hourControlRepository;
+    private array $ids_hour_control_selected = [];
 
     public function __construct(
         private SessionInterface $session
@@ -33,10 +34,10 @@ class HourControlService
 
     public function hourControl(HourFormRequest $request): void
     {
-        $ids_hour_control_selected = $request->session()->get('order.ids_hour_control') ?: [];
-        
-        if (!empty($ids_hour_control_selected)) {
-            $this->updateHourControl($request->hour_id, $ids_hour_control_selected);
+        $this->ids_hour_control_selected = $this->session->get('order.ids_hour_control') ?: [];
+
+        if (!empty($this->ids_hour_control_selected)) {
+            $this->updateHourControl($request->hour_id);
         } else {
             $this->createHourControl($request->hour_id);
             $ids_hour_control = $this->getIdsHourControl($request->hour_id);
@@ -64,16 +65,15 @@ class HourControlService
         return $this->hourControlRepository->createHourControl($hours_id_query);
     }
 
-    private function updateHourControl(array $new_hours_id, array $ids_hour_control_selected)
+    private function updateHourControl(array $new_hours_id)
     {
-        $results = $this->hourControlRepository->getHourControlByIdHourControl($ids_hour_control_selected);
-
-        // caso retorne vazio deveria lançar uma exceção aqui OU apenas deixar o fluxo seguir?
-
+        $results = $this->hourControlRepository->getHourControlByIdHourControl($this->ids_hour_control_selected);
+        
         $ids_hour_control_to_delete = [];
+        $services = [];
 
         foreach ($results as $result) {
-            // Pensar no seguinte cenário: Caso o cliente adicione depois um novo serviço OU troque o serviço (talvez o updateOrCreate ajude no lugar apenas do update)
+            $services[] = $result->service_id;
 
             if (isset($new_hours_id[$result->service_id]) && $new_hours_id[$result->service_id] != $result->hour_id) {
                 $hours_id = [
@@ -88,7 +88,9 @@ class HourControlService
 
         $this->delete($ids_hour_control_to_delete);
 
-        $new_session = array_diff($ids_hour_control_selected, $ids_hour_control_to_delete);
+        $this->checkNewServicesAddedAfter($new_hours_id, $services);
+
+        $new_session = array_diff($this->ids_hour_control_selected, $ids_hour_control_to_delete);
 
         if (!empty($new_session))
             $this->session->put('order.ids_hour_control', $new_session);
@@ -144,5 +146,24 @@ class HourControlService
         $date_with_ten_minutes->modify('+10 minutes');
 
         return $date_with_ten_minutes;
+    }
+
+    private function checkNewServicesAddedAfter(array $new_hours_id, array $services): void
+    {
+        $hours_id = [];
+
+        foreach ($new_hours_id as $service_id => $hour_id) {
+            if (empty($services) || in_array($service_id, $services))
+                continue;
+
+            $hours_id[] = $hour_id;
+
+            $this->hourControlRepository->updateOrCreateHourControl($service_id, $hour_id);
+        }
+
+        $result = $this->hourControlRepository->getHourControl($hours_id);
+
+        if ($result->isNotEmpty())
+            $this->ids_hour_control_selected[$result->first()?->hour_id] = $result->first()?->id;
     }
 }

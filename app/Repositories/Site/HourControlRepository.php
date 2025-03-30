@@ -3,9 +3,7 @@
 namespace App\Repositories\Site;
 
 use App\Models\HourControl;
-use Illuminate\Support\Facades\DB;
-
-
+use Illuminate\Database\Eloquent\Collection;
 
 class HourControlRepository
 {
@@ -14,7 +12,7 @@ class HourControlRepository
         return HourControl::insert($hours_id);
     }
 
-    public function getHourControl(array $hour_id)
+    public function getHourControl(array $hour_id): Collection
     {
         return HourControl::query()
             ->select('id', 'hour_id', 'updated_at')
@@ -22,7 +20,7 @@ class HourControlRepository
             ->get();
     }
 
-    public function getHourControlByIdHourControl(array $ids_hour_control)
+    public function getHourControlByIdHourControl(array $ids_hour_control): Collection
     {
         return HourControl::query()
             ->select('id', 'hour_id', 'service_id')
@@ -36,6 +34,14 @@ class HourControlRepository
             'id', 
             $id_hour_control
             )->update($hours_id);
+    }
+
+    public function updateOrCreateHourControl(int $service_id, int $hour_id): void
+    {
+        HourControl::updateOrCreate(
+            ['hour_id' => $hour_id],
+            ['hour_id' => $hour_id, 'service_id' => $service_id]
+        );
     }
 
     public function destroyHourControl(int $hour_id): void
