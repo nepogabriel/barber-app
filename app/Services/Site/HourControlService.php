@@ -145,6 +145,7 @@ class HourControlService
     {
         $alert_user = false;
         $hours_id = [];
+        $delete_hour_controls_id = [];
         $current_date = new DateTime();
 
         foreach ($hours_control as $hour_control) {
@@ -158,9 +159,12 @@ class HourControlService
                 $hours_id[] = (int) $hour_control->hour_id;
 
             } else if ($current_date > $expired_date) {
-                $this->destroyHourControl($hour_control->hour_id);
+                $delete_hour_controls_id[] = $hour_control->id;
             }
         }
+
+        if (!empty($delete_hour_controls_id))
+            $this->hourControlRepository->delete($delete_hour_controls_id);
 
         return [
             'alert_user' => $alert_user,
