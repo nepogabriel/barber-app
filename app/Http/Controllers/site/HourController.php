@@ -47,7 +47,7 @@ class HourController extends Controller
                 ->with('hour_control.alert_user', $message_alert_user); 
         }
 
-        $this->hour_control_service->hourControl($request);
+        $this->hour_control_service->hourControl($request->hour_id);
 
         $request->session()->put('order.hour_id', $request->hour_id);
 

@@ -2,7 +2,6 @@
 
 namespace App\Services\Site;
 
-use App\Http\Requests\site\HourFormRequest;
 use App\Interfaces\SessionInterface;
 use App\Repositories\Site\HourControlRepository;
 use DateTime;
@@ -32,18 +31,18 @@ class HourControlService
         return $alert_user;
     }
 
-    public function hourControl(HourFormRequest $request): void
+    public function hourControl(array $hours_id): void
     {
         $this->ids_hour_control_selected = $this->session->get('order.ids_hour_control') ?: [];
 
         if (!empty($this->ids_hour_control_selected)) {
-            $this->updateHourControl($request->hour_id);
+            $this->updateHourControl($hours_id);
         } else {
-            $this->createHourControl($request->hour_id);
-            $ids_hour_control = $this->getIdsHourControl($request->hour_id);
+            $this->createHourControl($hours_id);
+            $ids_hour_control = $this->getIdsHourControl($hours_id);
             
             if (!empty($ids_hour_control)) {
-                $request->session()->put('order.ids_hour_control', $ids_hour_control);
+                $this->session->put('order.ids_hour_control', $ids_hour_control);
             }
         }
     }
