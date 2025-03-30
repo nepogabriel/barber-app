@@ -22,9 +22,6 @@ class HourController extends Controller
         $this->hourService = new HourService();
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $order_hour_id = $request->session()->get('order.hour_id');
@@ -37,14 +34,6 @@ class HourController extends Controller
             ->with('hours', $hours)
             ->with('order_hour_id', $order_hour_id)
             ->with('message_alert_user', $message_alert_user);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     public function store(HourFormRequest $request)
@@ -65,9 +54,6 @@ class HourController extends Controller
         return to_route('site.client.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Request $request)
     {
         $order_professional_id = $request->session()->get('order.professional_id');
@@ -90,23 +76,6 @@ class HourController extends Controller
         return response()->json($data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-
     private function getHours(Request $request)
     {
         $order_professional_id = $request->session()->get('order.professional_id');
@@ -115,9 +84,7 @@ class HourController extends Controller
             ->orderBy('date')
             ->orderBy('time')
             ->where('professional_id', '=', $order_professional_id)
-            //->where('date', '>=', DB::raw('curdate()'))
             ->whereRaw('date >= curdate()')
-            //->whereRaw('time >= curtime()')
             ->where('checked', '=', '0')
             ->get();
 
