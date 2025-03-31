@@ -21,9 +21,6 @@ class OrderController extends Controller
         $this->hourService = new HourService();
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         if ($request->session()->get('order.service_id') == null) {
@@ -64,17 +61,6 @@ class OrderController extends Controller
             ->with('order_session', $order_session);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $appointment = Appointment::create($request->all());
@@ -94,38 +80,11 @@ class OrderController extends Controller
             ->with('message.order_success', 'Agendamento confirmado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Request $request)
     {
         $message_order_success = $request->session()->get('message.order_success');
 
         return view('site.order.show')
             ->with('message', $message_order_success);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
