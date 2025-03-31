@@ -12,9 +12,6 @@ class FooterController extends Controller
         public SettingService $settingService
     ) {}
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $modules = 'DEU CERTO!';
@@ -27,9 +24,6 @@ class FooterController extends Controller
             ->with('message_success', $message_success);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit()
     {
         $data = $this->prepareFields();
@@ -37,9 +31,6 @@ class FooterController extends Controller
         return view('admin.settings.modules.footer.edit')->with('data', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $data = [
