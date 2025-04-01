@@ -4,8 +4,8 @@ namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\site\HourFormRequest;
-use App\Http\Service\HourService;
 use App\Models\Hour;
+use App\Services\HourService;
 use App\Services\Site\HourControlService;
 use App\Services\Site\ServiceService;
 use DateTime;

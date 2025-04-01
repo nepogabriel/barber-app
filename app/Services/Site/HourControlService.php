@@ -3,6 +3,7 @@
 namespace App\Services\Site;
 
 use App\Interfaces\SessionInterface;
+use App\Services\Site\ServiceService;
 use App\Repositories\Site\HourControlRepository;
 use DateTime;
 use Illuminate\Database\Eloquent\Collection;
@@ -13,7 +14,8 @@ class HourControlService
     private array $ids_hour_control_selected = [];
 
     public function __construct(
-        private SessionInterface $session
+        private SessionInterface $session,
+        private ServiceService $service_service
     )
     {
         $this->hourControlRepository = new HourControlRepository();
@@ -222,8 +224,7 @@ class HourControlService
             $services_id[] = $service_id;
         }
 
-        $service_service = new ServiceService();
-        $services = $service_service->getNameOfServices($services_id);
+        $services = $this->service_service->getNameOfServices($services_id);
 
         $message = 'Serviço: ';
         $names = '';

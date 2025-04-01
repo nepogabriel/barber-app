@@ -4,9 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HourFormRequest;
-use App\Http\Service\HourService;
 use App\Models\Hour;
 use App\Models\Professional;
+use App\Services\HourService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
-use App\Http\Service\HourService;
 use App\Models\Appointment;
 use App\Models\Hour;
 use App\Models\Professional;
 use App\Models\Service;
+use App\Services\HourService;
 use App\Services\Site\HourControlService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

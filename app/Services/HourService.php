@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Service;
+namespace App\Services;
 
 use App\Repositories\Site\HourRepository;
 use DateTime;
