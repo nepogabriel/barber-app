@@ -21,11 +21,6 @@ class HourController extends Controller
         $professionals = Professional::query()->orderBy('name')->get();
         $hours = Hour::query()->orderBy('date')->orderBy('time')->get();
 
-        foreach ($hours as $hour) {
-            $hour->date = $this->hour_service->formatDate($hour->date);
-            $hour->time = $this->hour_service->formatTime($hour->time);
-        }
-
         $message_success = $request->session()->get('message.success');
 
         return view('admin.hour.index')
