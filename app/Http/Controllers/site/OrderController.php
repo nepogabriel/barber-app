@@ -4,8 +4,8 @@ namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Services\HourControlService;
 use App\Services\OrderService;
-use App\Services\Site\HourControlService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

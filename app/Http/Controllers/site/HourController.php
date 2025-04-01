@@ -5,8 +5,8 @@ namespace App\Http\Controllers\site;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\site\HourFormRequest;
 use App\Models\Hour;
+use App\Services\HourControlService;
 use App\Services\HourService;
-use App\Services\Site\HourControlService;
 use App\Services\Site\ServiceService;
 use Illuminate\Http\Request;
 

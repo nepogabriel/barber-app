@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Site;
+namespace App\Services;
 
 use App\Interfaces\SessionInterface;
 use App\Services\Site\ServiceService;
@@ -206,7 +206,7 @@ class HourControlService
     {
         $alert_user = false;
 
-        if (count(array_unique($hours_id)) <= 1) {
+        if (count($hours_id) > 1 && count(array_unique($hours_id)) <= 1) {
             $alert_user = true;
         }
 
