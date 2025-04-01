@@ -8,7 +8,6 @@ use App\Models\Hour;
 use App\Services\HourService;
 use App\Services\Site\HourControlService;
 use App\Services\Site\ServiceService;
-use DateTime;
 use Illuminate\Http\Request;
 
 class HourController extends Controller
@@ -16,7 +15,8 @@ class HourController extends Controller
     private HourService $hourService;
 
     public function __construct(
-        private HourControlService $hour_control_service
+        private HourControlService $hour_control_service,
+        private ServiceService $service_service
     )
     {
         $this->hourService = new HourService();
@@ -65,8 +65,7 @@ class HourController extends Controller
         $hours = $this->hourService->getHours($order_professional_id, $request->date);
 
         if ($request->session()->get('order.service_id') !== null) {
-            $serviceService = new ServiceService();
-            $services = $serviceService->getNameOfServices($request->session()->get('order.service_id'));
+            $services = $this->service_service->getNameOfServices($request->session()->get('order.service_id'));
         }
 
         $data = [
