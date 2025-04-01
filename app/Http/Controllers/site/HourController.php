@@ -12,15 +12,11 @@ use Illuminate\Http\Request;
 
 class HourController extends Controller
 {
-    private HourService $hourService;
-
     public function __construct(
+        private HourService $hour_service,
         private HourControlService $hour_control_service,
         private ServiceService $service_service
-    )
-    {
-        $this->hourService = new HourService();
-    }
+    ) {}
 
     public function index(Request $request)
     {
@@ -62,7 +58,7 @@ class HourController extends Controller
         $order_professional_id = $request->session()->get('order.professional_id');
         $order_hour_id = $request->session()->get('order.hour_id') ?: [];
 
-        $hours = $this->hourService->getHours($order_professional_id, $request->date);
+        $hours = $this->hour_service->getHours($order_professional_id, $request->date);
 
         if ($request->session()->get('order.service_id') !== null) {
             $services = $this->service_service->getNameOfServices($request->session()->get('order.service_id'));
@@ -91,8 +87,8 @@ class HourController extends Controller
             ->get();
 
         foreach ($hours as $hour) {
-            $hour->date = $this->hourService->formatDate($hour->date);
-            $hour->time = $this->hourService->formatTime($hour->time);
+            $hour->date = $this->hour_service->formatDate($hour->date);
+            $hour->time = $this->hour_service->formatTime($hour->time);
         }
 
         return $hours;

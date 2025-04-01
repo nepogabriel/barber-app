@@ -11,12 +11,9 @@ use Illuminate\Support\Facades\DB;
 
 class AppointmentController extends Controller
 {
-    private HourService $hourService;
-
-    public function __construct()
-    {
-        $this->hourService = new HourService();
-    }
+    public function __construct(
+        private HourService $hour_service
+    ) {}
 
     public function index(Request $request)
     {
@@ -32,8 +29,8 @@ class AppointmentController extends Controller
             ->get();
 
         foreach ($appointments as $appointment) {
-            $appointment->date = $this->hourService->formatDate($appointment->date);
-            $appointment->time = $this->hourService->formatTime($appointment->time);
+            $appointment->date = $this->hour_service->formatDate($appointment->date);
+            $appointment->time = $this->hour_service->formatTime($appointment->time);
 
             if ($appointment->telephone_client) {
                 $appointment->phone = preg_replace('/\D/', '', $appointment->telephone_client);

@@ -12,12 +12,9 @@ use Illuminate\Support\Facades\DB;
 
 class HourController extends Controller
 {
-    private HourService $hourService;
-
-    public function __construct()
-    {
-        $this->hourService = new HourService();
-    }
+    public function __construct(
+        private HourService $hour_service
+    ) {}
 
     public function index(Request $request)
     {
@@ -25,8 +22,8 @@ class HourController extends Controller
         $hours = Hour::query()->orderBy('date')->orderBy('time')->get();
 
         foreach ($hours as $hour) {
-            $hour->date = $this->hourService->formatDate($hour->date);
-            $hour->time = $this->hourService->formatTime($hour->time);
+            $hour->date = $this->hour_service->formatDate($hour->date);
+            $hour->time = $this->hour_service->formatTime($hour->time);
         }
 
         $message_success = $request->session()->get('message.success');
