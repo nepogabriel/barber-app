@@ -86,11 +86,6 @@ class HourController extends Controller
             ->where('checked', '=', '0')
             ->get();
 
-        foreach ($hours as $hour) {
-            $hour->date = $this->hour_service->formatDate($hour->date);
-            $hour->time = $this->hour_service->formatTime($hour->time);
-        }
-
         return $hours;
     }
 }

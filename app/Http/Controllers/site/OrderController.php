@@ -4,22 +4,17 @@ namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
-use App\Models\Hour;
-use App\Models\Professional;
-use App\Models\Service;
-use App\Services\HourService;
+use App\Services\OrderService;
 use App\Services\Site\HourControlService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-    private HourService $hourService;
-
-    public function __construct()
-    {
-        $this->hourService = new HourService();
-    }
+    public function __construct(
+        private OrderService $order_service,
+        private HourControlService $hour_control_service
+    ) {}
 
     public function index(Request $request)
     {
@@ -27,34 +22,8 @@ class OrderController extends Controller
             return to_route('site.order.show');
         }
 
-        $order_session = [
-            'service_id' => $request->session()->get('order.service_id'),
-            'professional_id' => $request->session()->get('order.professional_id'),
-            'hour_id' => $request->session()->get('order.hour_id'),
-            'name_client' => $request->session()->get('order.name_client'),
-            'telephone_client' => $request->session()->get('order.telephone_client'),
-        ];
-
-        $order = [];
-
-        $order['service'] = Service::query()
-            ->select('id', 'name', 'price')
-            ->where('id', '=', $order_session['service_id'])
-            ->get();
-
-        $order['professional'] = Professional::query()
-            ->select('id', 'name')
-            ->where('id', '=', $order_session['professional_id']) 
-            ->get();
-
-        $order['hour'] = Hour::query()
-            ->select('id', 'date', 'time')
-            ->where('id', '=', $order_session['hour_id'])
-            ->get();
-
-        $order['service'][0]->price = str_replace('.', ',', $order['service'][0]->price); 
-        $order['hour'][0]->date = $this->hourService->formatDate($order['hour'][0]->date);
-        $order['hour'][0]->time = $this->hourService->formatTime($order['hour'][0]->time);
+        $order = $this->order_service->getOrderSummary();
+        $order_session = $this->order_service->getDataSession();
         
         return view('site.order.index')
             ->with('order', $order)
@@ -70,8 +39,7 @@ class OrderController extends Controller
               ->update(['checked' => 1]);
 
         if ($appointment && $hour) {
-            $hourControlService = new HourControlService();
-            $hourControlService->destroyHourControl($request->hour_id);
+            $this->hour_control_service->destroyHourControl($request->hour_id);
 
             $request->session()->forget('order');
         }
