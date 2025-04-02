@@ -23,7 +23,10 @@ class OrderService
 
         $professional = $this->professional_service->getProfessionalsByIdToOrderSummary($order_session['professional_id']);
 
-        $summary['professional'] = $professional->name;
+        $summary['professional'] = [
+            'id' => $professional->id,
+            'name' => $professional->name,
+        ];
  
         $summary['client'] = [
             'name' => $order_session['name_client'],
@@ -36,14 +39,20 @@ class OrderService
             $service = $this->service_service->getServicesByIdToOrderSummary((int) $service_id);
             $hour = $this->hour_service->getHourByIdToOrderSummary((int) $hour_id);
 
-            $summary['orders'][] = [
-                'service' => (string) $service->name,
-                'price' => (string) number_format($service->price, 2, ','),
-                'date' => (string) $hour->date,
-                'time' => (string) $hour->time,
-            ];
-
             $price += $service->price;
+
+            $summary['orders'][] = [
+                'service' => [
+                    'id' => (int) $service->id,
+                    'name' => (string) $service->name,
+                ],
+                'hour' => [
+                    'id' => (int) $hour_id,
+                    'date' => (string) $hour->date,
+                    'time' => (string) $hour->time,
+                ],
+                'price' => (string) number_format($service->price, 2, ','),
+            ]; 
         }
 
         $summary['subtotal'] = number_format($price, 2, ',');
@@ -58,7 +67,7 @@ class OrderService
         return $summary;
     }
 
-    public function getDataSession(): array
+    private function getDataSession(): array
     {
         return [
             'services_id' => $this->session->get('order.service_id') ?? [],

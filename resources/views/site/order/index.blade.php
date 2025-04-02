@@ -3,7 +3,7 @@
         @csrf
         
         <div class="row g-4 py-3">
-            <div class="col-lg-7">
+            <div class="col-md-7">
                 <div class="card shadow-sm mb-2">
                     <div class="card-body p-4">
                         <h3 class="card-title fw-bold text-muted mb-4 d-flex justify-content-center">{{ $summary['title'] }}</h3>
@@ -12,8 +12,8 @@
                         
                         @foreach ($summary['orders'] as $order)
                         <div class="row my-4">
-                            <div class="col-md-6 my-1">
-                                <h5 class="mb-2">{{ $order['service'] }}</h5>
+                            <div class="col-sm-12 my-1">
+                                <h5 class="mb-2">{{ $order['service']['name'] }}</h5>
 
                                 <p class="mb-0">
                                     <i class="fa fa-money" aria-hidden="true"></i>&nbsp;
@@ -22,21 +22,25 @@
 
                                 <p class="mb-0">
                                     <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;
-                                    {{ $order['date'] }}
+                                    {{ $order['hour']['date'] }}
                                 </p>
 
                                 <p class="mb-0">
                                     <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;
-                                    {{ $order['time'] }}
+                                    {{ $order['hour']['time'] }}
                                 </p>
+
+                                <input type="hidden" name="orders[{{ $order['service']['id'] }}]" value="{{ $order['hour']['id'] }}"/>
                             </div>
                         </div>
+
+                        @if($loop->first) <hr/> @endif
                         @endforeach
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-5">
+            <div class="col-md-5">
                 <div class="card shadow-sm">
                     <div class="card-body p-4">
                         <h3 class="card-title fw-bold text-muted mb-4 d-flex justify-content-center">Detalhes</h3>
@@ -48,8 +52,9 @@
                                 <h5 class="fw-bold mb-2">Profissional</h5>
                                 <p class="mb-0">
                                     <i class="fa fa-user" aria-hidden="true"></i>&nbsp;
-                                    {{ $summary['professional'] }}
+                                    {{ $summary['professional']['name'] }}
                                 </p>
+                                <input type="hidden" name="professional_id" value="{{ $summary['professional']['id'] }}"/>
                             </div>
                         </div>
                         
@@ -64,6 +69,9 @@
                                     <i class="fa fa-volume-control-phone" aria-hidden="true"></i>&nbsp;
                                     {{ $summary['client']['telephone'] }}
                                 </p>
+
+                                <input type="hidden" name="name_client" value="{{ $summary['client']['name'] }}"/>
+                                <input type="hidden" name="telephone_client" value="{{ $summary['client']['telephone'] }}"/>
                             </div>
                         </div>
                         
