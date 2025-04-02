@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Professional;
 use App\Repositories\ProfessionalRepository;
-use Illuminate\Database\Eloquent\Collection;
 
 class ProfessionalService
 {
@@ -11,7 +11,7 @@ class ProfessionalService
         private ProfessionalRepository $professional_repository
     ) {}
 
-    public function getProfessionalsByIdToOrderSummary(int $professionals_id): Collection
+    public function getProfessionalsByIdToOrderSummary(int $professionals_id): Professional
     {
         return $this->professional_repository->getProfessionalsByIdToOrderSummary($professionals_id);
     }

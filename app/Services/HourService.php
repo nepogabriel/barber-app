@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\Hour;
 use App\Repositories\Site\HourRepository;
 use DateTime;
-use Illuminate\Database\Eloquent\Collection;
 
 class HourService
 {
@@ -30,7 +30,7 @@ class HourService
         return $hours;
     }
 
-    public function getHourByIdToOrderSummary(array $hours_id): Collection
+    public function getHourByIdToOrderSummary(int $hours_id): Hour
     {
         return $this->hour_repository->getHourByIdToOrderSummary($hours_id);
     }

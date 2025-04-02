@@ -3,7 +3,6 @@
 namespace App\Repositories\Site;
 
 use App\Models\Hour;
-use Illuminate\Database\Eloquent\Collection;
 
 class HourRepository
 {
@@ -19,11 +18,11 @@ class HourRepository
             ->get();
     }
 
-    public function getHourByIdToOrderSummary(array $hours_id): Collection
+    public function getHourByIdToOrderSummary(int $hours_id): Hour
     {
         return Hour::query()
             ->select('id', 'date', 'time')
-            ->whereIn('id', $hours_id)
-            ->get();
+            ->where('id', '=', $hours_id)
+            ->first();
     }
 }

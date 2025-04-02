@@ -3,7 +3,6 @@
 namespace App\Repositories\Site;
 
 use App\Models\Service;
-use Illuminate\Database\Eloquent\Collection;
 
 class ServiceRepository
 {
@@ -15,11 +14,11 @@ class ServiceRepository
                 ->get();
     }
 
-    public function getServicesByIdToOrderSummary(array $services_id): Collection
+    public function getServicesByIdToOrderSummary(int $services_id): Service
     {
         return Service::query()
             ->select('id', 'name', 'price')
-            ->whereIn('id', $services_id)
-            ->get();
+            ->where('id', '=', $services_id)
+            ->first();
     }
 }

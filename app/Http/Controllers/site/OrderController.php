@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\SessionInterface;
 use App\Models\Appointment;
 use App\Services\HourControlService;
 use App\Services\OrderService;
@@ -12,22 +13,20 @@ use Illuminate\Support\Facades\DB;
 class OrderController extends Controller
 {
     public function __construct(
+        private SessionInterface $session,
         private OrderService $order_service,
         private HourControlService $hour_control_service
     ) {}
 
     public function index(Request $request)
     {
-        if ($request->session()->get('order.service_id') == null) {
+        if ($this->session->get('order.service_id') == null)
             return to_route('site.order.show');
-        }
 
-        $order = $this->order_service->getOrderSummary();
-        $order_session = $this->order_service->getDataSession();
+        $summary = $this->order_service->getOrderSummary();
         
         return view('site.order.index')
-            ->with('order', $order)
-            ->with('order_session', $order_session);
+            ->with('summary', $summary);
     }
 
     public function store(Request $request)
