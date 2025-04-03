@@ -34,4 +34,9 @@ class HourService
     {
         return $this->hour_repository->getHourByIdToOrderSummary($hours_id);
     }
+
+    public function checkHours(array $hours_id): bool
+    {
+        return $this->hour_repository->checkHours($hours_id);
+    }
 }

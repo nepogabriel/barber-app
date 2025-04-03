@@ -25,4 +25,10 @@ class HourRepository
             ->where('id', '=', $hours_id)
             ->first();
     }
+
+    public function checkHours(array $hours_id): bool
+    {
+        return Hour::whereIn('id', $hours_id)
+            ->update(['checked' => 1]);
+    }
 }

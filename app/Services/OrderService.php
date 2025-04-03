@@ -98,5 +98,9 @@ class OrderService
         }
 
         $created =  $this->appointment_repository->createAppointments($appointments);
+
+        if ($created) {
+            $this->hour_service->checkHours($data['orders']);
+        }
     }
 }
