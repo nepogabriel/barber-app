@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Interfaces\SessionInterface;
+use App\Repositories\AppointmentRepository;
 use App\Services\Site\ServiceService;
 use App\Services\ProfessionalService;
 
@@ -12,7 +13,8 @@ class OrderService
         private SessionInterface $session,
         private ServiceService $service_service,
         private ProfessionalService $professional_service,
-        private HourService $hour_service
+        private HourService $hour_service,
+        private AppointmentRepository $appointment_repository
     ) {}
 
     public function getOrderSummary(): array
@@ -76,5 +78,25 @@ class OrderService
             'name_client' => $this->session->get('order.name_client') ?? [],
             'telephone_client' => $this->session->get('order.telephone_client') ?? [],
         ];
+    }
+
+    public function createAppointments(array $data)
+    {
+        $appointments = [];
+        $now = now();
+
+        foreach ($data['orders'] as $service_id => $hour_id) {
+            $appointments[] = [
+                'hour_id' => (int) $hour_id,
+                'professional_id' => (int) $data['professional_id'],
+                'service_id' => (int) $service_id,
+                'name_client' => (string) $data['name_client'],
+                'telephone_client' => (string) $data['telephone_client'],
+                'created_at' => $now,
+                'updated_at' => $now,
+            ];
+        }
+
+        $created =  $this->appointment_repository->createAppointments($appointments);
     }
 }

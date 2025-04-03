@@ -31,17 +31,14 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        $appointment = Appointment::create($request->all());
-        
-        $hour = DB::table('hours')
-              ->where('id', $request->hour_id)
-              ->update(['checked' => 1]);
+        $validated = $request->validate([
+            'orders' => 'required',
+            'professional_id' => 'required',
+            'name_client' => 'required',
+            'telephone_client' => 'required',
+        ]);
 
-        if ($appointment && $hour) {
-            $this->hour_control_service->destroyHourControl($request->hour_id);
-
-            $request->session()->forget('order');
-        }
+        $this->order_service->createAppointments($validated);
 
         return to_route('site.order.show')
             ->with('message.order_success', 'Agendamento confirmado com sucesso!');
