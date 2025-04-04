@@ -17,16 +17,16 @@ class Service extends Model
         return $this->hasMany(Appointment::class , 'service_id', 'id');
     }
 
-    protected function price(): Attribute
-    {
-        return Attribute::make(
-            get: fn (float $value): string => str_replace('.', ',', $value),
-            set: function (string $value) {
-                $new_value = preg_replace('/[^\d,]/', '', $value);
-                $new_value = str_replace(',', '.', $new_value);
+    // protected function price(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn (float $value): string => str_replace('.', ',', $value),
+    //         set: function (string $value) {
+    //             $new_value = preg_replace('/[^\d,]/', '', $value);
+    //             $new_value = str_replace(',', '.', $new_value);
 
-                return number_format((float) $new_value, 2, '.', '');
-            },
-        );
-    }
+    //             return number_format((float) $new_value, 2, '.', '');
+    //         },
+    //     );
+    // }
 }
