@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Site;
+namespace App\Repositories;
 
 use App\Models\Service;
 

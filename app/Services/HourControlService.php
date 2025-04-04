@@ -3,23 +3,20 @@
 namespace App\Services;
 
 use App\Interfaces\SessionInterface;
-use App\Services\Site\ServiceService;
-use App\Repositories\Site\HourControlRepository;
+use App\Services\ServiceService;
+use App\Repositories\HourControlRepository;
 use DateTime;
 use Illuminate\Database\Eloquent\Collection;
 
 class HourControlService
 {
-    private HourControlRepository $hourControlRepository;
     private array $ids_hour_control_selected = [];
 
     public function __construct(
         private SessionInterface $session,
+        private HourControlRepository $hour_control_repository,
         private ServiceService $service_service
-    )
-    {
-        $this->hourControlRepository = new HourControlRepository();
-    }
+    ) {}
 
     public function validateHourControl(array $hours_id, array $ids_hour_control_selected): array
     {

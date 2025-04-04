@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services\Site;
+namespace App\Services;
 
 use App\Models\Service;
-use App\Repositories\Site\ServiceRepository;
+use App\Repositories\ServiceRepository;
 
 class ServiceService
 {

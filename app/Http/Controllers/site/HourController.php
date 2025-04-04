@@ -7,7 +7,7 @@ use App\Http\Requests\site\HourFormRequest;
 use App\Models\Hour;
 use App\Services\HourControlService;
 use App\Services\HourService;
-use App\Services\Site\ServiceService;
+use App\Services\ServiceService;
 use Illuminate\Http\Request;
 
 class HourController extends Controller

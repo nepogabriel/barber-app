@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Hour;
-use App\Repositories\Site\HourRepository;
+use App\Repositories\HourRepository;
 use DateTime;
 
 class HourService

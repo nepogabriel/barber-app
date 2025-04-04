@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Interfaces\SessionInterface;
 use App\Repositories\AppointmentRepository;
-use App\Services\Site\ServiceService;
+use App\Services\ServiceService;
 use App\Services\ProfessionalService;
 
 class OrderService
