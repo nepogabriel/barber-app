@@ -110,7 +110,7 @@ class HourControlService
             }
         }
 
-        $this->delete($ids_hour_control_to_delete);
+        $this->deleteByHourControlId($ids_hour_control_to_delete);
 
         $this->checkNewServicesAddedAfter($new_hours_id, $services);
 
@@ -125,9 +125,9 @@ class HourControlService
         $this->hourControlRepository->deleteByHourId($hours_id);
     }
 
-    public function delete(array $ids_hour_control_to_delete): void
+    public function deleteByHourControlId(array $ids_hour_control_to_delete): void
     {
-        $this->hourControlRepository->delete($ids_hour_control_to_delete);
+        $this->hourControlRepository->deleteByHourControlId($ids_hour_control_to_delete);
     }
 
     private function getIdsHourControl(array $hour_id): array
@@ -166,7 +166,7 @@ class HourControlService
         }
 
         if (!empty($delete_hour_controls_id))
-            $this->hourControlRepository->delete($delete_hour_controls_id);
+            $this->hourControlRepository->deleteByHourControlId($delete_hour_controls_id);
 
         return [
             'alert_user' => $alert_user,
