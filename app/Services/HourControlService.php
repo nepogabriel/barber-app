@@ -32,7 +32,7 @@ class HourControlService
             ];
         }
 
-        $hours_control = $this->hourControlRepository->getHourControl($hours_id);
+        $hours_control = $this->hour_control_repository->getHourControl($hours_id);
 
         if (!empty($hours_control)) {
             $check_hour = $this->checkIfHourIsAvaliable($hours_control, $ids_hour_control_selected);
@@ -83,12 +83,12 @@ class HourControlService
             ];
         }
 
-        return $this->hourControlRepository->createHourControl($hours_id_query);
+        return $this->hour_control_repository->createHourControl($hours_id_query);
     }
 
     private function updateHourControl(array $new_hours_id)
     {
-        $results = $this->hourControlRepository->getHourControlByIdHourControl($this->ids_hour_control_selected);
+        $results = $this->hour_control_repository->getHourControlByIdHourControl($this->ids_hour_control_selected);
         
         $ids_hour_control_to_delete = [];
         $services = [];
@@ -101,7 +101,7 @@ class HourControlService
                     'hour_id' => $new_hours_id[$result->service_id]
                 ];
 
-                $this->hourControlRepository->updateHourControl($result->id, $hours_id);
+                $this->hour_control_repository->updateHourControl($result->id, $hours_id);
             } else if (!isset($new_hours_id[$result->service_id])) {
                 $ids_hour_control_to_delete[$result->hour_id] = $result->id;
             }
@@ -119,19 +119,19 @@ class HourControlService
 
     public function deleteByHourId(array $hours_id): void
     {
-        $this->hourControlRepository->deleteByHourId($hours_id);
+        $this->hour_control_repository->deleteByHourId($hours_id);
     }
 
     public function deleteByHourControlId(array $ids_hour_control_to_delete): void
     {
-        $this->hourControlRepository->deleteByHourControlId($ids_hour_control_to_delete);
+        $this->hour_control_repository->deleteByHourControlId($ids_hour_control_to_delete);
     }
 
     private function getIdsHourControl(array $hour_id): array
     {
         $ids_hour_control = [];
 
-        $hours_control = $this->hourControlRepository->getHourControl($hour_id);
+        $hours_control = $this->hour_control_repository->getHourControl($hour_id);
 
         foreach ($hours_control as $hour_control) {
             $ids_hour_control[$hour_control->hour_id] = $hour_control->id;
@@ -163,7 +163,7 @@ class HourControlService
         }
 
         if (!empty($delete_hour_controls_id))
-            $this->hourControlRepository->deleteByHourControlId($delete_hour_controls_id);
+            $this->hour_control_repository->deleteByHourControlId($delete_hour_controls_id);
 
         return [
             'alert_user' => $alert_user,
@@ -190,10 +190,10 @@ class HourControlService
 
             $hours_id[] = $hour_id;
 
-            $this->hourControlRepository->updateOrCreateHourControl($service_id, $hour_id);
+            $this->hour_control_repository->updateOrCreateHourControl($service_id, $hour_id);
         }
 
-        $result = $this->hourControlRepository->getHourControl($hours_id);
+        $result = $this->hour_control_repository->getHourControl($hours_id);
 
         if ($result->isNotEmpty())
             $this->ids_hour_control_selected[$result->first()?->hour_id] = $result->first()?->id;
