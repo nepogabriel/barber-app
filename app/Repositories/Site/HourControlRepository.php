@@ -44,9 +44,9 @@ class HourControlRepository
         );
     }
 
-    public function destroyHourControl(int $hour_id): void
+    public function deleteByHourId(array $hours_id): void
     {
-        HourControl::where('hour_id', $hour_id)->delete();
+        HourControl::whereIn('hour_id', $hours_id)->delete();
     }
 
     public function delete($ids)

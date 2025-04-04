@@ -120,9 +120,9 @@ class HourControlService
             $this->session->put('order.ids_hour_control', $new_session);
     }
 
-    public function destroyHourControl(int $hour_id): void
+    public function deleteByHourId(array $hours_id): void
     {
-        $this->hourControlRepository->destroyHourControl($hour_id);
+        $this->hourControlRepository->deleteByHourId($hours_id);
     }
 
     public function delete(array $ids_hour_control_to_delete): void

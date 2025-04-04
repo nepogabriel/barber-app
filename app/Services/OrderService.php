@@ -14,6 +14,7 @@ class OrderService
         private ServiceService $service_service,
         private ProfessionalService $professional_service,
         private HourService $hour_service,
+        private HourControlService $hour_control_sevice,
         private AppointmentRepository $appointment_repository
     ) {}
 
@@ -101,6 +102,9 @@ class OrderService
 
         if ($created) {
             $this->hour_service->checkHours($data['orders']);
+
+            $this->hour_control_sevice->deleteByHourId($data['orders']);
+            $this->session->forget('order');
         }
     }
 }
