@@ -117,6 +117,38 @@ class HourControlServiceTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function test_check_if_hour_is_available_with_valid_time()
+    {
+        $hour_control = (object) [
+            'id' => 1,
+            'hour_id' => 1,
+            'updated_at' => now()->subMinutes(5)->format('Y-m-d H:i:s'),
+        ];
+
+        $hour_control_repository_mock = $this->mockHourControlRepository(
+            $this->eloquentCollection([$hour_control])
+        );
+
+        $hour_control_service = $this->getMockedHourControlService(
+            $hour_control_repository_mock,
+        );
+
+        $method = new \ReflectionMethod($hour_control_service, 'checkIfHourIsAvaliable');
+        $method->setAccessible(true);
+        
+        $result = $method->invokeArgs($hour_control_service, [
+            $this->eloquentCollection([$hour_control]),
+            []
+        ]);
+
+        $expected = [
+            'alert_user' => true,
+            'hours_id' => [1]
+        ];
+        
+        $this->assertEquals($expected, $result);
+    }
+
     private function getMockedHourControlService($hour_control_repository_mock = null, $service_service_mock = null)
     {
         $session_mock = $this->createMock(\App\Interfaces\SessionInterface::class);
