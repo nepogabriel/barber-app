@@ -42,12 +42,15 @@ function listarHorarios(date) {
             }
 
             if (response.hours && response.hours.length === 0) {
-                var li = document.createElement('li');
-                li.className = 'list-group-item text-center list-group-item-secondary';
-                li.textContent = 'Esta data não possui horários.';
+                listHours.classList.remove('row');
 
-                listHours.appendChild(li);
+                var div = document.createElement('div');
+                div.className = 'alert alert-secondary text-center';
+                div.textContent = 'Esta data não possui horários.';
+
+                listHours.appendChild(div);
             } else {
+                listHours.classList.add('row');
                 montarHorarios(response);
             }
         }
