@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class HourControlServiceTest extends TestCase
@@ -40,14 +41,14 @@ class HourControlServiceTest extends TestCase
 
     public function test_validate_hour_control_with_unavailable_hours()
     {
-        $hourControl = (object) [
+        $hour_control = (object) [
             'id' => 1,
             'hour_id' => 1,
             'updated_at' => now()->subMinutes(5)->format('Y-m-d H:i:s'),
         ];
 
         $hour_control_repository_mock = $this->mockHourControlRepository(
-            $this->eloquentCollection([$hourControl])
+            $this->eloquentCollection([$hour_control])
         );
 
         $hour_control_service = $this->getMockedHourControlService(
@@ -62,6 +63,57 @@ class HourControlServiceTest extends TestCase
             'message' => 'Desculpe! Outro usuário escolheu o mesmo horário. Serviço: Serviço Teste'
         ];
 
+        $this->assertEquals($expected, $result);
+    }
+
+    #[DataProvider('checkSameHourTestCases')]
+    public function test_check_same_hour_with_duplicates(array $input, bool $expected): void
+    {
+        $service = $this->getMockedHourControlService();
+        
+        $reflection = new \ReflectionClass($service);
+        $method = $reflection->getMethod('checkSameHour');
+        $method->setAccessible(true);
+        
+        $result = $method->invokeArgs($service, [$input]);
+        
+        $this->assertSame($expected, $result);
+    }
+
+    // Testes para checkIfHourIsAvaliable
+    public function test_check_if_hour_is_available_with_expired_time()
+    {
+        $hour_control = (object) [
+            'id' => 1,
+            'hour_id' => 1,
+            'updated_at' => now()->subMinutes(11)->format('Y-m-d H:i:s'),
+        ];
+
+        $hour_control_repository_mock = $this->mockHourControlRepository(
+            $this->eloquentCollection([$hour_control])
+        );
+
+        $hour_control_repository_mock->expects($this->once())
+            ->method('deleteByHourControlId')
+            ->with([1]);
+
+        $hour_control_service = $this->getMockedHourControlService(
+            $hour_control_repository_mock,
+        );
+
+        $method = new \ReflectionMethod($hour_control_service, 'checkIfHourIsAvaliable');
+        $method->setAccessible(true);
+        
+        $result = $method->invokeArgs($hour_control_service, [
+            $this->eloquentCollection([$hour_control]),
+            []
+        ]);
+
+        $expected = [
+            'alert_user' => false,
+            'hours_id' => []
+        ];
+        
         $this->assertEquals($expected, $result);
     }
 
