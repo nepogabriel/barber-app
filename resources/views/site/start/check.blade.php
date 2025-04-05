@@ -1,4 +1,10 @@
 <x-layout_site title="Consultar Horário">
+    @isset($message_alert_user)
+        <div class="alert alert-danger">
+            {{ $message_alert_user }}
+        </div>
+    @endisset
+
     <form action="{{ route('site.start.show') }}" method="post">
         @csrf
 
