@@ -21,15 +21,9 @@ class HourController extends Controller
 
     public function index(Request $request)
     {
-        $order_hour_id = $request->session()->get('order.hour_id');
-
-        $hours = $this->getHours($request);
-
         $message_alert_user = $request->session()->get('hour_control.alert_user');
 
         return view('site.hour.index')
-            ->with('hours', $hours)
-            ->with('order_hour_id', $order_hour_id)
             ->with('message_alert_user', $message_alert_user);
     }
 
@@ -84,20 +78,5 @@ class HourController extends Controller
         ];
 
         return response()->json($data);
-    }
-
-    private function getHours(Request $request)
-    {
-        $order_professional_id = $request->session()->get('order.professional_id');
-
-        $hours = Hour::query()
-            ->orderBy('date')
-            ->orderBy('time')
-            ->where('professional_id', '=', $order_professional_id)
-            ->whereRaw('date >= curdate()')
-            ->where('checked', '=', '0')
-            ->get();
-
-        return $hours;
     }
 }
