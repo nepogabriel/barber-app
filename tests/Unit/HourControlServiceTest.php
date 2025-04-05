@@ -149,6 +149,82 @@ class HourControlServiceTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function test_check_if_hour_is_available_with_selected_ids()
+    {
+        $hour_control = (object) [
+            'id' => 1,
+            'hour_id' => 1,
+            'updated_at' => now()->subMinutes(5)->format('Y-m-d H:i:s'),
+        ];
+
+        $hour_control_repository_mock = $this->mockHourControlRepository(
+            $this->eloquentCollection([$hour_control])
+        );
+
+        $hour_control_service = $this->getMockedHourControlService(
+            $hour_control_repository_mock,
+        );
+
+        $method = new \ReflectionMethod($hour_control_service, 'checkIfHourIsAvaliable');
+        $method->setAccessible(true);
+        
+        $result = $method->invokeArgs($hour_control_service, [
+            $this->eloquentCollection([$hour_control]),
+            [1 => 1]
+        ]);
+
+        $expected = [
+            'alert_user' => false,
+            'hours_id' => []
+        ];
+        
+        $this->assertEquals($expected, $result);
+    }
+
+    public function test_include_service_name_in_alert_single_service()
+    {
+        $hour_control_service = $this->getMockedHourControlService(
+            service_service_mock: $this->mockServiceService(
+                $this->eloquentCollection([
+                    (object) ['id' => 1, 'name' => 'Serviço Teste']
+                ])
+            )
+        );
+
+        $method = new \ReflectionMethod($hour_control_service, 'includeServiceNameInAlert');
+        $method->setAccessible(true);
+        
+        $result = $method->invokeArgs($hour_control_service, [
+            [1 => 1, 2 => 2],
+            [1]
+        ]);
+        
+        $this->assertEquals('Serviço: Serviço Teste', $result);
+    }
+
+    public function test_include_service_name_in_alert_multiple_services()
+    {
+
+        $hour_control_service = $this->getMockedHourControlService(
+            service_service_mock: $this->mockServiceService(
+                $this->eloquentCollection([
+                    (object) ['id' => 1, 'name' => 'Serviço 1'],
+                    (object) ['id' => 2, 'name' => 'Serviço 2']
+                ])
+            )
+        );
+
+        $method = new \ReflectionMethod($hour_control_service, 'includeServiceNameInAlert');
+        $method->setAccessible(true);
+        
+        $result = $method->invokeArgs($hour_control_service, [
+            [1 => 1, 2 => 1],
+            [1]
+        ]);
+        
+        $this->assertEquals('Serviços: Serviço 1 e Serviço 2', $result);
+    }
+
     private function getMockedHourControlService($hour_control_repository_mock = null, $service_service_mock = null)
     {
         $session_mock = $this->createMock(\App\Interfaces\SessionInterface::class);
@@ -183,7 +259,7 @@ class HourControlServiceTest extends TestCase
     {
         $service_repository_mock = $this->createMock(\App\Repositories\ServiceRepository::class);
         $service_repository_mock->method('getNameOfServicesById')
-        ->willReturn($return);
+            ->willReturn($return);
     
         return new \App\Services\ServiceService($service_repository_mock);
     }
