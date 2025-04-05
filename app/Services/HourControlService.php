@@ -203,7 +203,9 @@ class HourControlService
     {
         $alert_user = false;
 
-        if (count($hours_id) > 1 && count(array_unique($hours_id)) <= 1) {
+        $hours_id_length = count($hours_id);
+
+        if ($hours_id_length > 1 && $hours_id_length > count(array_unique($hours_id))) {
             $alert_user = true;
         }
 
@@ -220,6 +222,9 @@ class HourControlService
 
             $services_id[] = $service_id;
         }
+
+        if (empty($services_id))
+            return '';
 
         $services = $this->service_service->getNameOfServices($services_id);
 
