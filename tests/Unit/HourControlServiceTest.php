@@ -132,7 +132,7 @@ class HourControlServiceTest extends TestCase
         );
     }
 
-    private function mockHourControlRepository($return = null)
+    private function mockHourControlRepository($return = null, $method = 'getHourControl')
     {
 
         $mock = $this->getMockBuilder(\App\Repositories\HourControlRepository::class)
@@ -141,7 +141,7 @@ class HourControlServiceTest extends TestCase
             ->getMock();
         
         if ($return !== null) {
-            $mock->method('getHourControl')->willReturn($return);
+            $mock->method($method)->willReturn($return);
         }
         
         return $mock;
@@ -159,5 +159,31 @@ class HourControlServiceTest extends TestCase
     protected function EloquentCollection(array $data = [])
     {
         return new \Illuminate\Database\Eloquent\Collection($data);
+    }
+
+    public static function checkSameHourTestCases(): array
+    {
+        return [
+            'Dois IDs iguais (duplicados)' => [
+                'input' => [1 => 1, 2 => 1],
+                'expected' => true,
+            ],
+            'Dois IDs diferentes' => [
+                'input' => [1 => 1, 2 => 2],
+                'expected' => false,
+            ],
+            'Apenas um ID' => [
+                'input' => [1 => 1],
+                'expected' => false,
+            ],
+            'Array vazio' => [
+                'input' => [],
+                'expected' => false,
+            ],
+            'Três Ids, sendo dois duplicados' => [
+                'input' => [1 => 1, 2 => 2, 3 => 1],
+                'expected' => true,
+            ],
+        ];
     }
 }
