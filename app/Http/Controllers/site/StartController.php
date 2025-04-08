@@ -3,18 +3,15 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
-use App\Http\Service\HourService;
+use App\Services\HourService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class StartController extends Controller
 {
-    private HourService $hourService;
-
-    public function __construct()
-    {
-        $this->hourService = new HourService();
-    }
+    public function __construct(
+        private HourService $hour_service
+    ) {}
 
     public function index(Request $request)
     {
@@ -43,8 +40,8 @@ class StartController extends Controller
 
         if (isset($appointments) && $appointments->isNotEmpty()) {
             foreach ($appointments as $key => $appointment) {
-                $appointments[$key]->date = $this->hourService->formatDate($appointment->date);
-                $appointments[$key]->time = $this->hourService->formatTime($appointment->time);
+                $appointments[$key]->date = $this->hour_service->formatDate($appointment->date);
+                $appointments[$key]->time = $this->hour_service->formatTime($appointment->time);
             }
         }
 

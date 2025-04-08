@@ -3,128 +3,93 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
-use App\Http\Service\HourService;
-use App\Models\Appointment;
-use App\Models\Hour;
-use App\Models\Professional;
-use App\Models\Service;
+use App\Interfaces\SessionInterface;
+use App\Services\AppointmentService;
+use App\Services\HourControlService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
-    private HourService $hourService;
+    public function __construct(
+        private SessionInterface $session,
+        private AppointmentService $appointment_service,
+        private HourControlService $hour_control_service
+    ) {}
 
-    public function __construct()
-    {
-        $this->hourService = new HourService();
-    }
-
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
-        if ($request->session()->get('order.service_id') == null) {
-            return to_route('site.order.show');
+        try {
+    
+            if ($this->session->get('order.service_id') == null)
+                return to_route('site.order.show');
+
+            $summary = $this->appointment_service->getOrderSummary();
+            
+            return view('site.order.index')
+                ->with('summary', $summary);
+    
+        } catch (ModelNotFoundException $exception) {
+
+            Log::critical('Conteúdo não encontrado na base de dados ao apresentar resumo do agendamento.', [
+                'key' => 'log_appointment',
+                'message' => $exception->getMessage(),
+                'code' => $exception->getCode(),
+            ]);
+    
+            return view('site.order.index')
+                ->with('message_alert_user', 'Ops! Aconteceu algo inesperado, tente novamente ou mais tarde.');
+
+        } catch (\Exception $exception) {
+
+            Log::critical('Aconteceu algo inesperado ao apresentar resumo do agendamento.', [
+                'key' => 'log_appointment',
+                'message' => $exception->getMessage(),
+                'code' => $exception->getCode(),
+            ]);
+
+            return view('site.order.index')
+                ->with('message_alert_user', 'Ops! Aconteceu algo inesperado, tente novamente ou mais tarde.');
+
         }
-
-        $order_session = [
-            'service_id' => $request->session()->get('order.service_id'),
-            'professional_id' => $request->session()->get('order.professional_id'),
-            'hour_id' => $request->session()->get('order.hour_id'),
-            'name_client' => $request->session()->get('order.name_client'),
-            'telephone_client' => $request->session()->get('order.telephone_client'),
-        ];
-
-        $order = [];
-
-        $order['service'] = Service::query()
-            ->select('id', 'name', 'price')
-            ->where('id', '=', $order_session['service_id'])
-            ->get();
-
-        $order['professional'] = Professional::query()
-            ->select('id', 'name')
-            ->where('id', '=', $order_session['professional_id']) 
-            ->get();
-
-        $order['hour'] = Hour::query()
-            ->select('id', 'date', 'time')
-            ->where('id', '=', $order_session['hour_id'])
-            ->get();
-
-        $order['service'][0]->price = str_replace('.', ',', $order['service'][0]->price); 
-        $order['hour'][0]->date = $this->hourService->formatDate($order['hour'][0]->date);
-        $order['hour'][0]->time = $this->hourService->formatTime($order['hour'][0]->time);
-        
-        return view('site.order.index')
-            ->with('order', $order)
-            ->with('order_session', $order_session);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $appointment = Appointment::create($request->all());
-        
-        $hour = DB::table('hours')
-              ->where('id', $request->hour_id)
-              ->update(['checked' => 1]);
+        try {
 
-        if ($appointment && $hour) {
-            $hourControl = new HourController();
-            $hourControl->destroyHourControl($request->hour_id);
+            $validated = $request->validate([
+                'orders' => 'required',
+                'professional_id' => 'required',
+                'name_client' => 'required',
+                'telephone_client' => 'required',
+            ]);
 
-            $request->session()->forget('order');
+            $this->appointment_service->createAppointments($validated);
+
+            return to_route('site.order.show')
+                ->with('message.order_success', 'Agendamento confirmado com sucesso!');
+
+        } catch (\Exception $exception) {
+
+            Log::critical('Aconteceu algo inesperado ao registrar agendamento.', [
+                'key' => 'log_appointment',
+                'message' => $exception->getMessage(),
+                'code' => $exception->getCode(),
+            ]);
+
+            return view('site.order.index')
+                ->with('message_alert_user', 'Ops! Aconteceu algo inesperado, tente novamente ou mais tarde.');
+
         }
-
-        return to_route('site.order.show')
-            ->with('message.order_success', 'Agendamento confirmado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Request $request)
     {
         $message_order_success = $request->session()->get('message.order_success');
 
         return view('site.order.show')
             ->with('message', $message_order_success);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

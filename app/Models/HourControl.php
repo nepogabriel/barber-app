@@ -9,5 +9,8 @@ class HourControl extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['hour_id'];
+    protected $fillable = [
+        'hour_id',
+        'service_id',
+    ];
 }
