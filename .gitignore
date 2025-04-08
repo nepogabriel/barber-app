@@ -21,3 +21,5 @@ yarn-error.log
 .htaccess
 /cgi-bin
 /public/img/uploads/*
+/docker/mysql/
+/docker/pgsql/

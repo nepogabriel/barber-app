@@ -29,7 +29,7 @@ function listarHorarios(date) {
     };
 
     var url = getUrl() + '/public/horarios/buscar';
-
+    
     sendRequest(data, url, function(error, response) {
         if (error) {
             console.error(error);
@@ -42,12 +42,15 @@ function listarHorarios(date) {
             }
 
             if (response.hours && response.hours.length === 0) {
-                var li = document.createElement('li');
-                li.className = 'list-group-item text-center list-group-item-secondary';
-                li.textContent = 'Esta data não possui horários.';
+                listHours.classList.remove('row');
 
-                listHours.appendChild(li);
+                var div = document.createElement('div');
+                div.className = 'alert alert-secondary text-center';
+                div.textContent = 'Esta data não possui horários.';
+
+                listHours.appendChild(div);
             } else {
+                listHours.classList.add('row');
                 montarHorarios(response);
             }
         }
@@ -56,37 +59,56 @@ function listarHorarios(date) {
 
 function montarHorarios(response) {
     var listHours = document.getElementById('list_hours');
+    const order_hour_id = response.order_hour_id;
     var horas = response.hours;
+    var services = response.services;
+    
+    for (var j = 0; j < services.length; j++) {
+        var div = document.createElement('div');
 
-    for (var i = 0; i < horas.length; i++) {
-        var hour = horas[i];
-
-        // Cria um elemento <li> com o conteúdo específico
-        var li = document.createElement('li');
-        li.className = 'list-group-item';
-
-        var input = document.createElement('input');
-        input.className = 'form-check-input me-1';
-        input.type = 'radio';
-        input.name = 'hour_id';
-        input.value = hour.id;
-        input.id = 'hour_' + hour.id;
-
-        if (response.order_hour_id && response.order_hour_id == hour.id) {
-            input.checked = true;
+        if (services.length === 2) {
+            div.className = 'col-sm-12 col-md-6';
+        } else {
+            div.className = 'col-sm-12 col-md-12';
         }
 
-        var label = document.createElement('label');
-        label.className = 'form-check-label';
-        label.htmlFor = 'hour_' + hour.id;
-        label.textContent = hour.time;
+        div.textContent = 'Serviço: ' + services[j]['name'];
+        listHours.appendChild(div);
 
-        // Adiciona os elementos criados à li
-        li.appendChild(input);
-        li.appendChild(label);
+        var ul = document.createElement('ul');
+        ul.className = 'list-group';
+        div.appendChild(ul);
 
-        // Adiciona a li à lista
-        listHours.appendChild(li);
+        for (var i = 0; i < horas.length; i++) {
+            var hour = horas[i];
+
+            // Cria um elemento <li> com o conteúdo específico
+            var li = document.createElement('li');
+            li.className = 'list-group-item';
+
+            var input = document.createElement('input');
+            input.className = 'form-check-input me-1';
+            input.type = 'radio';
+            input.name = `hour_id[${services[j]['id']}]`;
+            input.value = hour.id;
+            input.id = `hour_${hour.id}_${services[j]['id']}`;
+
+            if (order_hour_id && order_hour_id[services[j]['id']] === hour.id) {
+                input.checked = true;
+            }
+
+            var label = document.createElement('label');
+            label.className = 'form-check-label';
+            label.htmlFor = `hour_${hour.id}_${services[j]['id']}`;
+            label.textContent = hour.time;
+
+            // Adiciona os elementos criados à li
+            li.appendChild(input);
+            li.appendChild(label);
+
+            // Adiciona a li à lista
+            ul.appendChild(li);
+        }
     }
 }
 

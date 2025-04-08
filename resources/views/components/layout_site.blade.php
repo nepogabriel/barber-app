@@ -52,7 +52,7 @@
     </div>
 
     <div class="container">
-        <h2 class="d-flex justify-content-center mb-4">{{ $title }}</h2>
+        <h2 class="d-flex justify-content-center mb-4 fw-bold">{{ $title }}</h2>
 
         @if ($errors->any())
             <div class="alert alert-danger">
