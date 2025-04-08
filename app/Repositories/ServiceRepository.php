@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Service;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ServiceRepository
 {
@@ -16,9 +17,14 @@ class ServiceRepository
 
     public function getServicesByIdToOrderSummary(int $services_id): Service
     {
-        return Service::query()
+        $service = Service::query()
             ->select('id', 'name', 'price')
             ->where('id', '=', $services_id)
             ->first();
+
+        if ($service === null)
+            throw new ModelNotFoundException('Serviço não encontrado. ID: {$services_id}');
+
+        return $service;
     }
 }

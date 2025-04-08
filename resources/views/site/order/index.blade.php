@@ -1,4 +1,11 @@
 <x-layout_site title="Resumo">
+    @isset($message_alert_user)
+        <div class="alert alert-danger">
+            {{ $message_alert_user }}
+        </div>
+    @endisset
+
+    @if(!isset($message_alert_user))
     <form action="{{ route('site.order.store') }}" method="post">
         @csrf
         
@@ -96,6 +103,7 @@
             <button type="submit" class="btn btn-layout border-2 border-dark">Confirmar</button>
         </div>
     </form>
+    @endif
 
 <script>
 window.addEventListener("pageshow", function (event) {

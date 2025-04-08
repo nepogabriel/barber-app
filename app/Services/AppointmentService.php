@@ -7,7 +7,7 @@ use App\Repositories\AppointmentRepository;
 use App\Services\ServiceService;
 use App\Services\ProfessionalService;
 
-class OrderService
+class AppointmentService
 {
     public function __construct(
         private SessionInterface $session,

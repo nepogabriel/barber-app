@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Hour;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class HourRepository
 {
@@ -20,10 +21,15 @@ class HourRepository
 
     public function getHourByIdToOrderSummary(int $hours_id): Hour
     {
-        return Hour::query()
+        $hour =  Hour::query()
             ->select('id', 'date', 'time')
             ->where('id', '=', $hours_id)
             ->first();
+
+        if ($hour === null)
+            throw new ModelNotFoundException('Horário não encontrado. ID: {$hours_id}');
+
+        return $hour;
     }
 
     public function checkHours(array $hours_id): bool
