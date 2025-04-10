@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\admin\AppointmentController;
 use App\Http\Controllers\admin\HourController;
+use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\ModuleController;
 use App\Http\Controllers\admin\settings\modules\FooterController;
 use App\Http\Controllers\admin\ProfessionalController;
 use App\Http\Controllers\admin\ServiceController;
-use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\settings\GeneralController;
 use App\Http\Controllers\site\ClientController as SiteClientController;
 use App\Http\Controllers\site\HourController as SiteHourController;
@@ -120,3 +120,7 @@ Route::controller(FooterController::class)->group(function() {
     Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracoes/modulo/{path}/editar', 'edit')->name('admin.settings.modules.footer.edit');
     Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracoes/modulo/footer/salvar', 'store')->name('admin.settings.modules.footer.store');
 });
+
+Route::get('/login', [LoginController::class, 'index'])->name('admin.login');
+Route::post('/login', [LoginController::class, 'signin'])->name('admin.login.signin');
+Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
