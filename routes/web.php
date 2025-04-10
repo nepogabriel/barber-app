@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\admin\AppointmentController;
 use App\Http\Controllers\admin\HourController;
+use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\ModuleController;
 use App\Http\Controllers\admin\settings\modules\FooterController;
 use App\Http\Controllers\admin\ProfessionalController;
 use App\Http\Controllers\admin\ServiceController;
-use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\settings\GeneralController;
 use App\Http\Controllers\site\ClientController as SiteClientController;
 use App\Http\Controllers\site\HourController as SiteHourController;
@@ -27,41 +27,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-$hash = 'a32c36de88a52ec108f6f1c5f8cc6572';
-
 Route::get('/', function () {
     return redirect('/inicio');
-});
-
-Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin', function () {
-    return redirect('/a32c36de88a52ec108f6f1c5f8cc6572/admin/agenda');
-});
-
-Route::controller(ProfessionalController::class)->group(function () {
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/profissional', 'index')->name('admin.professional.index');
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/profissional/cadastrar', 'create')->name('admin.professional.create');
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/profissional/{professional}/editar', 'edit')->name('admin.professional.edit');
-    Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/profissional/salvar', 'store')->name('admin.professional.store');
-    Route::put('/a32c36de88a52ec108f6f1c5f8cc6572/admin/profissional/{professional}', 'update')->name('admin.professional.update');
-    Route::delete('/a32c36de88a52ec108f6f1c5f8cc6572/admin/profissional/excluir/{professional}', 'destroy')->name('admin.professional.destroy');
-});
-
-Route::controller(ServiceController::class)->group(function() {
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/servico', 'index')->name('admin.service.index');
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/servico/cadastrar', 'create')->name('admin.service.create');
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/servico/{service}/editar', 'edit')->name('admin.service.edit');
-    Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/servico/salvar', 'store')->name('admin.service.store');
-    Route::put('/a32c36de88a52ec108f6f1c5f8cc6572/admin/servico/{service}', 'update')->name('admin.service.update');
-    Route::delete('/a32c36de88a52ec108f6f1c5f8cc6572/admin/servico/excluir/{service}', 'destroy')->name('admin.service.destroy');
-});
-
-Route::controller(HourController::class)->group(function() {
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/horario', 'index')->name('admin.hour.index');
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/horario/cadastrar', 'create')->name('admin.hour.create');
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/horario/{hour}/editar', 'edit')->name('admin.hour.edit');
-    Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/horario/salvar', 'store')->name('admin.hour.store');
-    Route::put('/a32c36de88a52ec108f6f1c5f8cc6572/admin/horario/{hour}', 'update')->name('admin.hour.update');
-    Route::delete('/a32c36de88a52ec108f6f1c5f8cc6572/admin/hour/excluir/{hour}', 'destroy')->name('admin.hour.destroy');
 });
 
 Route::controller(SiteServiceController::class)->group(function() {
@@ -97,26 +64,58 @@ Route::controller(SiteStartController::class)->group(function() {
     Route::post('/consulta/buscar', 'show')->name('site.start.show');
 });
 
-Route::controller(AppointmentController::class)->group(function() {
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/agenda', 'index')->name('admin.appointment.index');
-    Route::delete('/a32c36de88a52ec108f6f1c5f8cc6572/admin/agendamento/excluir/{appointment}', 'destroy')->name('admin.appointment.destroy');
-});
+Route::get('/login', [LoginController::class, 'index'])->name('admin.login');
+Route::post('/login', [LoginController::class, 'signin'])->name('admin.login.signin');
+Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
 
-// Route::controller(SettingController::class)->group(function () {
-//     Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracao', 'index')->name('admin.setting.index');
-//     Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracao/salvar', 'store')->name('admin.setting.store');
-// });
+Route::middleware('auth_professional')->group(function () {
+    Route::get('/admin', function () {
+        return redirect('/admin/agenda');
+    });
+    
+    Route::controller(ProfessionalController::class)->group(function () {
+        Route::get('/admin/profissional', 'index')->name('admin.professional.index');
+        Route::get('/admin/profissional/cadastrar', 'create')->name('admin.professional.create');
+        Route::get('/admin/profissional/{professional}/editar', 'edit')->name('admin.professional.edit');
+        Route::post('/admin/profissional/salvar', 'store')->name('admin.professional.store');
+        Route::put('/admin/profissional/{professional}', 'update')->name('admin.professional.update');
+        Route::delete('/admin/profissional/excluir/{professional}', 'destroy')->name('admin.professional.destroy');
+    });
+    
+    Route::controller(ServiceController::class)->group(function() {
+        Route::get('/admin/servico', 'index')->name('admin.service.index');
+        Route::get('/admin/servico/cadastrar', 'create')->name('admin.service.create');
+        Route::get('/admin/servico/{service}/editar', 'edit')->name('admin.service.edit');
+        Route::post('/admin/servico/salvar', 'store')->name('admin.service.store');
+        Route::put('/admin/servico/{service}', 'update')->name('admin.service.update');
+        Route::delete('/admin/servico/excluir/{service}', 'destroy')->name('admin.service.destroy');
+    });
+    
+    Route::controller(HourController::class)->group(function() {
+        Route::get('/admin/horario', 'index')->name('admin.hour.index');
+        Route::get('/admin/horario/cadastrar', 'create')->name('admin.hour.create');
+        Route::get('/admin/horario/{hour}/editar', 'edit')->name('admin.hour.edit');
+        Route::post('/admin/horario/salvar', 'store')->name('admin.hour.store');
+        Route::put('/admin/horario/{hour}', 'update')->name('admin.hour.update');
+        Route::delete('/admin/hour/excluir/{hour}', 'destroy')->name('admin.hour.destroy');
+    });
 
-Route::controller(GeneralController::class)->group(function () {
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracoes/geral', 'index')->name('admin.settings.general.index');
-    Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracao/salvar', 'store')->name('admin.settings.general.store');
-});
-
-Route::controller(ModuleController::class)->group(function () {
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracoes/modulos', 'index')->name('admin.settings.modules.index');
-});
-
-Route::controller(FooterController::class)->group(function() {
-    Route::get('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracoes/modulo/{path}/editar', 'edit')->name('admin.settings.modules.footer.edit');
-    Route::post('/a32c36de88a52ec108f6f1c5f8cc6572/admin/configuracoes/modulo/footer/salvar', 'store')->name('admin.settings.modules.footer.store');
+    Route::controller(AppointmentController::class)->group(function() {
+        Route::get('/admin/agenda', 'index')->name('admin.appointment.index')->middleware('auth_professional');
+        Route::delete('/admin/agendamento/excluir/{appointment}', 'destroy')->name('admin.appointment.destroy');
+    });
+    
+    Route::controller(GeneralController::class)->group(function () {
+        Route::get('/admin/configuracoes/geral', 'index')->name('admin.settings.general.index');
+        Route::post('/admin/configuracao/salvar', 'store')->name('admin.settings.general.store');
+    });
+    
+    Route::controller(ModuleController::class)->group(function () {
+        Route::get('/admin/configuracoes/modulos', 'index')->name('admin.settings.modules.index');
+    });
+    
+    Route::controller(FooterController::class)->group(function() {
+        Route::get('/admin/configuracoes/modulo/{path}/editar', 'edit')->name('admin.settings.modules.footer.edit');
+        Route::post('/admin/configuracoes/modulo/footer/salvar', 'store')->name('admin.settings.modules.footer.store');
+    });
 });
