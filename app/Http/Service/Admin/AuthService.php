@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Log;
 
 class AuthService
 {
-    public function signIn(array $credentials)
+    public function signIn(array $credentials): bool
     {
         try {
             if (!Auth::guard('professional')->attempt($credentials))

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginFormRequest;
 use App\Http\Service\Admin\AuthService;
-use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -17,7 +17,7 @@ class LoginController extends Controller
         return view('admin.login.index');
     }
 
-    public function signIn(Request $request)
+    public function signIn(LoginFormRequest $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
@@ -30,6 +30,7 @@ class LoginController extends Controller
             return redirect()->route('admin.login')->with('alert_user', 'E-mail ou senha inválidos.');
         }
 
+        $request->session()->regenerate();
         return to_route('admin.appointment.index');
     }
 

@@ -17,11 +17,30 @@
                     @csrf
 
                     <div class="mb-3">
-                        <input type="email" name="email" class="form-control field-signin" placeholder="Email">
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            value="{{ old('email') }}"
+                            class="form-control field-signin @error('email') is-invalid @enderror"
+                            />
+
+                        @error('email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
-                        <input type="password" name="password" class="form-control field-signin" placeholder="Senha">
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Senha"
+                            class="form-control field-signin @error('password') is-invalid @enderror"
+                            />
+
+                        @error('password')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     @if (session('alert_user'))
