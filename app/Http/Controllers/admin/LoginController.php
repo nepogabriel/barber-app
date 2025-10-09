@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Service\Admin\AuthService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    public function __construct(
+        private AuthService $authService
+    ) {}
+
     public function index()
     {
         return view('admin.login.index');
@@ -20,8 +24,10 @@ class LoginController extends Controller
             'password' => 'required|min:7|max:300',
         ]);
 
-        if (!Auth::guard('professional')->attempt($credentials)) {
-            return redirect()->back()->with(['alert_user' => 'Usuário ou senha inválidos.']);
+        $authenticated = $this->authService->signIn($credentials);
+
+        if (!$authenticated) {
+            return redirect()->route('admin.login')->with('alert_user', 'E-mail ou senha inválidos.');
         }
 
         return to_route('admin.appointment.index');
@@ -29,7 +35,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        Auth::guard('professional')->logout();
+        $this->authService->logout();
         return to_route('admin.login');
     }
 }

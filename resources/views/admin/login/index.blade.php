@@ -23,10 +23,12 @@
                     <div class="mb-3">
                         <input type="password" name="password" class="form-control field-signin" placeholder="Senha">
                     </div>
-                    
-                    @isset($alert_user)
-                    <span class="text-danger">{{ $alert_user }}</span>
-                    @endisset
+
+                    @if (session('alert_user'))
+                    <div class="alert alert-danger" role="alert">
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;{{ session('alert_user') }}
+                    </div>
+                    @endif 
 
                     <button type="submit" class="btn btn-signin">Entrar</button>
                 </form>
