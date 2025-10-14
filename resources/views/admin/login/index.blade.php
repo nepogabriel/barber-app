@@ -50,6 +50,9 @@
                     @endif 
 
                     <button type="submit" class="btn btn-signin">Entrar</button>
+                    <p class="text-center mt-2">
+                        <a href="{{ route('admin.password.request') }}" class="">Esqueceu a senha?</a>
+                    </p>
                 </form>
             </div>
         </div>
