@@ -39,7 +39,8 @@ class GeneralController extends Controller
     public function store(Request $request)
     {
         $data = [
-            "template_client" => $request->template_client,
+            'template_client' => $request->template_client,
+            'order_summary' => $request->order_summary,
         ];
 
         if ($request->hasFile('logo_header')) {
@@ -75,6 +76,7 @@ class GeneralController extends Controller
         $fields = [
             'template_client' => '',
             'logo_header' => '',
+            'order_summary' => 0,
         ];
 
         return $this->settingService->prepareFields(SettingService::CODE_GENERAL, $fields);

@@ -36,6 +36,20 @@
             <input class="form-control" type="file" name="logo_header" id="logo-header">
         </div>
 
+        <hr>
+
+        <div class="mb-3">
+            <label for="logo-header" class="form-label">Habilitar resumo do agendamento:</label>
+            <select class="form-select" name="order_summary" id="order-summary">
+                <option value="0" @if(!isset($settings->order_summary) && $settings->order_summary) selected @endif>
+                    Não
+                </option>
+                <option value="1" @if(isset($settings->order_summary) && $settings->order_summary) selected @endif>
+                    Sim
+                </option>
+            </select>
+        </div>
+
         {{-- <hr>
 
         <div class="mb-3">
