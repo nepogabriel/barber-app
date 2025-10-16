@@ -60,22 +60,35 @@ class HourController extends Controller
 
     public function show(Request $request)
     {
-        $order_professional_id = $request->session()->get('order.professional_id');
-        $order_hour_id = $request->session()->get('order.hour_id') ?: [];
+        try {
+            $order_professional_id = $request->session()->get('order.professional_id');
+            $order_hour_id = $request->session()->get('order.hour_id') ?: [];
 
-        $hours = $this->hour_service->getHours($order_professional_id, $request->date);
+            $hours = $this->hour_service->getHours($order_professional_id, $request->date);
 
-        if ($request->session()->get('order.service_id') !== null) {
-            $services = $this->service_service->getNameOfServices($request->session()->get('order.service_id'));
+            $services = '';
+
+            if ($request->session()->get('order.service_id') !== null) {
+                $services = $this->service_service->getNameOfServices($request->session()->get('order.service_id'));
+            }
+
+            $data = [
+                'order_hour_id' => $order_hour_id,
+                'order_professional_id' => $order_professional_id,
+                'hours' => $hours,
+                'services' => $services,
+            ];
+
+            return response()->json($data);
+        } catch (\Exception $exception) {
+            Log::critical('Aconteceu algo inesperado ao buscar horário marcado.', [
+                'key' => 'log_hour',
+                'message' => $exception->getMessage(),
+                'code' => $exception->getCode(),
+            ]);
+
+            return to_route('site.start.index')
+                ->with('message.order_success', 'Ops! Aconteceu algo inesperado, tente novamente ou mais tarde.');
         }
-
-        $data = [
-            'order_hour_id' => $order_hour_id,
-            'order_professional_id' => $order_professional_id,
-            'hours' => $hours,
-            'services' => $services,
-        ];
-
-        return response()->json($data);
     }
 }
