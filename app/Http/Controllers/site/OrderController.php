@@ -21,7 +21,10 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         try {
-    
+            /*
+            * Para usuários que já agendaram e voltaram a página utilizando o navegador. 
+            * Obs: Após agendar toda a sessão é deletada.
+            */
             if ($this->session->get('order.service_id') == null)
                 return to_route('site.order.show');
 
