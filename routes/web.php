@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\settings\modules\FooterController;
 use App\Http\Controllers\admin\ProfessionalController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\settings\GeneralController;
+use App\Http\Controllers\admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\site\ClientController as SiteClientController;
 use App\Http\Controllers\site\HourController as SiteHourController;
 use App\Http\Controllers\site\OrderController as SiteOrderController;
@@ -119,3 +120,15 @@ Route::middleware('auth_professional')->group(function () {
         Route::post('/admin/configuracoes/modulo/footer/salvar', 'store')->name('admin.settings.modules.footer.store');
     });
 });
+
+// Rota para exibir o formulário de "esqueci minha senha"
+Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
+
+// Rota para receber o e-mail e disparar o job
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('admin.password.email');
+
+// Rota para o usuário clicar no link do e-mail e ver o formulário de nova senha
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('admin.password.reset');
+
+// Rota para salvar a nova senha
+Route::post('reset-password', [ForgotPasswordController::class, 'reset'])->name('admin.password.update');
