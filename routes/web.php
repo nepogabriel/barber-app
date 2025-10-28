@@ -122,10 +122,10 @@ Route::middleware('auth_professional')->group(function () {
 });
 
 // Rota para exibir o formulário de "esqueci minha senha"
-Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
+Route::get('/admin/redefinir-senha', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
 
 // Rota para receber o e-mail e disparar o job
-Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('admin.password.email');
+Route::post('/admin/redefinir-senha', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('admin.password.email');
 
 // Rota para o usuário clicar no link do e-mail e ver o formulário de nova senha
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('admin.password.reset');

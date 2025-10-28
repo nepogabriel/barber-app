@@ -1,4 +1,7 @@
-@include('components.header') {{-- Se você usa um header padrão --}}
+{{-- @include('components.header')  --}}
+{{-- Se você usa um header padrão --}}
+
+<x-layout title="Redefinir Senha">
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -52,4 +55,6 @@
     </div>
 </div>
 
-@include('components.footer') {{-- Se você usa um footer padrão --}}
+</x-layout>
+{{-- @include('components.footer')  --}}
+{{-- Se você usa um footer padrão --}}
