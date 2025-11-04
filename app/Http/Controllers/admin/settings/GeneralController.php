@@ -45,13 +45,12 @@ class GeneralController extends Controller
 
         if ($request->hasFile('logo_header')) {
             $image = $request->file('logo_header');
-
             $image_name = time() . '.' . $image->getClientOriginalExtension();
+            $folder = 'uploads/images';
 
-            $image->move(public_path('img/uploads'), $image_name);
+            $image->storeAs($folder, $image_name, 'r2');
             
-            $image_path = '/img/uploads/' . $image_name;
-
+            $image_path = "{$folder}/{$image_name}";
             $data['logo_header'] = $image_path;
         }
 
