@@ -6,6 +6,7 @@
     @endisset
 
     {{-- Calendar Element  --}}
+    {{-- https://gramthanos.github.io/jsCalendar/ --}}
     <div class="material-theme custom-calendar calendar-hour d-flex justify-content-center mb-3"></div>
 
     <form action="{{ route('site.hour.store') }}" method="post">

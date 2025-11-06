@@ -111,8 +111,20 @@ body {
 /* CALENDÁRIO CLIENTE */
 .jsCalendar.custom-calendar tbody td.jsCalendar-current {
     background-color: transparent;
-    color: #000;
+    border: 1px solid var(--primary-color, #cebc96);
+    border-radius: 50%;
+    color: inherit;
+    font-weight: bolder;
 }
+
+.jsCalendar.custom-calendar tbody td.date-selected {
+    background-color: var(--primary-color, #cebc96);
+    color: var(--text-date-hover, #000);
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: lighter;
+}
+
 .jsCalendar.custom-calendar *::selection {
     background: var(--primary-color, #cebc96);
 }
@@ -137,6 +149,7 @@ body {
 .jsCalendar tbody td:hover {
     background-color: var(--primary-color, #cebc96);
     color: var(--text-date-hover, #000);
+    opacity: 0.7;
 }
 
 #start {
