@@ -7,8 +7,23 @@ if (parteAposUltimaBarra == 'horarios' || parteAposUltimaBarra == 'public/horari
     var element = document.querySelector('.calendar-hour');
     var myCalendar = jsCalendar.new(element); // Create the calendar
 
+    var todayElement = element.querySelector('.jsCalendar-current');
+    console.log('todayElement', todayElement);
+
+    if (todayElement) {
+        console.log('Entrou aqui');
+        todayElement.classList.add('date-selected');
+    }
+
     // Add events
     myCalendar.onDateClick(function(event, date){
+        var oldSelected = element.querySelector('.date-selected');
+        if (oldSelected) {
+            oldSelected.classList.remove('date-selected');
+        }
+
+        event.target.classList.add('date-selected');
+
         dataOriginal = new Date(date.toString());
 
         // Obter ano, mês e dia
