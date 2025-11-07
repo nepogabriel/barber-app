@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfessionalFormRequest;
 use App\Models\Professional;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfessionalController extends Controller
 {
@@ -26,7 +27,11 @@ class ProfessionalController extends Controller
 
     public function store(ProfessionalFormRequest $request)
     {   
-        $professional = Professional::create($request->all());
+        $data = $request->except(['_token']);
+
+        $data['password'] = Hash::make($data['password']);
+
+        $professional = Professional::create($data);
 
         return to_route('admin.professional.index')
             ->with('message.success', "Profissional '{$professional->name}' criado(a) com sucesso!");

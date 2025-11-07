@@ -61,9 +61,9 @@
                         </ul>
                     </li>
 
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="#">Sair</a>
-                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.logout') }}">Sair</a>
+                    </li>
                 </ul>
             </div>
         </div>
