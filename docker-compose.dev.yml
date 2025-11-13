@@ -1,0 +1,103 @@
+services:
+    # image project
+    app:
+        build:
+            context: .
+            dockerfile: ./docker/php/Dockerfile.dev
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - mysql
+            - redis
+        networks:
+            - laravel
+        ports:
+            - "8080:8080"
+        environment:
+            # Laravel
+            APP_ENV: ${APP_ENV:-local}
+            APP_DEBUG: ${APP_DEBUG:-true}
+            # Xdebug (sobrescreve o .ini e nos dá controle)
+            XDEBUG_MODE: ${XDEBUG_MODE:-off} # Mude para 'debug' no seu .env para ligar
+            XDEBUG_CONFIG: "client_host=host.docker.internal"
+
+    # nginx
+    nginx:
+        # image: nginx:alpine
+        build:
+            context: .
+            dockerfile: ./docker/nginx/Dockerfile
+        restart: unless-stopped
+        ports:
+            - "${APP_PORT:-8383}:80"
+        environment:
+            LARAVEL_HOST: ${LARAVEL_HOST}
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - app
+        networks:
+            - laravel
+
+    mysql:
+        image: 'mysql/mysql-server:8.0'
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        volumes:
+            - 'sail-mysql:/var/lib/mysql'
+            - './docker/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
+        networks:
+            - laravel
+        healthcheck:
+            test:
+                - CMD
+                - mysqladmin
+                - ping
+                - '-p${DB_PASSWORD}'
+            retries: 3
+            timeout: 5s
+
+    redis:
+        image: 'redis:latest'
+        ports:
+            - '${FORWARD_REDIS_PORT:-6379}:6379'
+        volumes:
+            - 'redis-data:/data'
+        networks:
+            - laravel
+        healthcheck:
+            test:
+                - CMD
+                - redis-cli
+                - ping
+            retries: 3
+            timeout: 5s
+    
+    mailpit:
+        image: 'axllent/mailpit:latest'
+        ports:
+            - '${FORWARD_MAILPIT_PORT:-1025}:1025'
+            - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
+        networks:
+            - laravel
+
+networks:
+    laravel:
+        driver: bridge
+
+volumes:
+    sail-mysql:
+        driver: local
+    # mysql-data:
+    #     driver: local
+    redis-data:
+        driver: local
